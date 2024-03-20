@@ -1,32 +1,24 @@
 - [IRif Api](#irif-api)
 	- [Category](#category)
 		- [Get Categories](#get-categories)
-		- [Get Category](#get-category)	
-		- [Create Category](#create-category)
-		- [Update Category](#update-category)
-		- [Delete Category](#delete-category)
+        - [Get Category Tree](#get-category-tree)
 	- [SubCategory](#subcategory)
 		- [Get SubCategories](#get-subcategories)
 		- [Get SubCategoriy](#get-subcategory)	
-		- [Create SubCategories](#create-subcategory)
-		- [Update SubCategories](#update-subcategory)
-		- [Delete SubCategories](#delete-subcategory)
+    - [Product Category](#product-category)
+        - [Get Product Categories](#get-product-categories)
+        - [Get Product Category](#get-product-category)
     - [Products](#products)
         - [Get Products by Category](#get-products-by-category)
-            - [Variant 1](#variant-1)
-            - [Variant 2](#variant-2)
         - [Get Products by User](#get-products-by-user)
         - [Get Product Variations](#get-product-variations)
         - [Get Product Variation](#get-product-variation)
         - [Get Product Options](#get-product-options)
-    - [Additional](#additional)
-        - [Category Filter Example](#category-filter-example)
 
 # IRif Api
 Api v1 
 
 ## Category
-
 
 ### Get Categories
 ```js
@@ -39,48 +31,21 @@ GET {{host}}/v1/categories
 ```json
 {
    {
-      "id": 1,
+      "id": "b7b45ac6-52ca-458e-9f03-8fb1e1c14144",
       "categoryName": "Электроника",
-      "categoryHandle": "electronica"
+      "categoryHandle": "elektronika-b7b45ac6-52ca-458e-9f03-8fb1e1c14144"
    },
    {
-      "id": 2,
+      "id": "b7b45ac6-52ca-458e-9f03-8fb1e1c14144",
       "categoryName": "Дом и сад",
-      "categoryHandle": "dom-i-sad"
+      "categoryHandle": "smartfoni-i-telefoni-941eae43-fff7-44db-8dd8-bf62561240a2"
    }
 }
 ```
-
-### Get Category
-
-```js
-GET {{host}}/v1/categories/{categoryId}
-```
-
-#### Rsponse
-```js
-200 Ok
-```
-```json
-{
-   "id": 1,
-   "categoryName": "Электроника",
-   "categoryHandle": "electronica",
-}
-```
-
 #
-### Create Category
+### Get Category Tree
 ```js
-POST {{host}}/v1/categories
-```
-
-#### Request
-```json
-{
-   "categoryName": "Электроника",
-   "categoryHandle": "electronica"
-}
+GET {{host}}/api/categories-tree
 ```
 
 #### Rsponse
@@ -89,56 +54,36 @@ POST {{host}}/v1/categories
 ```
 ```json
 {
-   "id": 1,
-   "categoryName": "Электроника",
-   "categoryHandle": "electronica"
+   "categories": [
+    {
+      "categoryId": "b7b45ac6-52ca-458e-9f03-8fb1e1c14144",
+      "categoryName": "Электроника",
+      "categoryHandle": "elektronika-b7b45ac6-52ca-458e-9f03-8fb1e1c14144",
+      "subCategories": [
+        {
+          "subCategoryId": "941eae43-fff7-44db-8dd8-bf62561240a2",
+          "subCategoryName": "Смартфоны и телефоны",
+          "subCategoryHandle": "smartfoni-i-telefoni-941eae43-fff7-44db-8dd8-bf62561240a2",
+          "productCategories": [
+            {
+              "productCategoryId": "96c49bfa-49b2-4704-8190-62a2a323e65c",
+              "productCategoryName": "Смартфоны",
+              "productCategoryHandle": "smartfoni-96c49bfa-49b2-4704-8190-62a2a323e65c"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
 ```
 
-##
-### Update Category
-```js
-PATCH {{host}}/v1/categories/{categoryId}
-```
-
-#### Request
-```json
-{
-   "categoryName": "Электроника и техника",
-   "categoryHandle": "electronica-i-tehnika"
-}
-```
-
-#### Rsponse
-```js
-200 Ok
-```
-```json
-{
-   "id": 1,
-   "categoryName": "Электроника и техника",
-   "categoryHandle": "electronica-i-tehnika"
-}
-```
-
-##
-### Delete Category
-```js
-DELETE {{host}}/v1/categories/{categoryId}
-```
-
-#### Rsponse
-```js
-204 Ok
-```
-
-#
 #
 ## SubCategory
 
 ### Get SubCategories
 ```js
-GET {{host}}/v1/subCategories
+GET {{host}}/api/sub-categories
 ```
 #### Rsponse
 ```js
@@ -147,22 +92,17 @@ GET {{host}}/v1/subCategories
 ```json
 {
    {
-      "id": 1,
-      "subCategoryName": "Смартфоны и телефоны",
-      "subCategoryHandle": "smartfoni-i-telefoni"
-   },
-   {
-      "id": 2,
-      "subCategoryName": "Хозяйственные товары",
-      "subCategoryHandle": "hozyaystvennye-tovary"
-    }
+    "subCategoryId": "941eae43-fff7-44db-8dd8-bf62561240a2",
+    "subCategoryName": "Смартфоны и телефоны",
+    "subCategoryHandle": "smartfoni-i-telefoni-941eae43-fff7-44db-8dd8-bf62561240a2"
+   }
 }
 ```
 
 ##
 ### Get SubCategory
 ```js
-GET {{host}}/v1/subCategories/{subCategoryId}
+GET {{host}}/api/categories/{categoryId}/sub-categories
 ```
 #### Rsponse
 ```js
@@ -170,83 +110,50 @@ GET {{host}}/v1/subCategories/{subCategoryId}
 ```
 ```json
 {
-   "id": 3,
-   "subCategoryName": "Смартфоны и телефоны",
-   "subCategoryHandle": "smartfoni-i-telefoni",
-   "path": [
-     {
-       "name": "Электроника",
-       "id": 1
-     },
-     {
-       "name": "Смартфоны и телефоны",
-       "id": 3
-     }
-   ]
+   {
+    "subCategoryId": "941eae43-fff7-44db-8dd8-bf62561240a2",
+    "subCategoryName": "Смартфоны и телефоны",
+    "subCategoryHandle": "smartfoni-i-telefoni-941eae43-fff7-44db-8dd8-bf62561240a2"
+  }
 }
 ```
 
-##
-### Create SubCategory
+## Product Category
+
+### Get Product Categories
 ```js
-POST {{host}}/v1/subCategories
+GET {{host}}/api/product-categories
 ```
-
-#### Request
-```json
-{
-   "categoryName": "Кухонные принадлежности",
-   "categoryHandle": "kuhonnye-prinadlezhnosti"
-}
-```
-
 #### Rsponse
 ```js
 200 Ok
 ```
 ```json
 {
-   "id": 3,
-   "categoryName": "Кухонные принадлежности",
-   "categoryHandle": "kuhonnye-prinadlezhnosti"
+   {
+    "productCategoryId": "96c49bfa-49b2-4704-8190-62a2a323e65c",
+    "productCategoryName": "Смартфоны",
+    "productCategoryHandle": "smartfoni-96c49bfa-49b2-4704-8190-62a2a323e65c"
+  }
 }
 ```
 
-##
-### Update SubCategory
+### Get Product Category
 ```js
-PATCH {{host}}/v1/subCategories/{subCategoryId}
+GET {{host}}/api/sub-categories/{subCategoryId}/product-categories
 ```
-
-#### Request
-```json
-{
-   "categoryName": "Посуда и кухонные принадлежности",
-   "categoryHandle": "posuda-i-kuhonnye-prinadlezhnosti"
-}
-```
-
 #### Rsponse
 ```js
 200 Ok
 ```
 ```json
 {
-   "id": 3,
-   "categoryName": "Посуда и кухонные принадлежности",
-   "categoryHandle": "posuda-i-kuhonnye-prinadlezhnosti"
+   {
+    "productCategoryId": "96c49bfa-49b2-4704-8190-62a2a323e65c",
+    "productCategoryName": "Смартфоны",
+    "productCategoryHandle": "smartfoni-96c49bfa-49b2-4704-8190-62a2a323e65c"
+  }
 }
-```
-
-## 
-### Delete SubCategory
-```js
-DELETE {{host}}/v1/subCategories/{subCategoryId}
-```
-
-#### Rsponse
-```js
-204 Ok
 ```
 
 #
@@ -255,458 +162,148 @@ DELETE {{host}}/v1/subCategories/{subCategoryId}
 
 ### Get Products by Category
 ```js
-GET {{host}}/v1/categories/{categoryId}/products
+GET {{host}}/api/category/{categoryHandle}/products
 ```
+
+### Parameters
+sortColumn: price, rating, reviews / default: productName;
+
+sortOrder: desc, asc;
+
+page: default 1;
+
+pageSize: default: 15
+
+
 #### Rsponse
 ```js
 200 Ok
 ```
-
-## Variant 1
 ```json
 {
   "products": [
     {
-      "productId": "bd9df979-9a6f-42ef-a4af-edbcc419182c",
-      "productName": "IPhone 14pro",
-      "productDescription": "IPhone 14pro",
-      "previewImageId": 562641783,
-      "productCategoryId": 3,
-      "vendor":
-      {
-        "vendorId": "bd9df979-9a6f-42ef-a4af-edbcc419182c",
-        "vendorType": "company"
-      },
-      "productVariants": [
+      "productName": "Xiaomi mi8",
+      "productHandler": "example handler",
+      "price": 123124,
+      "regularPrice": 123123,
+      "discount": 60,
+      "reviewsRating": 4.8,
+      "reviewsCount": 5,
+      "isSecondHand": false,
+      "isDiscounted": false,
+      "isFavourite": true,
+      "isComparable": false,
+      "inventoryQuantity": 2323,
+      "countInCart": 10,
+      "vendorName": null,
+      "features": [
         {
-          "id": "bb4ad0e4-1a58-4d7d-a0cc-05bc534e2dae",
-          "productId": "bd9df979-9a6f-42ef-a4af-edbcc419182c"
-          "sku": "72865489",
-          "quantityInStock": 10,
-          "previewImageId": 562641783,
-          "price": "100000",
-          "priceBeforeDiscount": "150000",
-          "currency": "RUB",
-          "height": 170,
-          "heightUnit": "mm",
-          "width: "60",
-          "widthUnit": "mm",
-          "grams": 1250,
-          "weight": 1.25,
-          "weightUit": "kg",
-          "options": [
-            {
-              "optionName": "Color",
-              "value": "#000000",
-              "parameter": "Black"
-            },
-            {
-              "optionName": "memory",
-              "value": "64",
-              "parameter": "GB"
-            }
-          ]
-        },
-        {
-          "id": "br4ad0g6-1n58-4f7t-30re-05bc456e2dae",
-          "productId": "bd9df979-9a6f-42ef-a4af-edbcc419182c"
-          "sku": "32862482",
-          "quantityInStock": 3,
-          "previewImageId": 264851213,
-          "price": "1200",
-          "priceBeforeDiscount": "2400",
-          "currency": "RUB",
-          "options": [
-            {
-              "optionName": "color",
-              "value": "#FF0000",
-              "parameter": "Red"
-            },
-            {
-              "optionName": "memory",
-              "value": "128",
-              "parameter": "GB"
-            }
-          ]
-        }
-      ],
-        "averageRating": "4.7",
-    }
-  ]
-}
-```
-
-##
-## Variant 2
-```json
-{
-  "products": [
-    {
-      "productId": "bd9df979-9a6f-42ef-a4af-edbcc419182c",
-      "productName": "IPhone 14pro",
-      "productDescription": "IPhone 14pro",
-      "previewImageId": 562641783,
-      "price": "100000",
-      "priceBeforeDiscount": "150000",
-      "currency": "RUB",
-      "vendor":
-      {
-        "vendorId": "bd9df979-9a6f-42ef-a4af-edbcc419182c",
-        "vendorType": "company"
-      },
-      "productVariants": [
-        {
-          "id": "bb4ad0e4-1a58-4d7d-a0cc-05bc534e2dae",
-          "productId": "bd9df979-9a6f-42ef-a4af-edbcc419182c"
-          "sku": "72865489",
-          "quantityInStock": 10,
-          "previewImageId": 562641783,
-          "price": "100000",
-          "priceBeforeDiscount": "150000",
-          "currency": "RUB",
-          "height": 170,
-          "heightUnit": "mm",
-          "width: "60",
-          "widthUnit": "mm",
-          "grams": 1250,
-          "weight": 1.25,
-          "weightUit": "kg",
-          "option1": "Red",
-          "option2": "64 GB",
-          "option3": null,
-          "characteristics": [
-            {
-              "name": "Процессор",
-              "value": "Tiger T606 (8 ядер), 1,6 ГГц",
-            },
-            {
-              "name": "Диагональ экрана, дюймы:",
-              "value": "6.56",
-            }
-          ]
-        },
-        {
-          "id": "br4ad0g6-1n58-4f7t-30re-05bc456e2dae",
-          "productId": "bd9df979-9a6f-42ef-a4af-edbcc419182c"
-          "sku": "32862482",
-          "quantityInStock": 3,
-          "previewImageId": 264851213,
-          "price": "1200",
-          "priceBeforeDiscount": "2400",
-          "currency": "RUB",
-          "option1": "Black",
-          "option2": "128 GB",
-          "option3": null,
-          "characteristics": [
-            {
-              "name": "Процессор",
-              "value": "Tiger T606 (8 ядер), 1,6 ГГц",
-            },
-            {
-              "name": "Диагональ экрана, дюймы:",
-              "value": "6.56",
-            }
-          ]
-        }
-      ],
-      "options":[
-        {
-          "id": "594680422",
-          "productId": "bd9df979-9a6f-42ef-a4af-edbcc419182c",
-          "name": "Color",
-          "values": [
-            "Red",
-            "Black"
-          ]
-        },
-        {
-          "id": "3946804235",
-          "productId": "bd9df979-9a6f-42ef-a4af-edbcc419182c",
-          "name": "Memory",
-          "values": [
-            "64",
-            "128"
-          ]
+          "name": "Внутренняя память",
+          "value": "64 Гб"
         }
       ]
-        "averageRating": "4.7",
     }
-  ]
-}
-```
-
-#
-### Get Products by User
-```js
-GET {{host}}/v1/users/{userId}/products
-```
-#### Rsponse
-```js
-200 Ok
-```
-```json
-{
-  {
-  "productId": "bd9df979-9a6f-42ef-a4af-edbcc419182c",
-  "productName": "IPhone 14pro",
-  "productDescription": "IPhone 14pro",
-  "previewImage": "url",
-  "price": "100000",
-  "priceBeforeDiscount": "2400",
-  "currency": "RUB",
-  "productCategoryId": "1",
-  "productVariants": [
-    {
-      "id": "bb4ad0e4-1a58-4d7d-a0cc-05bc534e2dae",
-      "productId": "bd9df979-9a6f-42ef-a4af-edbcc419182c",
-      "sku": "72865489",
-      "quantityInStock": 10,
-      "productImage": "url1",
-      "price": "100000",
-      "priceBeforeDiscount": "2400",
-      "currency": "RUB",
-      "created_at": "2024-01-02T08:59:11-05:00",
-      "updated_at": "2024-01-02T08:59:11-05:00",
+  ],
+  "meta": {
+    "pages": {
+      "page": 1,
+      "pageSize": 15,
+      "totalCount": 1,
+      "hasNextPage": false,
+      "hasPreviousPage": false
     },
-    {
-      "id": "br4ad0g6-1n58-4f7t-30re-05bc456e2dae",
-      "productId": "bd9df979-9a6f-42ef-a4af-edbcc419182c",
-      "sku": "32862482",
-      "quantityInStock": 3,
-      "productImage": "url2",
-      "price": "1200",
-      "price": "100000",
-      "priceBeforeDiscount": "2400",
-      "currency": "RUB",
-      "created_at": "2024-01-02T08:59:11-05:00",
-      "updated_at": "2024-01-02T08:59:11-05:00",
-    }
-  ]
- },
- {
-   "productId": "239df979-9a6f-42ef-a4af-edbcc419182c",
-   "productName": "Galaxy A24",
-   "productDescription": "Galaxy A24 - это универсальный и мощный смартфон, который предлагает 
-    множество функций и возможностей для вашего комфорта и развлечения...",
-   "previewImage": "url",
-   "productCategoryId": "1",
-   "productVariants": [
-     {
-      "id": "bb4ad0e4-1a58-4d7d-a0cc-05bc534e2dae",
-      "productId": "239df979-9a6f-42ef-a4af-edbcc419182c",
-      "sku": "72865489",
-      "quantityInStock": 10,
-      "productImage": "url1",
-      "price": "100000",
-      "priceBeforeDiscount": "2400",
-      "currency": "RUB",
-      "created_at": "2024-01-02T08:59:11-05:00",
-      "updated_at": "2024-01-02T08:59:11-05:00",
-     },
-     {
-      "id": "br4ad0g6-1n58-4f7t-30re-05bc456e2dae",
-      "productId": "239df979-9a6f-42ef-a4af-edbcc419182c",
-      "sku": "32862482",
-      "quantityInStock": 3,
-      "productImage": "url2",
-      "price": "1200",
-      "price": "100000",
-      "priceBeforeDiscount": "2400",
-      "currency": "RUB",
-      "created_at": "2024-01-02T08:59:11-05:00",
-      "updated_at": "2024-01-02T08:59:11-05:00",
-     }
-   ]
- }
+    "path": [
+      {
+        "position": "ProductCategory",
+        "name": "Смартфоны",
+        "handle": "smartfoni-96c49bfa-49b2-4704-8190-62a2a323e65c"
+      },
+      {
+        "position": "SubCategory",
+        "name": "Смартфоны и телефоны",
+        "handle": "smartfoni-i-telefoni-941eae43-fff7-44db-8dd8-bf62561240a2"
+      },
+      {
+        "position": "Category",
+        "name": "Электроника",
+        "handle": "elektronika-b7b45ac6-52ca-458e-9f03-8fb1e1c14144"
+      }
+    ]
+  }
 }
 ```
-#
-### Get Product Variations
+
+##
+### Get Product
 ```js
-GET {{host}}/v1/products/{productId}/variations
+GET {{host}}/api/products/{productHandle}
 ```
+
 #### Rsponse
 ```js
 200 Ok
 ```
 ```json
 {
-  "productVariants": [
+  "productName": "Xiaomi mi8",
+  "productHandle": "test",
+  "productDescription": "1",
+  "price": 123124,
+  "regularPrice": 123123,
+  "discount": 60,
+  "reviewsRating": 5,
+  "reviewsCount": 24,
+  "isSecondHand": false,
+  "isDiscounted": false,
+  "isFavourite": true,
+  "isComparable": true,
+  "inventoryQuantity": 2323,
+  "countInCart": 10,
+  "productVendor": {
+    "vendorId": "ed71911d-0604-4fa0-84c3-cbe5299269a4",
+    "vendorType": "company"
+  },
+  "characteristics": [
     {
-      "id": "bb4ad0e4-1a58-4d7d-a0cc-05bc534e2dae",
-      "productId": "bd9df979-9a6f-42ef-a4af-edbcc419182c",
-      "sku": "72865489",
-      "quantityInStock": 10,
-      "productImage": "url1",
-      "price": "100000",
-      "priceBeforeDiscount": "2400",
-      "currency": "RUB",
-      "created_at": "2024-01-02T08:59:11-05:00",
-      "updated_at": "2024-01-02T08:59:11-05:00",
-    },
+        "name": "memory",
+        "value": "64 Гб"
+    }
+  ],
+  "features": [
     {
-      "id": "br4ad0g6-1n58-4f7t-30re-05bc456e2dae",
-      "productId": "bd9df979-9a6f-42ef-a4af-edbcc419182c",
-      "sku": "32862482",
-      "quantityInStock": 3,
-      "productImage": "url2",
-      "price": "1200",
-      "price": "100000",
-      "priceBeforeDiscount": "2400",
-      "currency": "RUB",
-      "created_at": "2024-01-02T08:59:11-05:00",
-      "updated_at": "2024-01-02T08:59:11-05:00",
+        "name": "memory",
+        "value": "64 Гб"
+    }
+  ],
+  "options": [
+    {
+    "name": "color"
+    "productVariantId": "ed71911d-0604-4fa0-84c3-cbe5299269a4",
+    "sku": "23847387",
+    "value": "red"
     }
   ]
 }
 ```
 
-#
-### Get Product Variation
-```js
-GET {{host}}/v1/variations/{variationId}
-```
-#### Rsponse
-```js
-200 Ok
-```
-```json
-{
-  "id": "bb4ad0e4-1a58-4d7d-a0cc-05bc534e2dae",
-  "productId": "bd9df979-9a6f-42ef-a4af-edbcc419182c",
-  "sku": "72865489",
-  "quantityInStock": 10,
-  "productImage": "url1",
-  "price": "100000",
-  "priceBeforeDiscount": "2400",
-  "currency": "RUB",
-  "created_at": "2024-01-02T08:59:11-05:00",
-  "updated_at": "2024-01-02T08:59:11-05:00",
-}
-```
-
-#
-### Get Product Options
-```js
-GET {{host}}/v1/options/{variationId}
-```
-#### Rsponse
-```js
-200 Ok
-```
-```json
-{
-  "id": "3946804235",
-  "productId": "bd9df979-9a6f-42ef-a4af-edbcc419182c",
-  "name": "Memory",
-  "values": [
-    "64",
-    "128"
-  ]
-}
-```
-
-##
-##
-##
-
-## Users
-
-### Get User
-```js
-GET {{host}}/v1/users/{userId}
-```
-#### Rsponse
-```js
-200 Ok
-```
-
-```json
-{
-	"id": "bd9df979-9a6f-42ef-a4af-edbcc419182c",
-	"firstName": "Иван",
-	"secondName": "Кошелков",
-	"middleName": "Васильевич",
-	"email": "ivanva@gmail.com",
-	"phoneNumber": "9252947341",
-	"createDate": "9252947341",
-	"updateDate": "9252947341",
-	"companiesIds":
-	[
-		"134",
-		"135"
-	],
-	"addressesIds": 
-	[
-		"243",
-		"244"
-	]
-}
-```
-
-```json
-{
-	"id": "bd9df979-9a6f-42ef-a4af-edbcc419182c",
-	"firstName": "Иван",
-	"secondName": "Кошелков",
-	"middleName": "Васильевич",
-	"email": "ivanva@gmail.com",
-	"phoneNumber": "9252947341",
-	"createDate": "9252947341",
-	"updateDate": "9252947341",
-	"companiesId":
-	[
-		"425",
-		"456",
-		"457"
-	],
-	"addresses": [
-	   {
-	      "id": "123",
-	      "address1": "Академика Брилева, 17, корп. 2, кв 158",
-	      "address2": "Академика Брилева, 18, корп. 3, кв 25",
-	      "city": "Москва",
-	      "country": "Россия",
-	      "region": "Москва",
-	      "countryCode": "RU",
-	      "countryName": "Russia",
-	      "postalCode": "1154896"
-	   },
-	   {
-	      "124",
-	      "address1": "Янгеля, 18, корп. 1, кв. 57",
-	      "address2": "null",
-	      "city": "Одинцово",
-	      "Region": "Московская область",
-	      "country": "Россия",
-	      "countryCode": "RU",
-	      "countryName": "Russia",
-	      "postalCode": "1154896"
-	   }
-	]
-}
-```
 
 
 ##
 ##
-## Additional
-### Category Filter Example
+##
+## Category Filter Example
 ```json
 [
+  {
+    filterName: “Стоимость”,
+    filterType:  “interval”,
+    filterSettings: {minVal: 0, maxVal: 22000} 
+  },
   {
     "filterName": "Производитель",
     "filterType": "checkbox",
     "filterSettings": ["Apple", "Xiaomi", "Samsung", "Realme", "Honor", "Huawei", "OPPO", "Vivo", "Sony", "Nokia"]
-  },
-  {
-    "filterName": "Встроенная память",
-    "filterType": "checkbox",
-    "filterSettings": 
-      {
-        "dbQuery": "SELECT DISTINCT("internalMemory") FROM smartfones"
-      }
-  },
-
+  }
 ]
 ```
