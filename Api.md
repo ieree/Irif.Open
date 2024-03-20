@@ -239,6 +239,8 @@ pageSize: default: 15
 ```js
 GET {{host}}/api/products/{productHandle}
 ```
+### Parameters
+sku: 123143432 / default null
 
 #### Rsponse
 ```js
