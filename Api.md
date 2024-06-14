@@ -12,7 +12,8 @@
         - [Get Products by Category](#get-products-by-category)
         - [Get Products by User](#get-products-by-user)
         - [Get Product Detail](#get-product-detail)
-    - [Reviews](#reviews) 
+    - [Reviews](#reviews)
+      	- [Get Reviews](#get-reviews)
 
 # IRif Api
 Api v1 
@@ -405,4 +406,77 @@ sku: 123143432 / default null
     "filterSettings": ["Apple", "Xiaomi", "Samsung", "Realme", "Honor", "Huawei", "OPPO", "Vivo", "Sony", "Nokia"]
   }
 ]
+```
+
+
+##
+# Reviews
+### Get Reviews
+```js
+GET {{host}}/api/products/{productId}/reviews
+```
+### Parameters
+sku: 123143432 / default null
+
+#### Response
+```js
+200 Ok
+```
+```json
+{
+    {
+    "reviews": [
+        {
+            "reviewId": "ae83153c-1b21-4a1a-9071-565598d5f446",
+            "userId": "5b5cbcab-3e97-45b0-931e-83a97675ef55",
+            "companyId": null,
+            "reviewerType": "user",
+            "reviewerName": "Александр А.",
+            "reviewRating": 5,
+            "experience": "Месяц назад",
+            "advantages": "Отличный телефон, удобно держать в руке)",
+            "disadvantages": "Пока не обнаружил недостатков",
+            "comment": "Купил дочке в подарок на день рождения, очень довольна телефоном",
+            "likes": 0,
+            "dislikes": 0,
+            "createDate": "2024-06-14T07:47:28.126141Z",
+            "reviewImages": [
+                {
+                    "reviewImageName": "1000548151",
+                    "reviewImagePath": "Data/products/ea69c644-c2c1-414e-862a-fe8705e8781a/reviews/ae83153c-1b21-4a1a-9071-565598d5f446/1000548151.png"
+                },
+                {
+                    "reviewImageName": "1000548152",
+                    "reviewImagePath": "Data/products/ea69c644-c2c1-414e-862a-fe8705e8781a/reviews/ae83153c-1b21-4a1a-9071-565598d5f446/1000548152.png"
+                },
+                {
+                    "reviewImageName": "1000548154",
+                    "reviewImagePath": "Data/products/ea69c644-c2c1-414e-862a-fe8705e8781a/reviews/ae83153c-1b21-4a1a-9071-565598d5f446/1000548154.png"
+                },
+                {
+                    "reviewImageName": "1000548153",
+                    "reviewImagePath": "Data/products/ea69c644-c2c1-414e-862a-fe8705e8781a/reviews/ae83153c-1b21-4a1a-9071-565598d5f446/1000548153.png"
+                }
+            ],
+            "reviewAnswers": [
+                {
+                    "answerId": "a7e03aaa-6ee5-4fa6-ac4c-45958c2fceec",
+                    "userId": null,
+                    "companyId": "5133d578-a099-4230-b2ac-ed6e40b4dd35",
+                    "responderType": "company",
+                    "shopName": "MWInformTech",
+                    "answer": "Добрый день! Спасибо за отзыв. Ждем вас за покупками :)",
+                    "likes": 0,
+                    "dislikes": 0,
+                    "createDate": "2024-06-14T07:47:28.458256Z"
+                }
+            ]
+        }
+    ],
+    "cursorPaging": {
+        "nextCursor": 14,
+        "cursorLimit": 14
+    }
+}
+
 ```
