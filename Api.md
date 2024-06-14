@@ -12,7 +12,7 @@
         - [Get Products by Category](#get-products-by-category)
         - [Get Products by User](#get-products-by-user)
         - [Get Product Detail](#get-product-detail)
-        - 
+    - [Reviews](#reviews) 
 
 # IRif Api
 Api v1 
