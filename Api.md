@@ -11,9 +11,8 @@
     - [Products](#products)
         - [Get Products by Category](#get-products-by-category)
         - [Get Products by User](#get-products-by-user)
-        - [Get Product Variations](#get-product-variations)
-        - [Get Product Variation](#get-product-variation)
-        - [Get Product Options](#get-product-options)
+        - [Get Product Detail](#get-product-detail)
+        - 
 
 # IRif Api
 Api v1 
@@ -233,63 +232,161 @@ pageSize: default: 15
   }
 }
 ```
-
 ##
-### Get Product
+### Get Product Detail
 ```js
 GET {{host}}/api/products/{productHandle}
 ```
 ### Parameters
 sku: 123143432 / default null
 
-#### Rsponse
+#### Response
 ```js
 200 Ok
 ```
 ```json
 {
-  "productName": "Xiaomi mi8",
-  "productHandle": "test",
-  "productDescription": "1",
-  "price": 123124,
-  "regularPrice": 123123,
-  "discount": 60,
-  "reviewsRating": 5,
-  "reviewsCount": 24,
-  "isSecondHand": false,
-  "isDiscounted": false,
-  "isFavourite": true,
-  "isComparable": true,
-  "inventoryQuantity": 2323,
-  "countInCart": 10,
-  "productVendor": {
-    "vendorId": "ed71911d-0604-4fa0-84c3-cbe5299269a4",
-    "vendorType": "company"
-  },
-  "characteristics": [
-    {
-        "name": "memory",
-        "value": "64 Гб"
-    }
-  ],
-  "features": [
-    {
-        "name": "memory",
-        "value": "64 Гб"
-    }
-  ],
-  "options": [
-    {
-    "name": "color"
-    "productVariantId": "ed71911d-0604-4fa0-84c3-cbe5299269a4",
-    "sku": "23847387",
-    "value": "red"
-    }
-  ]
+    "productName": "Xiaomi Смартфон Redmi Note 13 Ростест (EAC)",
+    "productHandle": "Смартфон-Redmi-Note-13-ea69c644-c2c1-414e-862a-fe8705e8781a",
+    "productDescription": "Смартфон Xiaomi 12 Sky Blue оснащен восьмиядерным процессором MediaTek Helio G88 частотой 2x2,2 ГГц + 6x1,8 ГГц. Объем оперативной памяти — 4 Гб, встроенной — 128 Гб. При необходимости хранилище можно расширить за счет карты microSD (до 1024 Гб). Девайс работает на базе ОС Android 13.\r\nСмартфон поддерживает установку двух nano-SIM, функционирует в сетях вплоть до 4G. Беспроводные технологии представлены модулями Wi-Fi 802.11a/b/g/n/ac для выхода в Интернет и Bluetooth 5.1 для обмена данными с другими совместимыми устройствами. Поддерживаются навигационные системы GPS, ГЛОНАСС, Galileo и BeiDou. Они помогут без труда сориентироваться в незнакомом месте, найти нужный адрес.\r\nДисплей диагональю 6,79-дюйма выполнен по технологии IPS и обладает разрешением 1080х2400 пикселей. \r\nОсновная камера обладает разрешением 50/8/2 Мп, снабжена системой оптической стабилизации и выпышкой. Фронтальная камера для селфи и видеосвязи — на 5 Мп.\r\nНа боковой грани расположен сканер отпечатков пальцев, который обеспечит быструю авторизацию владельца и защитит данные от посторонних. Кроме того, доступ возможен по распознаванию лица. В смартфон установлен аккумулятор емкостью 5000 мА*ч. Он поддерживает быструю зарядку (22,5 Вт), соответствующее зарядное устройство поставляется в комплекте. Тип интерфейса для подключения — USB Type-C.",
+    "price": 15952,
+    "regularPrice": 27000,
+    "discount": 41,
+    "reviewsRating": 3.9285714285714284,
+    "reviewsCount": 14,
+    "questionCount": null,
+    "isSecondHand": false,
+    "isDiscounted": true,
+    "inventoryQuantity": 10,
+    "productVendor": {
+        "vendorId": "5133d578-a099-4230-b2ac-ed6e40b4dd35",
+        "vendorType": "company",
+        "shopContact": "Андрей В.",
+        "contactPersonPosition": "Менеджер по продажам",
+        "shopName": "MWInformTech",
+        "companyName": "OOO \"ИнформТехнологии\"",
+        "shopRating": null,
+        "startOnMarketDate": "2024-06-14T07:47:26.585981Z",
+        "businessType": "Компания",
+        "employeesNumber": 30,
+        "foundationDate": "2024-06-14T07:47:26.58608Z",
+        "showSideCompanyInfo": true
+    },
+    "images": [
+        {
+            "imageName": "6706256093",
+            "imageUrl": "Data/products/ea69c644-c2c1-414e-862a-fe8705e8781a/images/main/6706256093.png"
+        },
+        {
+            "imageName": "6706256094",
+            "imageUrl": "Data/products/ea69c644-c2c1-414e-862a-fe8705e8781a/images/main/6706256094.png"
+        },
+        {
+            "imageName": "6951689772",
+            "imageUrl": "Data/products/ea69c644-c2c1-414e-862a-fe8705e8781a/images/main/6951689772.png"
+        },
+        {
+            "imageName": "6706256091",
+            "imageUrl": "Data/products/ea69c644-c2c1-414e-862a-fe8705e8781a/images/main/6706256091.png"
+        },
+        {
+            "imageName": "6951689770",
+            "imageUrl": "Data/products/ea69c644-c2c1-414e-862a-fe8705e8781a/images/main/6951689770.png"
+        }
+    ],
+    "documents": [
+        {
+            "documentName": "Презентация Xiaomi Смартфон Redmi 12",
+            "documentPath": "Data/products/ea69c644-c2c1-414e-862a-fe8705e8781a/documents/187451568732.pdf"
+        },
+        {
+            "documentName": "Техническая документация Xiaomi Смартфон Redmi 12",
+            "documentPath": "Data/products/ea69c644-c2c1-414e-862a-fe8705e8781a/documents/187451568733.pdf"
+        },
+        {
+            "documentName": "Инструкция по эксплуатации",
+            "documentPath": "Data/products/ea69c644-c2c1-414e-862a-fe8705e8781a/documents/187451568731.pdf"
+        }
+    ],
+    "characteristics": [
+        {
+            "name": "Цвет",
+            "value": "Черный"
+        },
+        {
+            "name": "Процессор",
+            "value": "Qualcomm Snapdragon 439"
+        },
+        {
+            "name": "Операционная система",
+            "value": "Android"
+        },
+        {
+            "name": "Оперативная память",
+            "value": "8 Гб"
+        },
+        {
+            "name": "Камера",
+            "value": "Основная 108 МП"
+        },
+        {
+            "name": "Диагональ",
+            "value": "5.4"
+        },
+        {
+            "name": "Встроенная память",
+            "value": "128 Гб"
+        },
+        {
+            "name": "Аккумулятор",
+            "value": "5020 мА·ч"
+        }
+    ],
+    "features": [
+        {
+            "name": "Камера",
+            "value": "Основная 108 МП"
+        },
+        {
+            "name": "Аккумулятор",
+            "value": "5020 мА·ч"
+        },
+        {
+            "name": "Операционная система",
+            "value": "Android"
+        },
+        {
+            "name": "Цвет",
+            "value": "Черный"
+        },
+        {
+            "name": "Оперативная память",
+            "value": "8 Гб"
+        },
+        {
+            "name": "Процессор",
+            "value": "Qualcomm Snapdragon 439"
+        }
+    ],
+    "options": [
+        {
+            "optionName": "Цвет",
+            "values": [
+                {
+                    "productVariantId": "aaafd9b4-6c68-45a7-9f97-46c0b16c8ae8",
+                    "sku": "58745216",
+                    "value": "Зеленый"
+                },
+                {
+                    "productVariantId": "c2d998f1-d31d-48bc-a50f-633e4ef4b6c1",
+                    "sku": "58745217",
+                    "value": "Черный"
+                }
+            ]
+        }
+    ]
 }
 ```
-
-
 
 ##
 ##
