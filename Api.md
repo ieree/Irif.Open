@@ -416,7 +416,9 @@ sku: 123143432 / default null
 GET {{host}}/api/products/{productId}/reviews
 ```
 ### Parameters
-sku: 123143432 / default null
+sortColumn: rating, date
+sortOrder: asc, dsc
+cursor
 
 #### Response
 ```js
@@ -478,5 +480,4 @@ sku: 123143432 / default null
         "cursorLimit": 14
     }
 }
-
 ```
