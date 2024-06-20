@@ -15,7 +15,7 @@
       	- [Get Reviews](#get-reviews)
       	- [Add Reviews](#add-reviews)
       	- [Update Reviews](#update-reviews)
-      	- [Add Likes Dislikes To Reviews](#add-likes-dislikes-to-reviews)
+      	- [Add Reviews Opinion](#add-reviews-opinion)
     -[Questions](#questions)
 	- [Get Questions](#get-questions)
     - [Company](#company)
@@ -525,7 +525,7 @@ PUT {{host}}/api/reviews
 }
 ```
 
-### Add Likes/Dislikes To Reviews
+### Add Reviews Opinion
 ```js
 POST {{host}}/api/reviews/opinion
 ```
