@@ -10,10 +10,16 @@
         - [Get Product Category](#get-product-category)
     - [Products](#products)
         - [Get Products by Category](#get-products-by-category)
-        - [Get Products by User](#get-products-by-user)
         - [Get Product Detail](#get-product-detail)
     - [Reviews](#reviews)
       	- [Get Reviews](#get-reviews)
+      	- [Add Reviews](#add-reviews)
+      	- [Update Reviews](#update-reviews)
+      	- [Add Likes/Dislikes To Reviews](#add-likes/dislikes-to-reviews)
+    -[Questions](#questions)
+	- [Get Questions](#get-questions)
+    - [Company](#company)
+      	- [Company About] (#company-about)
 
 # IRif Api
 Api v1 
@@ -481,3 +487,192 @@ cursor
     }
 }
 ```
+
+### Add Reviews
+```js
+POST {{host}}/api/reviews
+```
+
+#### Response
+```js
+200 Ok
+```
+```json
+{
+  "userId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "companyId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "ratingValue": 0,
+  "experience": "string",
+  "advantage": "string",
+  "disadvantage": "string",
+  "comment": "string"
+}
+```
+
+### Update Reviews
+```js
+PUT {{host}}/api/reviews
+```
+
+#### Response
+```js
+200 Ok
+```
+```json
+{
+  "reviewId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "comment": "string"
+}
+```
+
+### Add Likes/Dislikes To Reviews
+```js
+POST {{host}}/api/reviews/opinion
+```
+#### Response
+```js
+200 Ok
+```
+```json
+{
+  "reviewId": "0a59835c-1bcc-4ef3-adba-f369ec2af2ad",
+  "likeCount": 1,
+  "dislikeCount": 0
+}
+```
+
+##
+# Questions
+### Get Questions
+```js
+GET {{host}}/api/products/{productId}/questions
+```
+
+#### Response
+```js
+200 Ok
+```
+
+```json
+{
+  "productQuestions": [
+    {
+      "productQuestionId": "4cb1d88c-30a7-4e9e-9aa1-b689175ab8f6",
+      "userId": "161598ac-ae4f-4bce-bb9b-892fd5ac7c18",
+      "companyId": null,
+      "senderType": "user",
+      "senderName": "Иван Т.",
+      "questionText": "Здравствуйте!сколько сим карт поддерживает данная модель?",
+      "createDate": "2024-06-20T11:16:31.34105Z",
+      "questionAnswer": [
+        {
+          "questionAnswerId": "b4ebd06c-fffc-4594-a86f-d37ad5c3b76c",
+          "answerFrom": "MWInformTech",
+          "answerText": "Здравствуйте! Благодарим Вас за интерес к нашим товарам. 2 С уважением, магазин Смарт Девайс.",
+          "createDate": "2024-06-20T11:16:31.450379Z"
+        }
+      ]
+    }
+  ],
+  "cursorPaging": {
+    "nextCursor": 4,
+    "cursorLimit": 4
+  }
+}
+```
+
+##
+# Company
+### Company About
+```js
+GET {{host}}/api/companies/{companyId}/about
+```
+
+#### Response
+```js
+200 Ok
+```
+
+```json
+{
+    "companyId": "5133d578-a099-4230-b2ac-ed6e40b4dd35",
+    "companyDescription": "Компания «Информационные технологии» начала свою деятельность на рынке информационных услуг в 2008 году. Наше первое направление – создание сайтов. Мы набирались опыта, повышали квалификацию, получали сертификаты и статусы, пока не пришли к тому, что просто создать хороший сайт – этого мало, нужно чтобы его мог найти не только Заказчик, но и другие пользователи Интернета. Так мы решили заняться продвижением сайтов.\r\n\r\nОднако стали появляться случаи, когда мы не могли продемонстрировать работу сайта по причине неисправности компьютеров заказчика, а нам хотелось сделать все красиво и качественно от начала и до конца. Так родилось еще одно направление - обслуживание ПК и оргтехники. Но и этого оказалось недостаточно. Большинству компаний нужен не только свой сайт, не только работающие компьютеры, но нужны и множество дополнительных систем\r\nи сервисов. Мы видели что в любой организации возникает множество разных вопросов, связанных с информационными технологиями: это ведение бухгалтерии, отправка электронной отчетности, построение удобного платежного календаря, составление бюджетов доходов и расходов, постановка задач сотрудникам и контроль их исполнения, монтаж компьютерной или телефонной сети, контроль рабочего времени сотрудников, доступ в помещения, видеонаблюдение, мониторинг движения автотранспорта и многое многое другое.\r\n\r\nТак появились такие направления как конфигурирование, обслуживание и внедрение систем 1С, система электронного документооборота Directum, система бюджетирования и управления финансами Prestima, видеонаблюдение, мониторинг автотранспорта и др. Наши специалисты активно сдавали экзамены, проходили курсы и тренинги, набирались знаний и опыта, чтобы предоставить наиболее подходящие клиенту решения и качественный сервис.\r\n\r\nСегодня наши специалисты работают по более чем 10 различным направлениям, чтобы суметь оказать Вам полный спектр IT-услуг. И это еще не предел. Для нас нет неразрешимых задач",
+    "companyName": "OOO "ИнформТехнологии"",
+    "businessFeatures": {
+        "businessType": "Компания",
+        "mainProducts": "Телекоммуникационные технлогии",
+        "employeeCount": 30,
+        "foundationDate": "2024-06-20T11:16:28.500268Z",
+        "managementCertification": "ISO 9001",
+        "ssgCertification": "0179328"
+    },
+    "galery": [
+        {
+            "section": "certificates",
+            "images": [
+                {
+                    "imageName": "6564971002",
+                    "imageUrl": "Data/companies/5133d578-a099-4230-b2ac-ed6e40b4dd35/images/certs/6564971002.png"
+                }
+            ]
+        },
+        {
+            "section": "profile",
+            "images": [
+                {
+                    "imageName": "652165161",
+                    "imageUrl": "Data/companies/5133d578-a099-4230-b2ac-ed6e40b4dd35/images/ava/652165161.png"
+                }
+            ]
+        },
+        {
+            "section": "about",
+            "images": [
+                {
+                    "imageName": "156481233333",
+                    "imageUrl": "Data/companies/5133d578-a099-4230-b2ac-ed6e40b4dd35/images/factory/156481233333.png"
+                },
+                {
+                    "imageName": "156481233332",
+                    "imageUrl": "Data/companies/5133d578-a099-4230-b2ac-ed6e40b4dd35/images/factory/156481233332.png"
+                }
+            ]
+        }
+    ]
+}
+```
+
+##
+# Company
+### Company Short Info
+```js
+GET {{host}}/api/companies/{companyId}/short-info
+```
+
+#### Response
+```js
+200 Ok
+```
+
+```json
+{
+  "vendorId": "5133d578-a099-4230-b2ac-ed6e40b4dd35",
+  "vendorType": "company",
+  "shopContact": "Андрей В.",
+  "contactPersonPosition": "Менеджер по продажам",
+  "contactImageUrl": "Data/companies/5133d578-a099-4230-b2ac-ed6e40b4dd35/images/personal/8097645556.jpg",
+  "isContactShown": true,
+  "shopName": "MWInformTech",
+  "isSideInfoShown": true,
+  "isCompanySideSectionShown": true,
+  "isCompanyAboutShown": true,
+  "companyName": "OOO \"ИнформТехнологии\"",
+  "shopRating": null,
+  "startOnMarketDate": "2024-06-20T11:16:28.500179Z",
+  "businessType": "Компания",
+  "employeesNumber": 30,
+  "foundationDate": "2024-06-20T11:16:28.500268Z"
+}
+```
+
+
