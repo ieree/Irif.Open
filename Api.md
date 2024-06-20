@@ -16,7 +16,7 @@
       	- [Add Reviews](#add-reviews)
       	- [Update Reviews](#update-reviews)
       	- [Add Reviews Opinion](#add-reviews-opinion)
-    -[Questions](#questions)
+    - [Questions](#questions)
 	- [Get Questions](#get-questions)
     - [Company](#company)
       	- [Company About](#company-about)
