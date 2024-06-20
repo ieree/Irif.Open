@@ -20,6 +20,7 @@
 	- [Get Questions](#get-questions)
     - [Company](#company)
       	- [Company About](#company-about)
+      	- [Company Short Info](#company-short-info)
 
 # IRif Api
 Api v1 
@@ -643,7 +644,6 @@ GET {{host}}/api/companies/{companyId}/about
 ```
 
 ##
-# Company
 ### Company Short Info
 ```js
 GET {{host}}/api/companies/{companyId}/short-info
