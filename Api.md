@@ -15,11 +15,11 @@
       	- [Get Reviews](#get-reviews)
       	- [Add Reviews](#add-reviews)
       	- [Update Reviews](#update-reviews)
-      	- [Add Likes/Dislikes To Reviews](#add-likes/dislikes-to-reviews)
+      	- [Add Likes Dislikes To Reviews](#add-likes-dislikes-to-reviews)
     -[Questions](#questions)
 	- [Get Questions](#get-questions)
     - [Company](#company)
-      	- [Company About] (#company-about)
+      	- [Company About](#company-about)
 
 # IRif Api
 Api v1 
