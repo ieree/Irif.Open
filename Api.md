@@ -262,7 +262,7 @@ sku: 123143432 / default null
     "discount": 41,
     "reviewsRating": 3.9285714285714284,
     "reviewsCount": 14,
-    "questionCount": null,
+    "questionCount": 4,
     "isSecondHand": false,
     "isDiscounted": true,
     "inventoryQuantity": 10,
@@ -271,14 +271,18 @@ sku: 123143432 / default null
         "vendorType": "company",
         "shopContact": "Андрей В.",
         "contactPersonPosition": "Менеджер по продажам",
+        "contactImageUrl": "Data/companies/5133d578-a099-4230-b2ac-ed6e40b4dd35/images/personal/8097645556.jpg",
+        "isContactShown": true,
         "shopName": "MWInformTech",
+        "isSideInfoShown": true,
+        "isCompanySideSectionShown": true,
+        "isCompanyAboutShown": true,
         "companyName": "OOO \"ИнформТехнологии\"",
         "shopRating": null,
-        "startOnMarketDate": "2024-06-14T07:47:26.585981Z",
+        "startOnMarketDate": "2024-06-20T11:16:28.500179Z",
         "businessType": "Компания",
         "employeesNumber": 30,
-        "foundationDate": "2024-06-14T07:47:26.58608Z",
-        "showSideCompanyInfo": true
+        "foundationDate": "2024-06-20T11:16:28.500268Z"
     },
     "images": [
         {
@@ -392,7 +396,27 @@ sku: 123143432 / default null
                 }
             ]
         }
-    ]
+    ],
+    "meta": {
+        "pages": null,
+        "path": [
+            {
+                "position": "ProductCategory",
+                "name": "Смартфоны",
+                "handle": "smartfoni-781001bc-3a72-4e5b-8d2a-ee22e0ea7b0a"
+            },
+            {
+                "position": "SubCategory",
+                "name": "Смартфоны и телефоны",
+                "handle": "smartfoni-i-telefoni-69ebe83d-b7ad-4095-a323-950414539b8b"
+            },
+            {
+                "position": "Category",
+                "name": "Электроника",
+                "handle": "electronika-e2ca89d0-b9d4-4ec7-998c-9d8a1429c8bc"
+            }
+        ]
+    }
 }
 ```
 
