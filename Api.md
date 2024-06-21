@@ -260,7 +260,7 @@ sku: 123143432 / default null
     "price": 15952,
     "regularPrice": 27000,
     "discount": 41,
-    "reviewsRating": 3.9285714285714284,
+    "reviewsRating": 3.9,
     "reviewsCount": 14,
     "questionCount": 4,
     "isSecondHand": false,
