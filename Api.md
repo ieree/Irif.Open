@@ -37,6 +37,10 @@
     - [Save Cart](#save-cart)
     - [Restore Saved Cart](#restore-saved-cart)
     - [Checkout Saved carts](#checkout-saved-carts)
+  - [Favourites](#favourite)
+     - [Get Favourite products](#get-favourite-products)
+     - [Add Favourite Products](#add-favourite-products)
+     - [Delete Favourite Products](#delete-favourite-products)
 
 # IRif Api
 Api v1 
@@ -1223,5 +1227,93 @@ POST {{host}}/api/carts/savedCheckout
 {
     "totalProductCount": 4,
     "totalPrice": 52426
+}
+```
+
+# Favourites
+
+### Get Favourite Products
+```js
+GET {{host}}/api/favourites
+```
+### Parameters
+```js
+productCategoryId
+```
+
+#### Response
+```js
+200 Ok
+```
+```js
+{
+    "favourites": [
+        {
+            "productName": "Xiaomi Смартфон Redmi Note 13 Ростест (EAC)",
+            "productHandle": "Смартфон-Redmi-Note-13-ea69c644-c2c1-414e-862a-fe8705e8781a",
+            "sku": "58745216",
+            "price": 15952,
+            "regularPrice": 27000,
+            "isSecondHand": false,
+            "isDiscounted": true,
+            "isAvailable": true,
+            "images": [
+                {
+                    "imageName": "6951689772",
+                    "imageUrl": "Data/products/ea69c644-c2c1-414e-862a-fe8705e8781a/images/main/6951689772.png"
+                },
+                {
+                    "imageName": "6706256093",
+                    "imageUrl": "Data/products/ea69c644-c2c1-414e-862a-fe8705e8781a/images/main/6706256093.png"
+                },
+                {
+                    "imageName": "6951689770",
+                    "imageUrl": "Data/products/ea69c644-c2c1-414e-862a-fe8705e8781a/images/main/6951689770.png"
+                },
+                {
+                    "imageName": "6706256091",
+                    "imageUrl": "Data/products/ea69c644-c2c1-414e-862a-fe8705e8781a/images/main/6706256091.png"
+                },
+                {
+                    "imageName": "6706256094",
+                    "imageUrl": "Data/products/ea69c644-c2c1-414e-862a-fe8705e8781a/images/main/6706256094.png"
+                }
+            ]
+        }
+    ],
+    "productCategories": [
+        {
+            "categoryName": "Смартфоны",
+            "categoryId": "781001bc-3a72-4e5b-8d2a-ee22e0ea7b0a"
+        }
+    ]
+}
+```
+
+### Add Favourite Products
+```js
+POST {{host}}/api/favourites/favourite/{productVariantId}
+```
+#### Response
+```js
+200 Ok
+```
+```js
+{
+    "message": "Successfuly added"
+}
+```
+
+### Delete Favourite Products
+```js
+DELETE {{host}}/api/favourites/favourite/{productVariantId}
+```
+#### Response
+```js
+200 Ok
+```
+```js
+{
+    "message": "Successfuly removed"
 }
 ```
