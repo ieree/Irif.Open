@@ -23,6 +23,20 @@
       	- [Company Short Info](#company-short-info)
   - [Cart](#cart)
     - [Get Active Cart](#get-active-cart)
+    - [Add To Cart](#add-to-cart)
+    - [Change Cart Item Count](#change-cart-item-count)
+    - [Delete Cart Item](#delete-cart-item)
+    - [Delete Range Cart Items](#delete-range-cart-items)
+    - [Cart Checkout](#cart-checkout)
+    - [Cart Item Available](#cart-item-available)
+    - [Get Current Cart Status](#get-current-cart-status)
+    - [Generate Cart Report Link](#generate-cart-report-link)
+    - [Get Saved Carts](#get-saved-carts)
+    - [Delete Cart](#delete-cart)
+    - [Delete Saved Carts](#delete-saved-carts)
+    - [Save Cart](#save-cart)
+    - [Restore Saved Cart](#restore-saved-cart)
+    - [Checkout Saved carts](#checkout-saved-carts)
 
 # IRif Api
 Api v1 
@@ -793,5 +807,421 @@ Params: searchTerms: {ProductName/Article}
       "isFavourite": false
     }
   ]
+}
+```
+
+### Add To Cart
+```js
+POST {{host}}/api/carts/cartItems
+```
+#### Request
+```js
+[
+  {
+    "productVriantId": "aaafd9b4-6c68-45a7-9f97-46c0b16c8ae8",
+    "count": 2
+  },
+  {
+    "productVriantId": "d1a2d81c-98b6-4bd9-b14f-0b43a2a2dd54",
+    "count": 1
+  }
+]
+```
+
+#### Response
+```js
+200 Ok
+```
+```js
+{
+    "message": "Cart Items successfuly added"
+}
+```
+
+### Change Cart Item Count
+```js
+PATCH {{host}}/api/carts/cartItem
+```
+
+#### Request
+```js
+{
+  "cartItemId": "aaafd9b4-6c68-45a7-9f97-46c0b16c8ae8",
+  "quantity": 2
+}
+```
+
+#### Response
+```js
+200 Ok
+```
+```js
+{
+    "cartItemId": "1edca0a2-f2fc-44ee-8f00-f77b37ca47b2",
+    "quantity": 2
+}
+```
+
+### Delete Cart Item
+```js
+DELETE {{host}}/api/carts/cartItem/{cartItemId}
+```
+
+#### Response
+```js
+200 Ok
+```
+```js
+
+{
+    "cartItemId": "dc775944-1819-40a6-bd9b-823d5e4a829a",
+    "message": "Successfuly removed"
+}
+```
+
+### Delete Range Cart Items
+```js
+POST {{host}}/api/carts/RemoveCartItems
+```
+#### Response
+```js
+200 Ok
+```
+```js
+[
+    {
+        "cartItemId": "fee5eb02-cde4-4227-a6da-434eb27022c2"
+    }
+]
+```
+
+### Cart Checkout
+```js
+GET {{host}}/api/carts/{cartId}/checkout
+```
+
+#### Response
+```js
+200 Ok
+```
+
+```js
+{
+    "proudctCountInCart": 4,
+    "totalRegularPrice": 80970,
+    "savings": 34235,
+    "totalPrice": 46735
+}
+```
+
+
+### Cart Item Available
+```js
+POST {{host}}/api/carts/productAvailable
+```
+
+#### Request
+```js
+{
+  "cartItemId": "1edca0a2-f2fc-44ee-8f00-f77b37ca47b2",
+  "quantity": 110
+}
+```
+#### Response
+```js
+200 Ok
+```
+
+```js
+{
+    "cartItemId": "1edca0a2-f2fc-44ee-8f00-f77b37ca47b2",
+    "canChange": false,
+    "requestedQuantity": 110,
+    "inventoryLevel": 10,
+    "nextRemainingStock": 0,
+    "message": "Insufficient stock, only 10 items available"
+}
+```
+
+#### Response Messages Types
+```js
+1. Нет товара на складе (inventoryLevel = 0)
+"message": "Item is unavailable"
+
+2. Количество запрашиваемого товара выше имеющегося на складе (quantity > inventoryLevel)
+"message": "Insufficient stock, only {inventoryLevel} items available"
+
+3. Превышено значение остаточного товара (для Cart item count + 1) - случай не наступает
+"message": "Next remaining stock will exhausted"
+```
+
+### Get Current Cart Status
+```js
+GET {{host}}/api/carts/{cartId}/currentStatus
+```
+#### Response
+```js
+200 Ok
+```
+
+```js
+{
+    "cartId": "cbd90aef-8adc-4f82-8b25-285e85e40b37",
+    "cartItemsState": [
+        {
+            "cartItemId": "4cfb4f1d-0fac-4691-8bb7-0ac6b548d6b8",
+            "updatedQuantity": 2,
+            "setQuantity": 2,
+            "isQuantityChanged": false,
+            "message": "No changes"
+        },
+        {
+            "cartItemId": "de466632-2224-4be6-b21c-066e48408cf3",
+            "updatedQuantity": 3,
+            "setQuantity": 3,
+            "isQuantityChanged": false,
+            "message": "No changes"
+        }
+    ]
+}
+```
+#### Response messages
+```js
+"message": "No changes"
+"message": "No item in the stock"
+"message": "Exceeds stock. Changed to inventoryLevel"
+```
+
+### Generate Cart Report Link
+```js
+GET {{host}}/api/carts/{cartId}/generateExel
+```
+#### Response
+```js
+200 Ok
+```
+```js
+{
+    "cartId": "cbd90aef-8adc-4f82-8b25-285e85e40b37",
+    "reportUrl": "Data/cart/cbd90aef-8adc-4f82-8b25-285e85e40b37.xlsx",
+    "message": "Successfuly created"
+}
+```
+
+### Get Saved Carts
+```js
+GET {{host}}/api/carts/savedCarts
+```
+
+#### Response
+```js
+200 Ok
+```
+```js
+[
+    {
+        "cartId": "4892a224-05aa-4888-84c0-091aa8b95f07",
+        "cartNumber": 25649875,
+        "cartPrice": 15952,
+        "shortCartItemImagesPreview": [
+            {
+                "imageUrl": "Data/products/ea69c644-c2c1-414e-862a-fe8705e8781a/images/main/6951723789.png"
+            }
+        ],
+        "hiddenItemImagesCount": 0,
+        "createDate": "2024-07-19T19:48:09.318Z",
+        "cartItems": [
+            {
+                "cartItemId": "1edca0a2-f2fc-44ee-8f00-f77b37ca47b2",
+                "productVariantId": "c2d998f1-d31d-48bc-a50f-633e4ef4b6c1",
+                "productHandle": "Смартфон-Redmi-Note-13-ea69c644-c2c1-414e-862a-fe8705e8781a",
+                "sku": "58745217",
+                "productName": "Xiaomi Смартфон Redmi Note 13 Ростест (EAC)",
+                "productImageUrl": "Data/products/ea69c644-c2c1-414e-862a-fe8705e8781a/images/main/6951723789.png",
+                "seller": "MWInformTech",
+                "price": 15952,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "cartId": "cbd90aef-8adc-4f82-8b25-285e85e40b37",
+        "cartNumber": 25649875,
+        "cartPrice": 46735,
+        "shortCartItemImagesPreview": [
+            {
+                "imageUrl": "Data/products/ea69c644-c2c1-414e-862a-fe8705e8781a/images/main/6951689772.png"
+            },
+            {
+                "imageUrl": "Data/products/5f3778dd-9284-48dc-a8fe-52dc41577373/images/main/6699585049.png"
+            },
+            {
+                "imageUrl": "Data/products/5f3778dd-9284-48dc-a8fe-52dc41577373/images/main/6699585055.png"
+            }
+        ],
+        "hiddenItemImagesCount": 1,
+        "createDate": "2024-07-19T19:48:09.319106Z",
+        "cartItems": [
+            {
+                "cartItemId": "4cfb4f1d-0fac-4691-8bb7-0ac6b548d6b8",
+                "productVariantId": "aaafd9b4-6c68-45a7-9f97-46c0b16c8ae8",
+                "productHandle": "Смартфон-Redmi-Note-13-ea69c644-c2c1-414e-862a-fe8705e8781a",
+                "sku": "58745216",
+                "productName": "Xiaomi Смартфон Redmi Note 13 Ростест (EAC)",
+                "productImageUrl": "Data/products/ea69c644-c2c1-414e-862a-fe8705e8781a/images/main/6951689772.png",
+                "seller": "MWInformTech",
+                "price": 15952,
+                "quantity": 2
+            },
+            {
+                "cartItemId": "dc775944-1819-40a6-bd9b-823d5e4a829a",
+                "productVariantId": "d1a2d81c-98b6-4bd9-b14f-0b43a2a2dd54",
+                "productHandle": "Смартфон-Redmi-Note-12-5f3778dd-9284-48dc-a8fe-52dc41577373",
+                "sku": "58745218",
+                "productName": "Смартфон Xiaomi Redmi 12",
+                "productImageUrl": "Data/products/5f3778dd-9284-48dc-a8fe-52dc41577373/images/main/6699585049.png",
+                "seller": "MWInformTech",
+                "price": 10261,
+                "quantity": 1
+            },
+            {
+                "cartItemId": "de466632-2224-4be6-b21c-066e48408cf3",
+                "productVariantId": "3912995a-31fa-480c-aefb-fa932fab6513",
+                "productHandle": "Смартфон-Redmi-Note-12-5f3778dd-9284-48dc-a8fe-52dc41577373",
+                "sku": "58745219",
+                "productName": "Смартфон Xiaomi Redmi 12",
+                "productImageUrl": "Data/products/5f3778dd-9284-48dc-a8fe-52dc41577373/images/main/6699585055.png",
+                "seller": "MWInformTech",
+                "price": 10261,
+                "quantity": 3
+            },
+            {
+                "cartItemId": "fee5eb02-cde4-4227-a6da-434eb27022c2",
+                "productVariantId": "1c2cb05c-f950-4d40-a6b6-b6678e6d5b08",
+                "productHandle": "Смартфон-Redmi-Note-12-5f3778dd-9284-48dc-a8fe-52dc41577373",
+                "sku": "58745220",
+                "productName": "Смартфон Xiaomi Redmi 12",
+                "productImageUrl": "Data/products/5f3778dd-9284-48dc-a8fe-52dc41577373/images/main/6699585059.png",
+                "seller": "MWInformTech",
+                "price": 10261,
+                "quantity": 1
+            }
+        ]
+    }
+]
+```
+
+### Delete Cart
+```js
+DELETE {{host}}/api/carts
+```
+#### Response
+```js
+200 Ok
+```
+```js
+{
+    "cartId": existingCart.CartId,
+    "message": "Cart seccessfyly deleted"
+}
+```
+
+### Delete Saved Carts
+```js
+POST {{host}}/api/carts/removeSavedCarts
+```
+
+#### Request
+```js
+[
+  {
+    "cartId": "d6e9d606-cd1f-4730-9fe4-a85df96ecdd0"
+  },
+  {
+    "cartId": "1491c76d-5d84-478c-882a-98b7dd984f63"
+  }
+]
+```
+
+#### Response
+```js
+200 Ok
+```
+```js
+[
+  {
+    "cartId": "d6e9d606-cd1f-4730-9fe4-a85df96ecdd0"
+  },
+  {
+    "cartId": "1491c76d-5d84-478c-882a-98b7dd984f63"
+  }
+]
+```
+
+### Save Cart
+```js
+POST {{host}}/api/carts/{cartId}/savedCarts
+```
+#### Response
+```js
+200 Ok
+```
+```js
+{
+    "cartId": "283cf2b6-9945-4986-b229-18213b6e5a75",
+    "message": "Cart saved successfully"
+}
+```
+
+### Restore Saved Cart
+```js
+POST {{host}}/api/carts/savedRestore
+```
+#### Request
+```js
+[
+  {
+    "cartId": "d6e9d606-cd1f-4730-9fe4-a85df96ecdd0"
+  },
+  {
+    "cartId": "1491c76d-5d84-478c-882a-98b7dd984f63"
+  }
+]
+```
+#### Response
+```js
+200 Ok
+```
+```js
+{
+    "cartId": "283cf2b6-9945-4986-b229-18213b6e5a75"
+}
+```
+
+### Checkout Saved Carts
+```js
+POST {{host}}/api/carts/savedCheckout
+```
+
+#### Request
+```js
+[
+  {
+    "cartId": "d6e9d606-cd1f-4730-9fe4-a85df96ecdd0"
+  },
+  {
+    "cartId": "1491c76d-5d84-478c-882a-98b7dd984f63"
+  }
+]
+```
+
+#### Response
+```js
+200 Ok
+```
+```js
+{
+    "totalProductCount": 4,
+    "totalPrice": 52426
 }
 ```
