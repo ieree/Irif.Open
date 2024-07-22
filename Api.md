@@ -572,6 +572,7 @@ POST {{host}}/api/reviews/opinion
 # Questions
 
 ### Get Questions
+
 ```js
 GET {{host}}/api/products/{productId}/questions
 ```
