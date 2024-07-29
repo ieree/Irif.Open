@@ -885,7 +885,7 @@ DELETE {{host}}/api/carts/cartItem/{cartItemId}
 
 ### Delete Range Cart Items
 ```js
-POST {{host}}/api/carts/RemoveCartItems
+POST {{host}}/api/carts/removeCartItems
 ```
 #### Response
 ```js
