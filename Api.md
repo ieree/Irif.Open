@@ -1164,7 +1164,7 @@ POST {{host}}/api/carts/removeSavedCarts
 
 ### Save Cart
 ```js
-POST {{host}}/api/carts/{cartId}/savedCarts
+POST {{host}}/api/carts/{cartId}/saveCart
 ```
 #### Response
 ```js
