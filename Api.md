@@ -780,53 +780,11 @@ Params: searchTerms: {ProductName/Article}
 ```
 ```json
 {
-  "cartId": "61ac4c04-df80-494c-b744-e9f5b980ef29",
+  "cartId": "cbd90aef-8adc-4f82-8b25-285e85e40b37",
   "isSaved": false,
   "cartItems": [
     {
-      "cartItemId": "4af8c547-2aaa-4871-8535-629ff962455a",
-      "productVariantId": "aaafd9b4-6c68-45a7-9f97-46c0b16c8ae8",
-      "productName": "Xiaomi Смартфон Redmi Note 13 Ростест (EAC)",
-      "productHandle": "Смартфон-Redmi-Note-13-ea69c644-c2c1-414e-862a-fe8705e8781a",
-      "sku": "58745216",
-      "article": 24941315,
-      "productImageUrl": "Data/products/ea69c644-c2c1-414e-862a-fe8705e8781a/images/main/6951689772.png",
-      "seller": "MWInformTech",
-      "regularPrice": 27000,
-      "price": 15952,
-      "quantity": 2,
-      "isFavourite": true
-    },
-    {
-      "cartItemId": "66a5db41-834f-4ca4-a7cf-8651d53d0ed5",
-      "productVariantId": "3912995a-31fa-480c-aefb-fa932fab6513",
-      "productName": "Смартфон Xiaomi Redmi 12",
-      "productHandle": "Смартфон-Redmi-Note-12-5f3778dd-9284-48dc-a8fe-52dc41577373",
-      "sku": "58745219",
-      "article": 24941315,
-      "productImageUrl": "Data/products/5f3778dd-9284-48dc-a8fe-52dc41577373/images/main/6699585055.png",
-      "seller": "MWInformTech",
-      "regularPrice": 17990,
-      "price": 10261,
-      "quantity": 3,
-      "isFavourite": false
-    },
-    {
-      "cartItemId": "741a6785-e01d-4726-b5e3-53cd47d9bff2",
-      "productVariantId": "d1a2d81c-98b6-4bd9-b14f-0b43a2a2dd54",
-      "productName": "Смартфон Xiaomi Redmi 12",
-      "productHandle": "Смартфон-Redmi-Note-12-5f3778dd-9284-48dc-a8fe-52dc41577373",
-      "sku": "58745218",
-      "article": 24941315,
-      "productImageUrl": "Data/products/5f3778dd-9284-48dc-a8fe-52dc41577373/images/main/6699585049.png",
-      "seller": "MWInformTech",
-      "regularPrice": 17990,
-      "price": 10261,
-      "quantity": 1,
-      "isFavourite": false
-    },
-    {
-      "cartItemId": "bbca2c0c-d5fd-4a72-a072-4bde6be64c4a",
+      "cartItemId": "1edca0a2-f2fc-44ee-8f00-f77b37ca47b2",
       "productVariantId": "c2d998f1-d31d-48bc-a50f-633e4ef4b6c1",
       "productName": "Xiaomi Смартфон Redmi Note 13 Ростест (EAC)",
       "productHandle": "Смартфон-Redmi-Note-13-ea69c644-c2c1-414e-862a-fe8705e8781a",
@@ -837,23 +795,15 @@ Params: searchTerms: {ProductName/Article}
       "regularPrice": 27000,
       "price": 15952,
       "quantity": 1,
-      "isFavourite": false
-    },
-    {
-      "cartItemId": "c035e48c-2a2c-49f5-b108-f2d1ef852c41",
-      "productVariantId": "1c2cb05c-f950-4d40-a6b6-b6678e6d5b08",
-      "productName": "Смартфон Xiaomi Redmi 12",
-      "productHandle": "Смартфон-Redmi-Note-12-5f3778dd-9284-48dc-a8fe-52dc41577373",
-      "sku": "58745220",
-      "article": 24941315,
-      "productImageUrl": "Data/products/5f3778dd-9284-48dc-a8fe-52dc41577373/images/main/6699585059.png",
-      "seller": "MWInformTech",
-      "regularPrice": 17990,
-      "price": 10261,
-      "quantity": 1,
+      "inventoryLevel": 10,
+      "isAvailable": true,
+      "checked": true,
       "isFavourite": false
     }
-  ]
+  ],
+  "cartLinks": {
+    "summaryUrl": "Data\\cart\\Report.xlsx"
+  }
 }
 ```
 
