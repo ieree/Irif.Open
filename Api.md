@@ -11,6 +11,7 @@
     - [Products](#products)
         - [Get Products by Category](#get-products-by-category)
         - [Get Product Detail](#get-product-detail)
+        - [Product Variant Available](#product-variant-available)
     - [Reviews](#reviews)
       	- [Get Reviews](#get-reviews)
       	- [Add Reviews](#add-reviews)
@@ -27,6 +28,8 @@
     - [Change Cart Item Count](#change-cart-item-count)
     - [Delete Cart Item](#delete-cart-item)
     - [Delete Range Cart Items](#delete-range-cart-items)
+    - [Select All Cart Items](#select-all-cart-items)
+    - [Select Single Cart Item](#select-single-cart-item)
     - [Cart Checkout](#cart-checkout)
     - [Cart Item Available](#cart-item-available)
     - [Get Current Cart Status](#get-current-cart-status)
@@ -439,6 +442,46 @@ sku: 123143432 / default null
     }
 }
 ```
+
+### Product Variant Available
+```js
+POST {{host}}/api/products/checkAvailable
+```
+#### Request
+```js
+{
+  "cartItemId": "1edca0a2-f2fc-44ee-8f00-f77b37ca47b2",
+  "quantity": 110
+}
+```
+#### Response
+```js
+200 Ok
+```
+
+```js
+{
+    "productVariantId": "1edca0a2-f2fc-44ee-8f00-f77b37ca47b2",
+    "canChange": false,
+    "requestedQuantity": 110,
+    "inventoryLevel": 10,
+    "nextRemainingStock": 0,
+    "message": "Insufficient stock, only 10 items available"
+}
+```
+#### Response Messages Types
+```js
+1. Нет товара на складе (inventoryLevel = 0)
+"message": "Item is unavailable"
+
+2. Количество запрашиваемого товара выше имеющегося на складе (quantity > inventoryLevel)
+"message": "Insufficient stock, only {inventoryLevel} items available"
+
+3. Превышено значение остаточного товара (для Cart item count + 1) - случай не наступает
+"message": "Next remaining stock will exhausted"
+```
+
+
 
 ##
 ##
@@ -899,11 +942,52 @@ POST {{host}}/api/carts/removeCartItems
 ]
 ```
 
+### Select All Cart Items
+```js
+POST {{host}}/api/carts/cartItems/selectAll
+```
+#### Request
+```js
+{
+  "action": "select"
+}
+```
+```js
+{
+  "action": "unselect"
+}
+```
+#### Response
+```js
+200 Ok
+```
+
+### Select Single CartItem
+```js
+POST {{host}}/api/carts/cartItems/selectSingle
+```
+#### Request
+```js
+{
+  "cartItemId": "fee5eb02-cde4-4227-a6da-434eb27022c2",
+  "action": "select"
+}
+```
+```js
+{
+  "cartItemId": "fee5eb02-cde4-4227-a6da-434eb27022c2",
+  "action": "unselect"
+}
+```
+#### Response
+```js
+200 Ok
+```
+
 ### Cart Checkout
 ```js
 GET {{host}}/api/carts/{cartId}/checkout
 ```
-
 #### Response
 ```js
 200 Ok
