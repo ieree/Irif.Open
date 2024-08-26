@@ -630,7 +630,7 @@ POST {{host}}/api/reviews/opinion
 }
 ```
 
-### Add Reviews Compalete
+### Add Reviews Complete
 ```js
 POST {{host}}/api/reviews/add
 ```
