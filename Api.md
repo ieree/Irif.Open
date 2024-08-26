@@ -17,6 +17,7 @@
       	- [Add Reviews](#add-reviews)
       	- [Update Reviews](#update-reviews)
       	- [Add Reviews Opinion](#add-reviews-opinion)
+      	- [Add Review Complete](#add-review-complete)
     - [Questions](#questions)
 	- [Get Questions](#get-questions)
     - [Company](#company)
@@ -617,6 +618,41 @@ PUT {{host}}/api/reviews
 ```js
 POST {{host}}/api/reviews/opinion
 ```
+#### Response
+```js
+200 Ok
+```
+```json
+{
+  "reviewId": "0a59835c-1bcc-4ef3-adba-f369ec2af2ad",
+  "likeCount": 1,
+  "dislikeCount": 0
+}
+```
+
+### Add Reviews Compalete
+```js
+POST {{host}}/api/reviews/add
+```
+#### Request
+```json
+multipart/formadata
+```
+```json
+{
+  "userId": "0a59835c-1bcc-4ef3-adba-f369ec2af2ad",
+  "companyId": "0a59835c-1bcc-4ef3-adba-f369ec2af2ad",
+  "productId": "0a59835c-1bcc-4ef3-adba-f369ec2af2ad",
+  "ratingValue": 5,
+  "experience": "Меньше месяца",
+  "advantage": "text",
+  "disadvantage": "text",
+  "Comment": "text",
+  "IsAnonimous": false,
+  
+}
+```
+
 #### Response
 ```js
 200 Ok
