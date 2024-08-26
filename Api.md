@@ -1,4 +1,7 @@
 - [IRif Api](#irif-api)
+  	- [Authentication]
+  	  	- [Generate sms](#generate-sms)
+  	  	- [Validate](#validate)
 	- [Category](#category)
 		- [Get Categories](#get-categories)
         - [Get Category Tree](#get-category-tree)
@@ -24,9 +27,18 @@
 	- [Get Questions](#get-questions)
 	- [Add question](#add-question)
    	- [Get question senders](#get-question-senders)
+    - [User](#user)
+        - [Get user profile](#get-user-profile)
     - [Company](#company)
       	- [Company About](#company-about)
       	- [Company Short Info](#company-short-info)
+      	- [User companies grid](#user-companies-grid)
+      	- [Get company profile](#get-company-profile)
+      	- [Add company](#add-company)
+      	- [Upadte company card](#update-company-card)
+      	- [Delete company](#delete-company)
+      	- [Add document](#add-document)
+      	- [Delete document](#delete-document)
   - [Cart](#cart)
     - [Get Active Cart](#get-active-cart)
     - [Add To Cart](#add-to-cart)
@@ -49,9 +61,60 @@
      - [Get Favourite products](#get-favourite-products)
      - [Add Favourite Products](#add-favourite-products)
      - [Delete Favourite Products](#delete-favourite-products)
+  - [Notification](#notification)
+     - [Delete company warning](#delete-compnay-warning)
 
 # IRif Api
 Api v1 
+
+## Authentication
+### Generate sms
+```js
+POST {{host}}/api/auth/generate
+```
+#### Request
+```json
+{
+  "phoneNumber": "9284526577"
+}
+```
+
+#### Rsponse
+```js
+200 Ok
+```
+```json
+{
+  "phoneNumber": "9284526577",
+  "code": 1111,
+  "message": "Success"
+}
+```
+
+### Validate
+```js
+POST {{host}}/api/auth/generate
+```
+#### Request
+```json
+{
+  "phoneNumber": "9284526577",
+  "code": 1111
+}
+```
+#### Rsponse
+```js
+200 Ok
+```
+```json
+{
+  "userId": "b7b45ac6-52ca-458e-9f03-8fb1e1c14144",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3NWU0MTkwOS03ZWJjLTQ1NzctYjgwZS1hMTlmOTc2ZjcyYzIiLCJqdGkiOiI4YjMzMDAwZi1kMTQyLTQzNjItYjFlNS02NzNmY2U3NjFiZjkiLCJuYW1lIjoiOTI4NDUyNjU3NyIsImV4cCI6MTcyNDY1ODM4MCwiaXNzIjoiSXJpZkNvbXBhbnkiLCJhdWQiOiJJcmlmQ29tcGFueSJ9.z5c47LlGMY_JSEyCCf-		ZrIHbU6VHijNqyJRAUCsHbQE"
+}
+```
+
+
+
 
 ## Category
 
@@ -784,7 +847,25 @@ GET {{host}}/api/questions/select-sender
     "type": "company",
   }
 ```
+##
+# User
+### Get user profile
+```js
+GET {{host}}/api/user
+```
 
+#### Response
+```json
+{
+	    "userId": "b4ebd06c-fffc-4594-a86f-d37ad5c3b76c",
+            "fullName": "Михаил Вадимович Кашницкий",
+            "email": "michailktest@gmail.com",
+            "phoneNumber": "9284526577",
+            "whatsAppMsg": "9284526577",
+            "telegramMsg": "9284526577",
+            "address": null
+}
+```
 
 ##
 # Company
@@ -878,6 +959,183 @@ GET {{host}}/api/companies/{companyId}/short-info
   "foundationDate": "2024-06-20T11:16:28.500268Z"
 }
 ```
+
+### User companies grid
+```js
+GET {{host}}/api/companies/profileGrid
+```
+
+#### Response
+```js
+200 Ok
+```
+
+```json
+[
+    {
+        "companyId": "03b8dbc5-b222-4cb9-8555-7fb55fb6040d",
+        "companyName": "ИП \"Кашницкий Михаил Вадимович\"",
+        "inn": "3813431215",
+        "kpp": "381004005",
+        "ogrn": "1193450044015",
+        "legalAdress": "Москва, Венницкая 15, пом 13/2",
+        "accountBalance": 0
+    }
+]
+```
+
+### Get company profile
+```js
+GET {{host}}/api/companies/{companyId}
+```
+
+#### Response
+```js
+200 Ok
+```
+
+```json
+{
+    "companyId": "03b8dbc5-b222-4cb9-8555-7fb55fb6040d",
+    "companyName": "ИП \"Кашницкий Михаил Вадимович\"",
+    "inn": "3813431215",
+    "kpp": "381004005",
+    "ogrn": "1193450044015",
+    "bic": "456183681",
+    "cleaningAccount": "15465431215487854156",
+    "correspondentAccount": "15465421235487854147",
+    "bank": null,
+    "legalAdress": "Москва, Венницкая 15, пом 13/2",
+    "postalAddress": "Москва, Венницкая 15, пом 13/2",
+    "phoneNumber": "9252937347",
+    "email": "telwell@gmail.com",
+    "title": "Генеральный директор",
+    "accountType": "Администратор",
+    "companyCardLink": "test/link",
+    "isSeller": true,
+    "documents": [
+	{
+            "docName": "783264772",
+            "docPath": "path/0238927.pdf"
+	}
+     ]
+}
+```
+
+### Add company
+```js
+POST {{host}}/api/companies/addDetails
+```
+
+#### Request
+```json
+{
+  "companyName": "string",
+  "inn": "string",
+  "kpp": "string",
+  "ogrn": "string",
+  "legalAdress": "string",
+  "postalAdress": "string"
+  ""
+}
+```
+
+#### Response
+```js
+200 Ok
+```
+
+
+### Upadte company card
+```js
+POST {{host}}/api/companies/updateProfile
+```
+
+#### Request
+```json
+{
+  "companyId": "string",
+  "companyName": "string",
+  "kpp": "string",
+  "bic": "string",
+  "cleaningAccount": "string",
+  "correspondentAccount": "string",
+  "bank": "string",
+  "legalAdress": "string",
+  "postalAdress": "string",
+  "phoneNumber": "string",
+  "email": "string",
+  "position": "Генеральный директор"
+}
+```
+
+#### Response
+```js
+200 Ok
+```
+
+
+### Delete company
+```js
+DELETE {{host}}/api/companies/{companyId}
+```
+
+#### Request
+```json
+{
+  "companyId": "string",
+  "companyName": "string",
+  "kpp": "string",
+  "bic": "string",
+  "cleaningAccount": "string",
+  "correspondentAccount": "string",
+  "bank": "string",
+  "legalAdress": "string",
+  "postalAdress": "string",
+  "phoneNumber": "string",
+  "email": "string",
+  "position": "Генеральный директор"
+}
+```
+
+#### Response
+```js
+200 Ok
+```
+
+
+### Add document
+```js
+POST {{host}}/api/companies/{companyId}/uploadFile
+```
+
+```js
+multipart/form-data
+```
+
+#### Request
+```json
+{
+	
+}
+```
+
+#### Response
+```js
+200 Ok
+```
+
+
+### Delete document
+```js
+DELETE {{host}}/companies/document/{documentId}
+```
+
+#### Response
+```js
+200 Ok
+```
+
 
 #
 # Cart
@@ -1464,5 +1722,21 @@ DELETE {{host}}/api/favourites/favourite/{productVariantId}
 ```js
 {
     "message": "Successfuly removed"
+}
+```
+
+# Notification
+### Delete company warning
+```js
+GET {{host}}/api/company/{companyId}/deleteWarning
+```
+#### Response
+```js
+200 Ok
+```
+```js
+{
+  "hasProductsInSale": true,
+  "balance": 0
 }
 ```
