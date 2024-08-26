@@ -109,6 +109,7 @@ POST {{host}}/api/auth/generate
 ```json
 {
   "userId": "b7b45ac6-52ca-458e-9f03-8fb1e1c14144",
+  "phoneNumber": "9284526577",
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3NWU0MTkwOS03ZWJjLTQ1NzctYjgwZS1hMTlmOTc2ZjcyYzIiLCJqdGkiOiI4YjMzMDAwZi1kMTQyLTQzNjItYjFlNS02NzNmY2U3NjFiZjkiLCJuYW1lIjoiOTI4NDUyNjU3NyIsImV4cCI6MTcyNDY1ODM4MCwiaXNzIjoiSXJpZkNvbXBhbnkiLCJhdWQiOiJJcmlmQ29tcGFueSJ9.z5c47LlGMY_JSEyCCf-		ZrIHbU6VHijNqyJRAUCsHbQE"
 }
 ```
