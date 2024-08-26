@@ -2,6 +2,8 @@
   	- [Authentication]
   	  	- [Generate sms](#generate-sms)
   	  	- [Validate](#validate)
+        - [Account](#account)
+  	     - [Get Account Profiles](#get-account-profiles)
 	- [Category](#category)
 		- [Get Categories](#get-categories)
         - [Get Category Tree](#get-category-tree)
@@ -114,7 +116,30 @@ POST {{host}}/api/auth/generate
 }
 ```
 
-
+## Account
+### Get Account Profiles
+#### Rsponse
+```js
+200 Ok
+```
+```json
+[
+    {
+        "profileId": "75e41909-7ebc-4577-b80e-a19f976f72c2",
+        "profileName": "Михаил К.",
+        "type": "user",
+        "isHasShop": false,
+        "shopName": null
+    },
+    {
+        "profileId": "03b8dbc5-b222-4cb9-8555-7fb55fb6040d",
+        "profileName": "ИП \"Кашницкий Михаил Вадимович\"",
+        "type": "company",
+        "isHasShop": true,
+        "shopName": "STelWell"
+    }
+]
+```
 
 
 ## Category
