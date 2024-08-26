@@ -18,8 +18,12 @@
       	- [Update Reviews](#update-reviews)
       	- [Add Reviews Opinion](#add-reviews-opinion)
       	- [Add Review Complete](#add-review-complete)
+      	- [Check eligibility](#check-eligibility)
+      	- [Get list reviewers](#get-list-reviewers)
     - [Questions](#questions)
 	- [Get Questions](#get-questions)
+	- [Add question](#add-question)
+   	- [Get question senders](#get-question-senders)
     - [Company](#company)
       	- [Company About](#company-about)
       	- [Company Short Info](#company-short-info)
@@ -640,8 +644,7 @@ multipart/formadata
 ```
 ```json
 {
-  "userId": "0a59835c-1bcc-4ef3-adba-f369ec2af2ad",
-  "companyId": "0a59835c-1bcc-4ef3-adba-f369ec2af2ad",
+  "profileId": "0a59835c-1bcc-4ef3-adba-f369ec2af2ad",
   "productId": "0a59835c-1bcc-4ef3-adba-f369ec2af2ad",
   "ratingValue": 5,
   "experience": "Меньше месяца",
@@ -649,10 +652,9 @@ multipart/formadata
   "disadvantage": "text",
   "Comment": "text",
   "IsAnonimous": false,
-  
+  "profileType": "user"
 }
 ```
-
 #### Response
 ```js
 200 Ok
@@ -664,6 +666,46 @@ multipart/formadata
   "dislikeCount": 0
 }
 ```
+
+### Check eligibility
+```js
+POST {{host}}/api/reviews/eligibility
+```
+#### Request
+```json
+{
+  "productId": "string"
+}
+```
+
+#### Response
+```json
+{
+  "isEligible": false
+}
+```
+
+### Get list reviewers
+```js
+POST {{host}}/api/reviews/reviewers
+```
+#### Request
+```json
+{
+  "productId": "string"
+}
+```
+
+#### Response
+```json
+[
+  {
+    "reviewerName": "Александр А.",
+    "reviewerType": "user"
+  }
+]
+```
+
 
 ##
 # Questions
@@ -706,6 +748,43 @@ GET {{host}}/api/products/{productId}/questions
   }
 }
 ```
+
+### Add question
+```js
+POST {{host}}/api/questions/add
+```
+#### Request
+```json
+{
+  "productId": "string",
+  "profileId": "string",
+  "profileType": "user",
+  "questionText": "string",
+  "isAnonimous": true
+}
+```
+
+#### Response
+```json
+ {
+    "reviewId": "b4ebd06c-fffc-4594-a86f-d37ad5c3b76c",
+  }
+```
+
+### Get question senders
+```js
+GET {{host}}/api/questions/select-sender
+```
+
+#### Response
+```json
+ {
+    "profileId": "b4ebd06c-fffc-4594-a86f-d37ad5c3b76c",
+    "name": "ООО Омела",
+    "type": "company",
+  }
+```
+
 
 ##
 # Company
