@@ -4,6 +4,7 @@
   	  	- [Validate](#validate)
         - [Account](#account)
   	     - [Get Account Profiles](#get-account-profiles)
+  	     - [Aggregate info](#aggregate-info)
 	- [Category](#category)
 		- [Get Categories](#get-categories)
         - [Get Category Tree](#get-category-tree)
@@ -62,6 +63,7 @@
   - [Favourites](#favourite)
      - [Get Favourite products](#get-favourite-products)
      - [Add Favourite Products](#add-favourite-products)
+     - [Add Multiple Favourites](#add-multiple-favourites)
      - [Delete Favourite Products](#delete-favourite-products)
   - [Notification](#notification)
      - [Delete company warning](#delete-compnay-warning)
@@ -118,6 +120,10 @@ POST {{host}}/api/auth/generate
 
 ## Account
 ### Get Account Profiles
+```js
+GET {{host}}/api/acc/profiles
+```
+
 #### Rsponse
 ```js
 200 Ok
@@ -139,6 +145,33 @@ POST {{host}}/api/auth/generate
         "shopName": "STelWell"
     }
 ]
+```
+
+### Aggregate info
+```js
+GET {{host}}/api/acc/acc/aggregateInfo
+```
+
+#### Rsponse
+```js
+200 Ok
+```
+```json
+{
+  "userItems": {
+    "favourites": {
+      "itemCount": 0,
+      "itemIds": []
+    },
+    "cart": {
+      "itemCount": 0,
+      "itemIds": []
+    },
+    "orders": {
+      "itemCount": 0
+    }
+  }
+}
 ```
 
 
@@ -1727,6 +1760,30 @@ productCategoryId
 ```js
 POST {{host}}/api/favourites/favourite/{productVariantId}
 ```
+#### Response
+```js
+200 Ok
+```
+```js
+{
+    "message": "Successfuly added"
+}
+```
+
+### Add Multiple Favourites
+```js
+POST {{host}}/api/favourites/addRange
+```
+
+#### Request
+```js
+[
+  {
+    "productVariantId": "781001bc-3a72-4e5b-8d2a-ee22e0ea7b0a"
+  }
+]
+```
+
 #### Response
 ```js
 200 Ok
