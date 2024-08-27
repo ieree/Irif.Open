@@ -97,7 +97,7 @@ POST {{host}}/api/auth/generate
 
 ### Validate
 ```js
-POST {{host}}/api/auth/generate
+POST {{host}}/api/auth/validate
 ```
 #### Request
 ```json
@@ -122,6 +122,7 @@ POST {{host}}/api/auth/generate
 ### Get Account Profiles
 ```js
 GET {{host}}/api/acc/profiles
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 
 #### Rsponse
@@ -150,6 +151,7 @@ GET {{host}}/api/acc/profiles
 ### Aggregate info
 ```js
 GET {{host}}/api/acc/acc/aggregateInfo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 
 #### Rsponse
@@ -322,6 +324,7 @@ GET {{host}}/api/sub-categories/{subCategoryId}/product-categories
 ### Get Products by Category
 ```js
 GET {{host}}/api/category/{categoryHandle}/products
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 
 ### Parameters
@@ -396,6 +399,7 @@ pageSize: default: 15
 ### Get Product Detail
 ```js
 GET {{host}}/api/products/{productHandle}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 ### Parameters
 sku: 123143432 / default null
@@ -575,6 +579,7 @@ sku: 123143432 / default null
 ### Product Variant Available
 ```js
 POST {{host}}/api/products/checkAvailable
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 #### Request
 ```js
@@ -705,27 +710,6 @@ cursor
 }
 ```
 
-### Add Reviews
-```js
-POST {{host}}/api/reviews
-```
-
-#### Response
-```js
-200 Ok
-```
-```json
-{
-  "userId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-  "companyId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-  "ratingValue": 0,
-  "experience": "string",
-  "advantage": "string",
-  "disadvantage": "string",
-  "comment": "string"
-}
-```
-
 ### Update Reviews
 ```js
 PUT {{host}}/api/reviews
@@ -758,9 +742,10 @@ POST {{host}}/api/reviews/opinion
 }
 ```
 
-### Add Reviews Complete
+### Add Reviews
 ```js
 POST {{host}}/api/reviews/add
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 #### Request
 ```json
@@ -794,6 +779,7 @@ multipart/formadata
 ### Check eligibility
 ```js
 POST {{host}}/api/reviews/eligibility
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 #### Request
 ```json
@@ -812,6 +798,7 @@ POST {{host}}/api/reviews/eligibility
 ### Get list reviewers
 ```js
 POST {{host}}/api/reviews/reviewers
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 #### Request
 ```json
@@ -876,6 +863,7 @@ GET {{host}}/api/products/{productId}/questions
 ### Add question
 ```js
 POST {{host}}/api/questions/add
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 #### Request
 ```json
@@ -898,6 +886,7 @@ POST {{host}}/api/questions/add
 ### Get question senders
 ```js
 GET {{host}}/api/questions/select-sender
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 
 #### Response
@@ -913,6 +902,7 @@ GET {{host}}/api/questions/select-sender
 ### Get user profile
 ```js
 GET {{host}}/api/user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 
 #### Response
@@ -1024,6 +1014,7 @@ GET {{host}}/api/companies/{companyId}/short-info
 ### User companies grid
 ```js
 GET {{host}}/api/companies/profileGrid
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 
 #### Response
@@ -1048,6 +1039,7 @@ GET {{host}}/api/companies/profileGrid
 ### Get company profile
 ```js
 GET {{host}}/api/companies/{companyId}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 
 #### Response
@@ -1086,6 +1078,7 @@ GET {{host}}/api/companies/{companyId}
 ### Add company
 ```js
 POST {{host}}/api/companies/addDetails
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 
 #### Request
@@ -1110,6 +1103,7 @@ POST {{host}}/api/companies/addDetails
 ### Upadte company card
 ```js
 POST {{host}}/api/companies/updateProfile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 
 #### Request
@@ -1139,6 +1133,7 @@ POST {{host}}/api/companies/updateProfile
 ### Delete company
 ```js
 DELETE {{host}}/api/companies/{companyId}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 
 #### Request
@@ -1168,6 +1163,7 @@ DELETE {{host}}/api/companies/{companyId}
 ### Add document
 ```js
 POST {{host}}/api/companies/{companyId}/uploadFile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 
 ```js
@@ -1190,6 +1186,7 @@ multipart/form-data
 ### Delete document
 ```js
 DELETE {{host}}/companies/document/{documentId}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 
 #### Response
@@ -1204,6 +1201,7 @@ DELETE {{host}}/companies/document/{documentId}
 ### Get Active Cart
 ```js
 GET {{host}}/api/carts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 #### Response
 ```js
@@ -1244,6 +1242,7 @@ Params: searchTerms: {ProductName/Article}
 ### Add To Cart
 ```js
 POST {{host}}/api/carts/cartItems
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 #### Request
 ```js
@@ -1272,6 +1271,7 @@ POST {{host}}/api/carts/cartItems
 ### Change Cart Item Count
 ```js
 PATCH {{host}}/api/carts/cartItem
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 
 #### Request
@@ -1294,8 +1294,10 @@ PATCH {{host}}/api/carts/cartItem
 ```
 
 ### Delete Cart Item
+
 ```js
 DELETE {{host}}/api/carts/cartItem/{cartItemId}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 
 #### Response
@@ -1313,6 +1315,7 @@ DELETE {{host}}/api/carts/cartItem/{cartItemId}
 ### Delete Range Cart Items
 ```js
 POST {{host}}/api/carts/removeCartItems
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 #### Response
 ```js
@@ -1329,6 +1332,7 @@ POST {{host}}/api/carts/removeCartItems
 ### Select All Cart Items
 ```js
 POST {{host}}/api/carts/cartItems/selectAll
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 #### Request
 ```js
@@ -1349,6 +1353,7 @@ POST {{host}}/api/carts/cartItems/selectAll
 ### Select Single CartItem
 ```js
 POST {{host}}/api/carts/cartItems/selectSingle
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 #### Request
 ```js
@@ -1371,6 +1376,7 @@ POST {{host}}/api/carts/cartItems/selectSingle
 ### Cart Checkout
 ```js
 GET {{host}}/api/carts/{cartId}/checkout
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 #### Response
 ```js
@@ -1390,6 +1396,7 @@ GET {{host}}/api/carts/{cartId}/checkout
 ### Cart Item Available
 ```js
 POST {{host}}/api/carts/productAvailable
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 
 #### Request
@@ -1430,6 +1437,7 @@ POST {{host}}/api/carts/productAvailable
 ### Get Current Cart Status
 ```js
 GET {{host}}/api/carts/{cartId}/currentStatus
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 #### Response
 ```js
@@ -1467,6 +1475,7 @@ GET {{host}}/api/carts/{cartId}/currentStatus
 ### Generate Cart Report Link
 ```js
 GET {{host}}/api/carts/{cartId}/generateExel
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 #### Response
 ```js
@@ -1483,6 +1492,7 @@ GET {{host}}/api/carts/{cartId}/generateExel
 ### Get Saved Carts
 ```js
 GET {{host}}/api/carts/savedCarts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 
 #### Response
@@ -1586,6 +1596,7 @@ GET {{host}}/api/carts/savedCarts
 ### Delete Cart
 ```js
 DELETE {{host}}/api/carts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 #### Response
 ```js
@@ -1601,6 +1612,7 @@ DELETE {{host}}/api/carts
 ### Delete Saved Carts
 ```js
 POST {{host}}/api/carts/removeSavedCarts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 
 #### Request
@@ -1633,6 +1645,7 @@ POST {{host}}/api/carts/removeSavedCarts
 ### Save Cart
 ```js
 POST {{host}}/api/carts/{cartId}/saveCart
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 #### Response
 ```js
@@ -1648,6 +1661,7 @@ POST {{host}}/api/carts/{cartId}/saveCart
 ### Restore Saved Cart
 ```js
 POST {{host}}/api/carts/savedRestore
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 #### Request
 ```js
@@ -1673,6 +1687,7 @@ POST {{host}}/api/carts/savedRestore
 ### Checkout Saved Carts
 ```js
 POST {{host}}/api/carts/savedCheckout
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 
 #### Request
@@ -1703,6 +1718,7 @@ POST {{host}}/api/carts/savedCheckout
 ### Get Favourite Products
 ```js
 GET {{host}}/api/favourites
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 ### Parameters
 ```js
@@ -1761,6 +1777,7 @@ productCategoryId
 ### Add Favourite Products
 ```js
 POST {{host}}/api/favourites/favourite/{productVariantId}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 #### Response
 ```js
@@ -1775,6 +1792,7 @@ POST {{host}}/api/favourites/favourite/{productVariantId}
 ### Add Multiple Favourites
 ```js
 POST {{host}}/api/favourites/addRange
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 
 #### Request
@@ -1799,6 +1817,7 @@ POST {{host}}/api/favourites/addRange
 ### Delete Favourite Products
 ```js
 DELETE {{host}}/api/favourites/favourite/{productVariantId}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 #### Response
 ```js
@@ -1814,6 +1833,7 @@ DELETE {{host}}/api/favourites/favourite/{productVariantId}
 ### Delete company warning
 ```js
 GET {{host}}/api/company/{companyId}/deleteWarning
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 #### Response
 ```js
