@@ -165,7 +165,9 @@ GET {{host}}/api/acc/acc/aggregateInfo
     },
     "cart": {
       "itemCount": 0,
-      "itemIds": []
+      "itemIds": [
+	    "f30c7bc3-c6ba-46a1-9587-137570eea47a"
+            ]
     },
     "orders": {
       "itemCount": 0
