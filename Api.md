@@ -22,7 +22,7 @@
       	- [Get Reviews](#get-reviews)
       	- [Update Reviews](#update-reviews)
       	- [Add Reviews Opinion](#add-reviews-opinion)
-      	- [Add Review](#add-review)
+      	- [Add Reviews](#add-reviews)
       	- [Check eligibility](#check-eligibility)
       	- [Get list reviewers](#get-list-reviewers)
     - [Questions](#questions)
