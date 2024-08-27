@@ -150,7 +150,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 
 ### Aggregate info
 ```js
-GET {{host}}/api/acc/acc/aggregateInfo
+GET {{host}}/api/acc/aggregateInfo
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 
