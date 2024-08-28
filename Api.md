@@ -23,6 +23,7 @@
       	- [Update Reviews](#update-reviews)
       	- [Add Reviews Opinion](#add-reviews-opinion)
       	- [Add Reviews](#add-reviews)
+      	- [Upload images](#upload-images)
       	- [Check eligibility](#check-eligibility)
       	- [Get list reviewers](#get-list-reviewers)
     - [Questions](#questions)
@@ -747,9 +748,7 @@ POST {{host}}/api/reviews/add
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 #### Request
-```json
-multipart/formadata
-```
+
 ```json
 {
   "profileId": "0a59835c-1bcc-4ef3-adba-f369ec2af2ad",
@@ -770,10 +769,25 @@ multipart/formadata
 ```json
 {
   "reviewId": "0a59835c-1bcc-4ef3-adba-f369ec2af2ad",
-  "likeCount": 1,
-  "dislikeCount": 0
 }
 ```
+
+### Upload images
+```js
+POST {{host}}/api/reviews/{reviewId}/upload
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+#### Request
+```json
+curl -X 'POST' \
+  'https://localhost:5001/api/reviews/62f52745-d436-4579-9351-18ddc710d57f/upload' \
+  -H 'accept: */*' \
+  -H 'Content-Type: multipart/form-data' \
+  -F 'request=@1234.png;type=image/png' \
+  -F 'request=@1.png;type=image/png'
+```
+
+
 
 ### Check eligibility
 ```js
