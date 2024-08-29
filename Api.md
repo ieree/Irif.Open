@@ -65,6 +65,8 @@
      - [Add Favourite Products](#add-favourite-products)
      - [Add Multiple Favourites](#add-multiple-favourites)
      - [Delete Favourite Products](#delete-favourite-products)
+  -[Orders](#orders)
+     - [Add order](#add-order)
   - [Notification](#notification)
      - [Delete company warning](#delete-compnay-warning)
 
@@ -1840,6 +1842,33 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 {
     "message": "Successfuly removed"
 }
+```
+
+
+# Orders
+### Add orders
+```js
+POST {{host}}/api/orders
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+#### Request
+```js
+{
+  "profileId": "string",
+  "profileType": "string",
+  "orderItems": [
+    {
+      "productVariantId": "string",
+      "quantity": 0,
+      "price": 0
+    }
+  ]
+}
+```
+
+#### Response
+```js
+200 Ok
 ```
 
 # Notification
