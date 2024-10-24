@@ -1893,7 +1893,7 @@ profileType=user/company
     {
         "orderId": "52d976fa-ef0c-49a6-a27d-0c183f81681a",
         "orderNumber": "123456",
-        "orderingDate": "2024-10-18T16:45:15.647341Z",
+        "orderingDate": "2024-10-24T07:09:36.925775Z",
         "orderPrice": 15952,
         "orderStatus": "preparing",
         "orderStatusDisplay": "Собирается",
@@ -1901,31 +1901,12 @@ profileType=user/company
             {
                 "sellerName": "MWInformTech",
                 "deliveryData": {
-                    "deliveryStatus": "preparing",
-                    "deliveryStatusDisplay": "Собирается",
-                    "deliveryMethod": "Достака продавцом",
-                    "deliveryAddress": "Москва, Аббасова12, 2, 123",
-                    "deliveryDate": "2024-10-17 16:44:13.045 +0300"
-                },
-                "orderPositionDetails": [
-                    {
-                        "productVariantId": "aaafd9b4-6c68-45a7-9f97-46c0b16c8ae8",
-                        "productHandle": "Смартфон-Redmi-Note-13-ea69c644-c2c1-414e-862a-fe8705e8781a",
-                        "sku": "58745216",
-                        "productName": "Xiaomi Смартфон Redmi Note 13 Ростест (EAC)",
-                        "productCount": 1,
-                        "productImageUrl": "Data/products/ea69c644-c2c1-414e-862a-fe8705e8781a/images/main/6951689772.png"
-                    }
-                ]
-            },
-            {
-                "sellerName": "MWInformTech",
-                "deliveryData": {
                     "deliveryStatus": "completed",
                     "deliveryStatusDisplay": "Доставлен",
                     "deliveryMethod": "Достака продавцом",
                     "deliveryAddress": "Москва, Аббасова12, 2, 123",
-                    "deliveryDate": "2024-10-16 16:44:13.045 +0300"
+                    "deliveryDate": "2024-10-24T07:12:45.384358Z",
+                    "deliveryDateDisplay": "октября 24, 2024 07:12:45"
                 },
                 "orderPositionDetails": [
                     {
@@ -1962,41 +1943,36 @@ dateSort=2024
 ```
 ```js
 {
-    "orders": [
+    "orderId": "52d976fa-ef0c-49a6-a27d-0c183f81681a",
+    "orderNumber": "123123123",
+    "customer": "Иван Терещенко, тел. +79284526573",
+    "recipient": "Иван Терещенко, тел. +79284526573",
+    "paymentMethod": "bank_card",
+    "totalProductCount": 1,
+    "deliveryPrice": 1000,
+    "orderTotalPrice": 15952,
+    "orderStatus": "preparing",
+    "orderStatusDisplay": "Собирается",
+    "orderDocs": "Data/docs.pdf",
+    "orderLines": [
         {
-            "orderId": "d536fbbc-d510-48a3-b54e-75e5d42effd3",
-            "orderNumber": "123123123",
-            "orderDate": "2024-10-18T16:45:15.647343Z",
-            "orderStatus": "Доставлен",
-            "orderPrice": 15952,
-            "orderBilsLink": "/Data/document.pdf",
-            "additionalProductCount": 0,
-            "productImages": [
-                {
-                    "productImageUrl": "Data/products/ea69c644-c2c1-414e-862a-fe8705e8781a/images/main/6951689772.png"
-                }
-            ],
-            "orderedProducts": [
+            "deliveryStatus": "completed",
+            "deliveryStatusDisplay": "Доставлен",
+            "deliveryDateLineDisplay": "октября 24",
+            "partialCount": 1,
+            "deliveryData": {
+                "deliveryMethod": "Достака продавцом",
+                "deliveryAddress": "Москва, Аббасова12, 2, 123"
+            },
+            "groupedProducts": [
                 {
                     "productVariantId": "aaafd9b4-6c68-45a7-9f97-46c0b16c8ae8",
                     "productHandle": "Смартфон-Redmi-Note-13-ea69c644-c2c1-414e-862a-fe8705e8781a",
                     "sku": "58745216",
+                    "sellerName": "MWInformTech",
                     "productName": "Xiaomi Смартфон Redmi Note 13 Ростест (EAC)",
-                    "seller": "MWInformTech",
-                    "orderLineQuantity": 1,
-                    "orderLinePrice": 15952,
-                    "productImageUrl": "Data/products/ea69c644-c2c1-414e-862a-fe8705e8781a/images/main/6951689772.png"
-                }
-            ]
-        }
-    ],
-    "sortingData": [
-        {
-            "sortingOrderType": "product",
-            "sortingOrderTypeDisplay": "Заказы товаров",
-            "years": [
-                {
-                    "year": "2024"
+                    "productImageUrl": "Data/products/ea69c644-c2c1-414e-862a-fe8705e8781a/images/main/6951689772.png",
+                    "productLineFullPrice": 15952
                 }
             ]
         }
