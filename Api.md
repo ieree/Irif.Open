@@ -1901,8 +1901,8 @@ profileType=user/company
             {
                 "sellerName": "MWInformTech",
                 "deliveryData": {
-                    "orderLineStatus": "preparing",
-                    "orderLineStatusDisplay": "Собирается",
+                    "deliveryStatus": "preparing",
+                    "deliveryStatusDisplay": "Собирается",
                     "deliveryMethod": "Достака продавцом",
                     "deliveryAddress": "Москва, Аббасова12, 2, 123",
                     "deliveryDate": "2024-10-17 16:44:13.045 +0300"
@@ -1910,6 +1910,8 @@ profileType=user/company
                 "orderPositionDetails": [
                     {
                         "productVariantId": "aaafd9b4-6c68-45a7-9f97-46c0b16c8ae8",
+                        "productHandle": "Смартфон-Redmi-Note-13-ea69c644-c2c1-414e-862a-fe8705e8781a",
+                        "sku": "58745216",
                         "productName": "Xiaomi Смартфон Redmi Note 13 Ростест (EAC)",
                         "productCount": 1,
                         "productImageUrl": "Data/products/ea69c644-c2c1-414e-862a-fe8705e8781a/images/main/6951689772.png"
@@ -1919,8 +1921,8 @@ profileType=user/company
             {
                 "sellerName": "MWInformTech",
                 "deliveryData": {
-                    "orderLineStatus": "completed",
-                    "orderLineStatusDisplay": "Доставлен",
+                    "deliveryStatus": "completed",
+                    "deliveryStatusDisplay": "Доставлен",
                     "deliveryMethod": "Достака продавцом",
                     "deliveryAddress": "Москва, Аббасова12, 2, 123",
                     "deliveryDate": "2024-10-16 16:44:13.045 +0300"
@@ -1928,6 +1930,8 @@ profileType=user/company
                 "orderPositionDetails": [
                     {
                         "productVariantId": "aaafd9b4-6c68-45a7-9f97-46c0b16c8ae8",
+                        "productHandle": "Смартфон-Redmi-Note-13-ea69c644-c2c1-414e-862a-fe8705e8781a",
+                        "sku": "58745216",
                         "productName": "Xiaomi Смартфон Redmi Note 13 Ростест (EAC)",
                         "productCount": 1,
                         "productImageUrl": "Data/products/ea69c644-c2c1-414e-862a-fe8705e8781a/images/main/6951689772.png"
@@ -1975,10 +1979,13 @@ dateSort=2024
             "orderedProducts": [
                 {
                     "productVariantId": "aaafd9b4-6c68-45a7-9f97-46c0b16c8ae8",
+                    "productHandle": "Смартфон-Redmi-Note-13-ea69c644-c2c1-414e-862a-fe8705e8781a",
+                    "sku": "58745216",
                     "productName": "Xiaomi Смартфон Redmi Note 13 Ростест (EAC)",
                     "seller": "MWInformTech",
                     "orderLineQuantity": 1,
-                    "orderLinePrice": 15952
+                    "orderLinePrice": 15952,
+                    "productImageUrl": "Data/products/ea69c644-c2c1-414e-862a-fe8705e8781a/images/main/6951689772.png"
                 }
             ]
         }
@@ -2033,6 +2040,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
             "groupedProducts": [
                 {
                     "productVariantId": "aaafd9b4-6c68-45a7-9f97-46c0b16c8ae8",
+                    "productHandle": "Смартфон-Redmi-Note-13-ea69c644-c2c1-414e-862a-fe8705e8781a",
+                    "sku": "58745216",
                     "sellerName": "MWInformTech",
                     "productName": "Xiaomi Смартфон Redmi Note 13 Ростест (EAC)",
                     "productImageUrl": "Data/products/ea69c644-c2c1-414e-862a-fe8705e8781a/images/main/6951689772.png",
@@ -2052,6 +2061,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
             "groupedProducts": [
                 {
                     "productVariantId": "aaafd9b4-6c68-45a7-9f97-46c0b16c8ae8",
+                    "productHandle": "Смартфон-Redmi-Note-13-ea69c644-c2c1-414e-862a-fe8705e8781a",
+                    "sku": "58745216",
                     "sellerName": "MWInformTech",
                     "productName": "Xiaomi Смартфон Redmi Note 13 Ростест (EAC)",
                     "productImageUrl": "Data/products/ea69c644-c2c1-414e-862a-fe8705e8781a/images/main/6951689772.png",
