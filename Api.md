@@ -71,7 +71,7 @@
        	- [Get Order Details](#get-order-details)
   - [Notification](#notification)
      - [Delete company warning](#delete-compnay-warning)
-    - [Seller](#seller)
+  - [Seller](#seller)
 
 # IRif Api
 Api v1 
