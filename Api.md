@@ -71,6 +71,7 @@
        	- [Get Order Details](#get-order-details)
   - [Notification](#notification)
      - [Delete company warning](#delete-compnay-warning)
+    - [Seller](#seller)
 
 # IRif Api
 Api v1 
@@ -2052,3 +2053,5 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
   "balance": 0
 }
 ```
+
+# Seller
