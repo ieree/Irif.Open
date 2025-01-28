@@ -72,6 +72,7 @@
   - [Notification](#notification)
      - [Delete company warning](#delete-compnay-warning)
   - [Seller](#seller)
+    	- [Product List To Manage](#product-list-to-manage)
 
 # IRif Api
 Api v1 
@@ -2055,3 +2056,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 
 # Seller
+### Product List To Manage
+```js
+GET {{host}}/api/seller/products
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
