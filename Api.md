@@ -72,8 +72,8 @@
   - [Notification](#notification)
      - [Delete company warning](#delete-compnay-warning)
   - [Seller](#seller)
-    	- [Product List To Manage](#product-list-to-manage)
-    	- [Linked Products In Manage List](#linked-products-in-manage-list)
+  	- [Product List To Manage](#product-list-to-manage)
+  	- [Linked Products In Manage List](#linked-products-in-manage-list)
 
 # IRif Api
 Api v1 
