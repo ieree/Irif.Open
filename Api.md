@@ -73,6 +73,7 @@
      - [Delete company warning](#delete-compnay-warning)
   - [Seller](#seller)
     	- [Product List To Manage](#product-list-to-manage)
+    	- [Linked Products In Manage List](#linked-products-in-manage-list)
 
 # IRif Api
 Api v1 
@@ -2058,6 +2059,53 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 # Seller
 ### Product List To Manage
 ```js
-GET {{host}}/api/seller/products
+GET {{host}}/api/seller/{profileId}/products
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
+#### Response
+```js
+200 Ok
+```
+```js
+[
+  {
+    "productId": "9ef26781-e5e6-4043-866c-32856b834b3e",
+    "productName": "Xiaomi test phone",
+    "article": "123434355-45",
+    "barcode": "1231231",
+    "categoryName": "Смартфоны",
+    "productStatus": "В черновиках",
+    "createDate": "2025-01-13T09:03:12.127025Z",
+    "updateDate": null,
+    "haveLinked": false,
+    "linkedCount": 0
+  },
+  {
+    "productId": "a6e24a0d-ebe7-4815-9463-f766b1379699",
+    "productName": "Xiaomi test2 phone",
+    "article": "1233123-423",
+    "barcode": "1231231",
+    "categoryName": "Смартфоны",
+    "productStatus": "В черновиках",
+    "createDate": "2025-01-13T10:20:47.522603Z",
+    "updateDate": null,
+    "haveLinked": false,
+    "linkedCount": 0
+  },
+  {
+    "productId": "db47b836-6eec-4dfa-a71b-eaa134fd5666",
+    "productName": "Xiaomi test3 phone",
+    "article": "123434355-45",
+    "barcode": "4896522661",
+    "categoryName": "Смартфоны",
+    "productStatus": "Ожидает действия",
+    "createDate": "2024-12-24T16:03:15.246Z",
+    "updateDate": null,
+    "haveLinked": true,
+    "linkedCount": 1
+  }
+]
+```
+
+
+### Linked Products In Manage List
