@@ -2067,45 +2067,131 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 200 Ok
 ```
 ```js
-[
-  {
-    "productId": "9ef26781-e5e6-4043-866c-32856b834b3e",
-    "productName": "Xiaomi test phone",
-    "article": "123434355-45",
-    "barcode": "1231231",
-    "categoryName": "Смартфоны",
-    "productStatus": "В черновиках",
-    "createDate": "2025-01-13T09:03:12.127025Z",
-    "updateDate": null,
-    "haveLinked": false,
-    "linkedCount": 0
-  },
-  {
-    "productId": "a6e24a0d-ebe7-4815-9463-f766b1379699",
-    "productName": "Xiaomi test2 phone",
-    "article": "1233123-423",
-    "barcode": "1231231",
-    "categoryName": "Смартфоны",
-    "productStatus": "В черновиках",
-    "createDate": "2025-01-13T10:20:47.522603Z",
-    "updateDate": null,
-    "haveLinked": false,
-    "linkedCount": 0
-  },
-  {
-    "productId": "db47b836-6eec-4dfa-a71b-eaa134fd5666",
-    "productName": "Xiaomi test3 phone",
-    "article": "123434355-45",
-    "barcode": "4896522661",
-    "categoryName": "Смартфоны",
-    "productStatus": "Ожидает действия",
-    "createDate": "2024-12-24T16:03:15.246Z",
-    "updateDate": null,
-    "haveLinked": true,
-    "linkedCount": 1
-  }
-]
+{
+    "products": [
+        {
+            "productId": "9ef26781-e5e6-4043-866c-32856b834b3e",
+            "productName": "Xiaomi test phone",
+            "article": "123434355-45",
+            "barcode": "1231231",
+            "brand": "Xiaomi",
+            "brandHandle": "xiaomi",
+            "categoryName": "Смартфоны",
+            "categoryHandle": "smartfoni-781001bc-3a72-4e5b-8d2a-ee22e0ea7b0a",
+            "reviewCount": 0,
+            "rating": null,
+            "productStatus": "В черновиках",
+            "createDate": "2025-01-13T09:03:12.127025Z",
+            "updateDate": null,
+            "haveLinked": false,
+            "linkedCount": 0
+        },
+        {
+            "productId": "a6e24a0d-ebe7-4815-9463-f766b1379699",
+            "productName": "Xiaomi test2 phone",
+            "article": "1233123-423",
+            "barcode": "1231231",
+            "brand": "Xiaomi",
+            "brandHandle": "xiaomi",
+            "categoryName": "Смартфоны",
+            "categoryHandle": "smartfoni-781001bc-3a72-4e5b-8d2a-ee22e0ea7b0a",
+            "reviewCount": 0,
+            "rating": null,
+            "productStatus": "В черновиках",
+            "createDate": "2025-01-13T10:20:47.522603Z",
+            "updateDate": null,
+            "haveLinked": false,
+            "linkedCount": 0
+        },
+        {
+            "productId": "db47b836-6eec-4dfa-a71b-eaa134fd5666",
+            "productName": "Xiaomi test3 phone",
+            "article": "123434355-45",
+            "barcode": "4896522661",
+            "brand": "Xiaomi",
+            "brandHandle": "xiaomi",
+            "categoryName": "Смартфоны",
+            "categoryHandle": "smartfoni-781001bc-3a72-4e5b-8d2a-ee22e0ea7b0a",
+            "reviewCount": 0,
+            "rating": null,
+            "productStatus": "Ожидает действия",
+            "createDate": "2024-12-24T16:03:15.246Z",
+            "updateDate": null,
+            "haveLinked": true,
+            "linkedCount": 1
+        }
+    ],
+    "tabsCount": {
+        "all": 3,
+        "draft": 2,
+        "archived": 0,
+        "moderating": 0,
+        "removed": 0
+    },
+    "filters": [
+        {
+            "filterName": "category",
+            "filterValues": [
+                "smartfoni"
+            ]
+        },
+        {
+            "filterName": "brand",
+            "filterValues": [
+                "xiaomi"
+            ]
+        },
+        {
+            "filterName": "rating",
+            "filterValues": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5"
+            ]
+        },
+        {
+            "filterName": "status",
+            "filterValues": [
+                "active",
+                "draft",
+                "approved",
+                "pendingApproval",
+                "removed"
+            ]
+        }
+    ]
+}
 ```
-
+```js
+Params
+GET {{host}}/api/seller/{profileId}/products?searchTerms=Смартфон&statusTabs=draft&sortColumn=name&sortOrder=desc&smartfoni=xiaomi
+```
+searchTerms - поиск по наименованию, баркоду, артикулу, 
+statusTabs: draft, archive
+sortColumn: name, category, article, barcode, brand, create, update
+sortOrder: asc, desc
 
 ### Linked Products In Manage List
+```js
+GET {{host}}/seller/linked-products/{productId}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+
+#### Response
+```js
+200 Ok
+```
+```js
+[
+    {
+        "productId": "4c227b08-8d77-4a33-90e2-b4735db2bda4",
+        "productVariantId": "a776f5e8-8112-4119-96bf-432beeabf498",
+        "productName": "Xiaomi test4 phone",
+	"productImgPath": "/dsdsd/1.png"
+        "article": "121121121",
+        "barcode": "4896522661"
+    }
+]
+```
