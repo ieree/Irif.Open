@@ -74,6 +74,8 @@
   - [Seller](#seller)
   	- [Product List To Manage](#product-list-to-manage)
   	- [Linked Products In Manage List](#linked-products-in-manage-list)
+  	- [Product details ready to merge](#product-details-ready-to-merge)
+   	- [Product details ready merging to existing card](#product-details-ready-merging-to-existing-card)
 
 # IRif Api
 Api v1 
@@ -2194,4 +2196,214 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
         "barcode": "4896522661"
     }
 ]
+```
+
+### Product details ready to merge
+```js
+GET {{host}}/seller/products/merge-details
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+#### Request
+```js
+[
+  "9ef26781-e5e6-4043-866c-32856b834b3e",
+  "a6e24a0d-ebe7-4815-9463-f766b1379699",
+  "9bd4a2a7-3a29-49fb-8bcc-aee875b0172f"
+]
+```
+#### Response
+```js
+200 Ok
+```
+```js
+[
+    {
+        "productId": "9bd4a2a7-3a29-49fb-8bcc-aee875b0172f",
+        "productName": "Мягкая игрушка Кот-Батон, цвет серый, 60 см",
+        "article": "",
+        "productImagePath": "",
+        "mergeStatus": "Не возможно объеденить",
+        "isUniqueVariant": false,
+        "categoryOption": {
+            "categoryId": "88827e1e-bd91-4517-bfda-b7591b077199",
+            "categoryName": "Для малышей",
+            "isValidCategory": false
+        },
+        "variantCharacteristicsOptions": [
+            {
+                "optionName": "Цвет",
+                "optionVerified": false,
+                "optionValue": "Розовый"
+            }
+        ]
+    },
+    {
+        "productId": "9ef26781-e5e6-4043-866c-32856b834b3e",
+        "productName": "Xiaomi test phone",
+        "article": "123434355-45",
+        "productImagePath": "",
+        "mergeStatus": "Готов к объеденению",
+        "isUniqueVariant": true,
+        "categoryOption": {
+            "categoryId": "781001bc-3a72-4e5b-8d2a-ee22e0ea7b0a",
+            "categoryName": "Смартфоны",
+            "isValidCategory": true
+        },
+        "variantCharacteristicsOptions": [
+            {
+                "optionName": "Цвет",
+                "optionVerified": true,
+                "optionValue": "Красный"
+            },
+            {
+                "optionName": "Встроенная память",
+                "optionVerified": true,
+                "optionValue": "256 Гб"
+            }
+        ]
+    },
+    {
+        "productId": "a6e24a0d-ebe7-4815-9463-f766b1379699",
+        "productName": "Xiaomi test2 phone",
+        "article": "1233123-423",
+        "productImagePath": "",
+        "mergeStatus": "Не возможно объеденить",
+        "isUniqueVariant": false,
+        "categoryOption": {
+            "categoryId": "781001bc-3a72-4e5b-8d2a-ee22e0ea7b0a",
+            "categoryName": "Смартфоны",
+            "isValidCategory": true
+        },
+        "variantCharacteristicsOptions": [
+            {
+                "optionName": "Цвет",
+                "optionVerified": true,
+                "optionValue": "Красный"
+            },
+            {
+                "optionName": "Встроенная память",
+                "optionVerified": true,
+                "optionValue": "256 Гб"
+            }
+        ]
+    }
+]
+```
+
+
+### Product details ready merging to existing card
+```js
+GET {{host}}/seller/products/merge-details
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+#### Request
+```js
+[
+  "9ef26781-e5e6-4043-866c-32856b834b3e",
+  "a6e24a0d-ebe7-4815-9463-f766b1379699",
+  "9bd4a2a7-3a29-49fb-8bcc-aee875b0172f"
+]
+```
+#### Response
+```js
+200 Ok
+```
+```js
+{
+    "linkedProductsToCard": [
+        {
+            "productId": "db47b836-6eec-4dfa-a71b-eaa134fd5666",
+            "categoryName": "Смартфоны",
+            "mergeStatus": "Готов к объединению",
+            "productVariants": [
+                {
+                    "productName": "Xiaomi test4 phone",
+                    "article": "",
+                    "productImagePath": "",
+                    "variantCharacteristicsOptions": [
+                        {
+                            "optionId": "9a106785-47c6-4f06-9284-5d8bf3478a33",
+                            "optionName": "Цвет",
+                            "optionValue": "Белый"
+                        },
+                        {
+                            "optionId": "9641e761-2741-4b6c-9be8-844ee3970bd1",
+                            "optionName": "Встроенная память",
+                            "optionValue": "128 Гб"
+                        }
+                    ]
+                },
+                {
+                    "productName": "Xiaomi test3 phone",
+                    "article": "123434355-45",
+                    "productImagePath": "",
+                    "variantCharacteristicsOptions": [
+                        {
+                            "optionId": "9a106785-47c6-4f06-9284-5d8bf3478a33",
+                            "optionName": "Цвет",
+                            "optionValue": "Белый"
+                        },
+                        {
+                            "optionId": "9641e761-2741-4b6c-9be8-844ee3970bd1",
+                            "optionName": "Встроенная память",
+                            "optionValue": "256 Гб"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "productsToMerge": [
+        {
+            "productId": "9ef26781-e5e6-4043-866c-32856b834b3e",
+            "productName": "Xiaomi test phone",
+            "article": "123434355-45",
+            "productImagePath": "",
+            "mergeStatus": "Готов к объеденению",
+            "isUniqueVariant": true,
+            "categoryOption": {
+                "categoryId": "781001bc-3a72-4e5b-8d2a-ee22e0ea7b0a",
+                "categoryName": "Смартфоны",
+                "isValidCategory": true
+            },
+            "variantCharacteristicsOptions": [
+                {
+                    "optionName": "Цвет",
+                    "optionVerified": true,
+                    "optionValue": "Красный"
+                },
+                {
+                    "optionName": "Встроенная память",
+                    "optionVerified": true,
+                    "optionValue": "256 Гб"
+                }
+            ]
+        },
+        {
+            "productId": "a6e24a0d-ebe7-4815-9463-f766b1379699",
+            "productName": "Xiaomi test2 phone",
+            "article": "1233123-423",
+            "productImagePath": "",
+            "mergeStatus": "Нельзя объеденить",
+            "isUniqueVariant": false,
+            "categoryOption": {
+                "categoryId": "781001bc-3a72-4e5b-8d2a-ee22e0ea7b0a",
+                "categoryName": "Смартфоны",
+                "isValidCategory": true
+            },
+            "variantCharacteristicsOptions": [
+                {
+                    "optionName": "Цвет",
+                    "optionVerified": true,
+                    "optionValue": "Красный"
+                },
+                {
+                    "optionName": "Встроенная память",
+                    "optionVerified": true,
+                    "optionValue": "256 Гб"
+                }
+            ]
+        }
+    ]
+}
 ```
