@@ -76,6 +76,9 @@
   	- [Linked Products In Manage List](#linked-products-in-manage-list)
   	- [Product details ready to merge](#product-details-ready-to-merge)
    	- [Product details ready merging to existing card](#product-details-ready-merging-to-existing-card)
+    	- [Create single product](#create-single-product)
+     	- [Create multiple products](#create-multiple-products)
+      	- [Complete multiple products creation](#complete-multiple-product-creation)
 
 # IRif Api
 Api v1 
@@ -2405,5 +2408,170 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
             ]
         }
     ]
+}
+```
+
+### Create single product
+```js
+POST {{host}}/seller/seller/add-product
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+#### Request
+```js
+{
+  "companyId": "194e2b82-34d8-4f95-9027-afabcbafa23d",
+  "productCategoryId": "781001bc-3a72-4e5b-8d2a-ee22e0ea7b0a",
+  "productName": "Xiaomi test phone",
+  "productDescription": "description",
+  "brandId": "6ba6fae6-7372-4c23-a789-e0bef130b625",
+  "originCountry": "China",
+  "weight": 100,
+  "height": 100,
+  "width": 100,
+  "length": 100,
+  "seviceLife": 1,
+  "guaranteePeriod": 1,
+  "tnvdCode": 11111,
+  "model": "MOdlejf",
+  "sellerArticle": "1231231",
+  "barcode": "1231231",
+  "price": 1000,
+  "regularPrice": 1200,
+  "isSecondHand": false,
+  "isDiscounted": true,
+  "characteristics": [
+    {
+      "productOptionValueId": "51fb7639-a72b-4ef2-bb3b-f5ebdf4d3216",
+      "isVariant": true
+    },
+    {
+      "productOptionValueId": "59e4d816-6f8f-46b8-a1d4-dedff9d308e4",
+      "isVariant": false
+    },
+    {
+      "productOptionValueId": "5ffc8686-cab1-44e1-bdaa-ea95b215eed5",
+      "isVariant": false
+    },
+    {
+      "productOptionValueId": "4ff5eb0d-671f-43d2-94b1-b90dfef9c0a0",
+      "isVariant": true
+    }
+  ]
+}
+```
+
+#### Response
+```js
+{
+    "response": "Successfully created"
+}
+```
+
+### Create multiple products
+```js
+POST {{host}}/seller/seller/add-multiple
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+#### Request
+```js
+{
+  "companyId": "194e2b82-34d8-4f95-9027-afabcbafa23d",
+  "productCategoryId": "781001bc-3a72-4e5b-8d2a-ee22e0ea7b0a",
+  "productDescription": "Description",
+  "brandId": "6ba6fae6-7372-4c23-a789-e0bef130b625",
+  "originCountry": "China",
+  "weight": 0,
+  "height": 0,
+  "width": 0,
+  "length": 0,
+  "seviceLife": 1,
+  "guaranteePeriod": 1,
+  "tnvdCode": 1231445515,
+  "model": "xiaom",
+  "generalCharacteristicValueIds": [
+    "8788d4ac-294a-43c3-884d-e131e13c17e3",
+    "a4d45b7a-df7a-4051-87c9-737270a71c88"
+  ],
+  "variants": [
+    {
+      "variantCharacteristicIds": [
+        "72b2f497-2e11-4b09-a01a-04cdedcfa3b5",
+        "51fb7639-a72b-4ef2-bb3b-f5ebdf4d3216"
+      ]
+    },
+    {
+       "variantCharacteristicIds": [
+        "72b2f497-2e11-4b09-a01a-04cdedcfa3b5",
+        "4ff5eb0d-671f-43d2-94b1-b90dfef9c0a0"
+      ]
+    }
+  ]
+}
+```
+
+#### Response
+```js
+[
+    {
+        "productId": "6bfc8c43-d541-4747-9b23-5c06e58dcc11",
+        "options": [
+            {
+                "optionName": "Цвет",
+                "optionValue": "Серебристый"
+            },
+            {
+                "optionName": "Встроенная память",
+                "optionValue": "256 Гб"
+            }
+        ]
+    },
+    {
+        "productId": "d0cd4a79-b058-44ff-9456-ef066ff45d21",
+        "options": [
+            {
+                "optionName": "Цвет",
+                "optionValue": "Серебристый"
+            },
+            {
+                "optionName": "Цвет",
+                "optionValue": "Красный"
+            }
+        ]
+    }
+]
+```
+
+### Complete multiple products creation
+```js
+POST {{host}}/seller/seller/add-multiple
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+
+#### Request
+```js
+[
+  {
+    "productId": "6bfc8c43-d541-4747-9b23-5c06e58dcc11",
+    "productName": "Xiaomi 111",
+    "price": 10000,
+    "regularPrice": 12000,
+    "sellerSku": "3123442",
+    "isMainProduct": true
+  },
+  {
+    "productId": "d0cd4a79-b058-44ff-9456-ef066ff45d21",
+    "productName": "Xiaomi 112",
+    "price": 10001,
+    "regularPrice": 12001,
+    "sellerSku": "3123441",
+    "isMainProduct": false
+  }
+]
+```
+
+#### Response
+```js
+{
+    "message": "Products created successfully"
 }
 ```
