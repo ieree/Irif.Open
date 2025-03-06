@@ -2062,6 +2062,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 
 # Seller
+
 ### Product List To Manage
 ```js
 GET {{host}}/api/seller/{profileId}/products
@@ -2172,243 +2173,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```js
 Params
 GET {{host}}/api/seller/{profileId}/products?searchTerms=Смартфон&statusTabs=draft&sortColumn=name&sortOrder=desc&smartfoni=xiaomi
-```
+
 searchTerms - поиск по наименованию, баркоду, артикулу, 
 statusTabs: draft, archive
 sortColumn: name, category, article, barcode, brand, create, update
 sortOrder: asc, desc
-
-### Linked Products In Manage List
-```js
-GET {{host}}/seller/linked-products/{productId}
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
-```
-
-#### Response
-```js
-200 Ok
-```
-```js
-[
-    {
-        "productId": "4c227b08-8d77-4a33-90e2-b4735db2bda4",
-        "productVariantId": "a776f5e8-8112-4119-96bf-432beeabf498",
-        "productName": "Xiaomi test4 phone",
-	"productImgPath": "/dsdsd/1.png"
-        "article": "121121121",
-        "barcode": "4896522661"
-    }
-]
-```
-
-### Product details ready to merge
-```js
-GET {{host}}/seller/products/merge-details
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
-```
-#### Request
-```js
-[
-  "9ef26781-e5e6-4043-866c-32856b834b3e",
-  "a6e24a0d-ebe7-4815-9463-f766b1379699",
-  "9bd4a2a7-3a29-49fb-8bcc-aee875b0172f"
-]
-```
-#### Response
-```js
-200 Ok
-```
-```js
-[
-    {
-        "productId": "9bd4a2a7-3a29-49fb-8bcc-aee875b0172f",
-        "productName": "Мягкая игрушка Кот-Батон, цвет серый, 60 см",
-        "article": "",
-        "productImagePath": "",
-        "mergeStatus": "Не возможно объеденить",
-        "isUniqueVariant": false,
-        "categoryOption": {
-            "categoryId": "88827e1e-bd91-4517-bfda-b7591b077199",
-            "categoryName": "Для малышей",
-            "isValidCategory": false
-        },
-        "variantCharacteristicsOptions": [
-            {
-                "optionName": "Цвет",
-                "optionVerified": false,
-                "optionValue": "Розовый"
-            }
-        ]
-    },
-    {
-        "productId": "9ef26781-e5e6-4043-866c-32856b834b3e",
-        "productName": "Xiaomi test phone",
-        "article": "123434355-45",
-        "productImagePath": "",
-        "mergeStatus": "Готов к объеденению",
-        "isUniqueVariant": true,
-        "categoryOption": {
-            "categoryId": "781001bc-3a72-4e5b-8d2a-ee22e0ea7b0a",
-            "categoryName": "Смартфоны",
-            "isValidCategory": true
-        },
-        "variantCharacteristicsOptions": [
-            {
-                "optionName": "Цвет",
-                "optionVerified": true,
-                "optionValue": "Красный"
-            },
-            {
-                "optionName": "Встроенная память",
-                "optionVerified": true,
-                "optionValue": "256 Гб"
-            }
-        ]
-    },
-    {
-        "productId": "a6e24a0d-ebe7-4815-9463-f766b1379699",
-        "productName": "Xiaomi test2 phone",
-        "article": "1233123-423",
-        "productImagePath": "",
-        "mergeStatus": "Не возможно объеденить",
-        "isUniqueVariant": false,
-        "categoryOption": {
-            "categoryId": "781001bc-3a72-4e5b-8d2a-ee22e0ea7b0a",
-            "categoryName": "Смартфоны",
-            "isValidCategory": true
-        },
-        "variantCharacteristicsOptions": [
-            {
-                "optionName": "Цвет",
-                "optionVerified": true,
-                "optionValue": "Красный"
-            },
-            {
-                "optionName": "Встроенная память",
-                "optionVerified": true,
-                "optionValue": "256 Гб"
-            }
-        ]
-    }
-]
-```
-
-
-### Product details ready merging to existing card
-```js
-GET {{host}}/seller/products/merge-details
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
-```
-#### Request
-```js
-[
-  "9ef26781-e5e6-4043-866c-32856b834b3e",
-  "a6e24a0d-ebe7-4815-9463-f766b1379699",
-  "9bd4a2a7-3a29-49fb-8bcc-aee875b0172f"
-]
-```
-#### Response
-```js
-200 Ok
-```
-```js
-{
-    "linkedProductsToCard": [
-        {
-            "productId": "db47b836-6eec-4dfa-a71b-eaa134fd5666",
-            "categoryName": "Смартфоны",
-            "mergeStatus": "Готов к объединению",
-            "productVariants": [
-                {
-                    "productName": "Xiaomi test4 phone",
-                    "article": "",
-                    "productImagePath": "",
-                    "variantCharacteristicsOptions": [
-                        {
-                            "optionId": "9a106785-47c6-4f06-9284-5d8bf3478a33",
-                            "optionName": "Цвет",
-                            "optionValue": "Белый"
-                        },
-                        {
-                            "optionId": "9641e761-2741-4b6c-9be8-844ee3970bd1",
-                            "optionName": "Встроенная память",
-                            "optionValue": "128 Гб"
-                        }
-                    ]
-                },
-                {
-                    "productName": "Xiaomi test3 phone",
-                    "article": "123434355-45",
-                    "productImagePath": "",
-                    "variantCharacteristicsOptions": [
-                        {
-                            "optionId": "9a106785-47c6-4f06-9284-5d8bf3478a33",
-                            "optionName": "Цвет",
-                            "optionValue": "Белый"
-                        },
-                        {
-                            "optionId": "9641e761-2741-4b6c-9be8-844ee3970bd1",
-                            "optionName": "Встроенная память",
-                            "optionValue": "256 Гб"
-                        }
-                    ]
-                }
-            ]
-        }
-    ],
-    "productsToMerge": [
-        {
-            "productId": "9ef26781-e5e6-4043-866c-32856b834b3e",
-            "productName": "Xiaomi test phone",
-            "article": "123434355-45",
-            "productImagePath": "",
-            "mergeStatus": "Готов к объеденению",
-            "isUniqueVariant": true,
-            "categoryOption": {
-                "categoryId": "781001bc-3a72-4e5b-8d2a-ee22e0ea7b0a",
-                "categoryName": "Смартфоны",
-                "isValidCategory": true
-            },
-            "variantCharacteristicsOptions": [
-                {
-                    "optionName": "Цвет",
-                    "optionVerified": true,
-                    "optionValue": "Красный"
-                },
-                {
-                    "optionName": "Встроенная память",
-                    "optionVerified": true,
-                    "optionValue": "256 Гб"
-                }
-            ]
-        },
-        {
-            "productId": "a6e24a0d-ebe7-4815-9463-f766b1379699",
-            "productName": "Xiaomi test2 phone",
-            "article": "1233123-423",
-            "productImagePath": "",
-            "mergeStatus": "Нельзя объеденить",
-            "isUniqueVariant": false,
-            "categoryOption": {
-                "categoryId": "781001bc-3a72-4e5b-8d2a-ee22e0ea7b0a",
-                "categoryName": "Смартфоны",
-                "isValidCategory": true
-            },
-            "variantCharacteristicsOptions": [
-                {
-                    "optionName": "Цвет",
-                    "optionVerified": true,
-                    "optionValue": "Красный"
-                },
-                {
-                    "optionName": "Встроенная память",
-                    "optionVerified": true,
-                    "optionValue": "256 Гб"
-                }
-            ]
-        }
-    ]
-}
 ```
 
 ### Create single product
@@ -2575,3 +2344,388 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
     "message": "Products created successfully"
 }
 ```
+
+### Linked Products
+```js
+GET {{host}}/api/seller/linked-products/{productId}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+
+#### Response
+```js
+200 Ok
+```
+```js
+[
+    {
+        "productId": "4c227b08-8d77-4a33-90e2-b4735db2bda4",
+        "productVariantId": "a776f5e8-8112-4119-96bf-432beeabf498",
+        "productName": "Xiaomi test4 phone",
+	"productImgPath": "/dsdsd/1.png"
+        "article": "121121121",
+        "barcode": "4896522661"
+    }
+]
+```
+
+### Product details ready to merge
+```js
+GET {{host}}/api/seller/{profileId}/products/single-merge-details
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+#### Request
+```js
+[
+  "9ef26781-e5e6-4043-866c-32856b834b3e",
+  "9bd4a2a7-3a29-49fb-8bcc-aee875b0172f"
+]
+```
+#### Response
+```js
+200 Ok
+```
+```js
+[
+    {
+        "productVariantId": "6e57f02b-398a-43e1-ade9-15ce8b687da8",
+        "productName": "Xiaomi final 1",
+        "article": "1231231",
+        "brand": "Xiaomi",
+        "productType": "Смартфон",
+        "productImagePath": null,
+        "mergeStatus": "Готов к объеденению",
+        "isUniqueVariant": true,
+        "categoryOption": {
+            "categoryId": "781001bc-3a72-4e5b-8d2a-ee22e0ea7b0a",
+            "categoryName": "Смартфоны",
+            "isValidCategory": true
+        },
+        "variantCharacteristicsOptions": [
+            {
+                "optionId": "9a106785-47c6-4f06-9284-5d8bf3478a33",
+                "optionName": "Цвет",
+                "optionVerified": true,
+                "optionValueId": "21cbee72-1f65-4216-9bd9-b7231f4591f9",
+                "optionValue": "Зеленый"
+            },
+            {
+                "optionId": "9641e761-2741-4b6c-9be8-844ee3970bd1",
+                "optionName": "Встроенная память",
+                "optionVerified": true,
+                "optionValueId": "51fb7639-a72b-4ef2-bb3b-f5ebdf4d3216",
+                "optionValue": "256 Гб"
+            },
+            {
+                "optionId": "bdb21518-c9c2-4c96-9083-5a2b0419856a",
+                "optionName": "Оперативная память",
+                "optionVerified": true,
+                "optionValueId": "f90c9473-f95d-4ccf-8e0f-7dfa87941e15",
+                "optionValue": "32 Гб"
+            }
+        ]
+    },
+    {
+        "productVariantId": "0a0d763a-61c6-44db-bf5d-8f9fb86da0fc",
+        "productName": "Xiaomi test1 phone",
+        "article": "1231231",
+        "brand": "Xiaomi",
+        "productType": "Смартфон",
+        "productImagePath": null,
+        "mergeStatus": "Готов к объеденению",
+        "isUniqueVariant": true,
+        "categoryOption": {
+            "categoryId": "781001bc-3a72-4e5b-8d2a-ee22e0ea7b0a",
+            "categoryName": "Смартфоны",
+            "isValidCategory": true
+        },
+        "variantCharacteristicsOptions": [
+            {
+                "optionId": "9a106785-47c6-4f06-9284-5d8bf3478a33",
+                "optionName": "Цвет",
+                "optionVerified": true,
+                "optionValueId": "261926a8-6be3-4ce6-a8a0-631c0d87626d",
+                "optionValue": "Белый"
+            },
+            {
+                "optionId": "9641e761-2741-4b6c-9be8-844ee3970bd1",
+                "optionName": "Встроенная память",
+                "optionVerified": true,
+                "optionValueId": "51fb7639-a72b-4ef2-bb3b-f5ebdf4d3216",
+                "optionValue": "256 Гб"
+            }
+        ]
+    }
+]
+```
+
+
+### Product details ready merging to existing card
+```js
+GET {{host}}/api/seller/{profileId}/products/group-merge-details
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+#### Request
+```js
+[
+  "9ef26781-e5e6-4043-866c-32856b834b3e",
+  "a6e24a0d-ebe7-4815-9463-f766b1379699",
+  "9bd4a2a7-3a29-49fb-8bcc-aee875b0172f"
+]
+```
+#### Response
+```js
+200 Ok
+```
+```js
+{
+    "linkedProductsToCard": [
+        {
+            "mergeStatus": "Готов к объединению",
+            "groupedProducts": [
+                {
+                    "productVariantId": "0a0d763a-61c6-44db-bf5d-8f9fb86da0fc",
+                    "categoryName": "Смартфоны",
+                    "brand": "Xiaomi",
+                    "productName": "Xiaomi test1 phone",
+                    "article": "1231231",
+                    "productType": "Смартфон",
+                    "productImagePath": "",
+                    "variantCharacteristicsOptions": [
+                        {
+                            "optionId": "9a106785-47c6-4f06-9284-5d8bf3478a33",
+                            "optionName": "Цвет",
+                            "optionValueId": "261926a8-6be3-4ce6-a8a0-631c0d87626d",
+                            "optionValue": "Белый"
+                        },
+                        {
+                            "optionId": "9641e761-2741-4b6c-9be8-844ee3970bd1",
+                            "optionName": "Встроенная память",
+                            "optionValueId": "51fb7639-a72b-4ef2-bb3b-f5ebdf4d3216",
+                            "optionValue": "256 Гб"
+                        }
+                    ]
+                },
+                {
+                    "productVariantId": "0a0d763a-61c6-44db-bf5d-8f9fb86da0fc",
+                    "categoryName": "Смартфоны",
+                    "brand": "Xiaomi",
+                    "productName": "Xiaomi test1 phone",
+                    "article": "1231231",
+                    "productType": "Смартфон",
+                    "productImagePath": "",
+                    "variantCharacteristicsOptions": [
+                        {
+                            "optionId": "9a106785-47c6-4f06-9284-5d8bf3478a33",
+                            "optionName": "Цвет",
+                            "optionValueId": "261926a8-6be3-4ce6-a8a0-631c0d87626d",
+                            "optionValue": "Белый"
+                        },
+                        {
+                            "optionId": "9641e761-2741-4b6c-9be8-844ee3970bd1",
+                            "optionName": "Встроенная память",
+                            "optionValueId": "51fb7639-a72b-4ef2-bb3b-f5ebdf4d3216",
+                            "optionValue": "256 Гб"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "productsToMerge": [
+        {
+            "productVariantId": "6e57f02b-398a-43e1-ade9-15ce8b687da8",
+            "productName": "Xiaomi final 1",
+            "article": "1231231",
+            "brand": "Xiaomi",
+            "productType": "Смартфон",
+            "productImagePath": "",
+            "mergeStatus": "Готов к объеденению",
+            "isUniqueVariant": true,
+            "categoryOption": {
+                "categoryId": "781001bc-3a72-4e5b-8d2a-ee22e0ea7b0a",
+                "categoryName": "Смартфоны",
+                "isValidCategory": true
+            },
+            "variantCharacteristicsOptions": [
+                {
+                    "optionId": "9a106785-47c6-4f06-9284-5d8bf3478a33",
+                    "optionName": "Цвет",
+                    "optionVerified": true,
+                    "optionValueId": "21cbee72-1f65-4216-9bd9-b7231f4591f9",
+                    "optionValue": "Зеленый"
+                },
+                {
+                    "optionId": "9641e761-2741-4b6c-9be8-844ee3970bd1",
+                    "optionName": "Встроенная память",
+                    "optionVerified": true,
+                    "optionValueId": "51fb7639-a72b-4ef2-bb3b-f5ebdf4d3216",
+                    "optionValue": "256 Гб"
+                },
+                {
+                    "optionId": "bdb21518-c9c2-4c96-9083-5a2b0419856a",
+                    "optionName": "Оперативная память",
+                    "optionVerified": false,
+                    "optionValueId": "f90c9473-f95d-4ccf-8e0f-7dfa87941e15",
+                    "optionValue": "32 Гб"
+                }
+            ]
+        }
+    ]
+}
+```
+
+### Get Variantion Attributes To Change During Merging
+```js
+GET {{host}}/api/seller/{profileId}/categories/{categoryId}/product-variation-data
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+
+#### Response
+```js
+200 Ok
+```
+```js
+{
+    "categoryId": "781001bc-3a72-4e5b-8d2a-ee22e0ea7b0a",
+    "attributes": [
+        {
+            "optionId": "9641e761-2741-4b6c-9be8-844ee3970bd1",
+            "optionName": "Встроенная память",
+            "values": [
+                {
+                    "optionValueId": "51fb7639-a72b-4ef2-bb3b-f5ebdf4d3216",
+                    "optionValue": "256 Гб"
+                },
+                {
+                    "optionValueId": "e8ead9be-1bbd-4519-ac21-70f1e083d2a6",
+                    "optionValue": "512 Гб"
+                }
+            ]
+        },
+        {
+            "optionId": "9a106785-47c6-4f06-9284-5d8bf3478a33",
+            "optionName": "Цвет",
+            "values": [
+                {
+                    "optionValueId": "b9e5ee7c-4a01-42b6-8364-534db2e820cc",
+                    "optionValue": "Черный"
+                },
+                {
+                    "optionValueId": "dc902863-a875-4f4a-9ea8-8af81b95ecdd",
+                    "optionValue": "Фиолетовый"
+                },
+                {
+                    "optionValueId": "e6a63996-0357-4db2-87e0-6d4bbdd1846c",
+                    "optionValue": "Розовый"
+                }
+            ]
+        }
+    ],
+    "brands": [
+        {
+            "brandId": "09540feb-5045-425a-b735-44ca0a4dcf31",
+            "brandName": "Huawei"
+        },
+        {
+            "brandId": "46b185b5-f148-4943-a2d4-eae96966b72a",
+            "brandName": "Techno"
+        },
+        {
+            "brandId": "6ba6fae6-7372-4c23-a789-e0bef130b625",
+            "brandName": "Xiaomi"
+        },
+        {
+            "brandId": "e7b1679e-3602-4795-9bdc-d26fdb184bb0",
+            "brandName": "Nokia"
+        }
+    ],
+    "productTypes": [
+        {
+            "typeId": "52e6e420-256e-4cb0-ad16-51ceb6293538",
+            "typeName": "Смартфон"
+        }
+    ]
+}
+```
+
+### Update Variant Attributes
+```js
+GET {{host}}/api/seller/{profileId}/products/update-variables
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+
+#### Request
+```js
+{
+  "productVariantId": "6e57f02b-398a-43e1-ade9-15ce8b687da8",
+  "categoryId": "781001bc-3a72-4e5b-8d2a-ee22e0ea7b0a",
+  "brandId": "6ba6fae6-7372-4c23-a789-e0bef130b625",
+  "typeId": "52e6e420-256e-4cb0-ad16-51ceb6293538",
+  "options": [
+    {
+      "optionId": "9a106785-47c6-4f06-9284-5d8bf3478a33",
+      "optionValueId": "21cbee72-1f65-4216-9bd9-b7231f4591f9"
+    },
+    {
+      "optionId": "9641e761-2741-4b6c-9be8-844ee3970bd1",
+      "optionValueId": "51fb7639-a72b-4ef2-bb3b-f5ebdf4d3216"
+    },
+    {
+      "optionId": "bdb21518-c9c2-4c96-9083-5a2b0419856a",
+      "optionValueId": "f90c9473-f95d-4ccf-8e0f-7dfa87941e15"
+    }
+  ]
+}
+```
+
+#### Response
+```js
+200 Ok
+```
+```js
+{
+    "ProductVariantId": "6e57f02b-398a-43e1-ade9-15ce8b687da8",
+    "message": "Options successfully updated"
+}
+```
+
+
+### Link products
+```js
+GET {{host}}/api/seller/{profileId}/products/link
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+
+#### Request
+```js
+200 Ok
+```
+```js
+[
+  {
+    "productVariantId": "900d0ceb-f98f-445d-822b-2e62bdca8dfb",
+    "isCardProduct": false
+  },
+  {
+    "productVariantId": "0a0d763a-61c6-44db-bf5d-8f9fb86da0fc",
+    "isCardProduct": false
+  }
+]
+```
+#### Response
+```js
+200 Ok
+```
+
+### Unlink product
+```js
+GET {{host}}/api/seller/{profileId}/products/{variantId}/unlink
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+
+#### Response
+```js
+200 Ok
+```
+
+
