@@ -72,13 +72,31 @@
   - [Notification](#notification)
      - [Delete company warning](#delete-compnay-warning)
   - [Seller](#seller)
-  	- [Product List To Manage](#product-list-to-manage)
-  	- [Linked Products In Manage List](#linked-products-in-manage-list)
-  	- [Product details ready to merge](#product-details-ready-to-merge)
-   	- [Product details ready merging to existing card](#product-details-ready-merging-to-existing-card)
-    	- [Create single product](#create-single-product)
-     	- [Create multiple products](#create-multiple-products)
-      	- [Complete multiple products creation](#complete-multiple-product-creation)
+  	- [Product List](#product-list)
+  	- [Create single product](#create-single-product)
+  	- [Create multiple products](#create-multiple-products)
+   	- [Complete multiple products creation](#complete-multiple-product-creation)
+    	- [Linked Products](#linked-products)
+     	- [Update product](#update-product)
+      	- [Get product details for updating](#complete-product-details-for-update)
+      	- [Get product Media and docs](#get-product-media-and-docs)
+      	- [Product details ready to merge](#product-details-ready-to-merge)
+      	- [Product details ready merging to existing card](#product-details-ready-merging-to-existing-card)
+      	- [Get Variation Attributes To Change During Merging](#get-variation-attributes-to-change-during-merging)
+      	- [Update Variant Attributes](#update-variant-attributes)
+      	- [Link products](#link-products)
+      	- [Unlink product](#unlink-product)
+      	- [Copy product](#copy-product)
+      	- [Add document](#add-document)
+      	- [Update-document](#update-document)
+      	- [Delete-document]
+      	- [Add product photo](#add-product-photo)
+      	- [Update product photo](#update-product-photo)
+      	- [Delete product photo](#delete-product-photo)
+      	- [Add overview photo](#add-overview-photo)
+      	- [Update overview photo](#update-overview-photo)
+      	- [Delete overview photo](#delete-overview-photo)
+     
 
 # IRif Api
 Api v1 
@@ -2182,7 +2200,7 @@ sortOrder: asc, desc
 
 ### Create single product
 ```js
-POST {{host}}/seller/seller/add-product
+POST {{host}}/seller/{profileId}/products/add-product
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 #### Request
@@ -2367,6 +2385,196 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
     }
 ]
 ```
+
+### Update product
+```js
+GET {{host}}/api/seller/{profileId}/products/{productVariantId}/update
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+#### Request
+```js
+200 Ok
+```
+```js
+{
+  "productCategoryId": "781001bc-3a72-4e5b-8d2a-ee22e0ea7b0a",
+  "productName": "Xiaomi1 updated finall rrrr",
+  "productDescription": "description",
+  "brandId": "6ba6fae6-7372-4c23-a789-e0bef130b625",
+  "originCountryId": "d480260f-8069-415f-88c3-629636d2a03f",
+  "productTypeId": "52e6e420-256e-4cb0-ad16-51ceb6293538",
+  "weight": 100,
+  "height": 100,
+  "width": 100,
+  "length": 100,
+  "seviceLife": 1,
+  "guaranteePeriod": 1,
+  "tnvdCode": 11111,
+  "model": "MOdlejf",
+  "sellerSku": "1231231",
+  "barcode": "1231231",
+  "price": 1000,
+  "regularPrice": 1200,
+  "isSecondHand": false,
+  "isDiscounted": true,
+  "characteristics": [
+    {
+      "productOptionValueId": "c1caf2b5-4232-484c-a26e-ef8fd9f8a26d",
+      "isVariant": true
+    },
+    {
+      "productOptionValueId": "59e4d816-6f8f-46b8-a1d4-dedff9d308e4",
+      "isVariant": false
+    },
+    {
+      "productOptionValueId": "5ffc8686-cab1-44e1-bdaa-ea95b215eed5",
+      "isVariant": false
+    },
+    {
+      "productOptionValueId": "21cbee72-1f65-4216-9bd9-b7231f4591f9",
+      "isVariant": true
+    }
+  ]
+}
+```
+#### Response
+```js
+200 Ok
+```
+
+### Get product details for updating
+```js
+GET {{host}}/api/seller/{profileId}/products/{productVariantId}/update-details
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+#### Response
+```js
+200 Ok
+```
+```js
+{
+    "productVariantId": "0a0d763a-61c6-44db-bf5d-8f9fb86da0fc",
+    "categoryName": "Смартфоны",
+    "productName": "Xiaomi test1 phone",
+    "productDescription": "description",
+    "article": "1231231",
+    "brand": "Xiaomi",
+    "originCountry": "Китай",
+    "model": "MOdlejf",
+    "serviceLife": 1,
+    "guaranteePeriod": 1,
+    "price": 1000,
+    "regularPrice": 1200,
+    "weight": 100,
+    "height": 100,
+    "width": 100,
+    "length": 100,
+    "documents": [
+        {
+            "documentId": "c1120e1f-82d0-45a6-b2b0-e13e241e2c35",
+            "documentType": "Presentation",
+            "documentDisplayName": "ПрезентацияXiaomiMOdlejf",
+            "documentPath": "https://irif.storage.yandexcloud.net/qW48djd293100221dhhwW2349mdh271/Dia035tR08324TGDcd/f94a4a0c-c255-4054-9b95-60bc251ab127.pdf"
+        },
+        {
+            "documentId": "c84ed7ed-97c8-4a7e-9b06-7a648d587071",
+            "documentType": "Documentation",
+            "documentDisplayName": "Техническая документацияXiaomiMOdlejf",
+            "documentPath": "https://irif.storage.yandexcloud.net/qW48djd293100221dhhwW2349mdh271/Dia035tR08324TGDcd/d5a7b676-d9f2-45d9-b664-a88cbf3a2401.pdf"
+        }
+    ],
+    "characteristics": [
+        {
+            "optionId": "9641e761-2741-4b6c-9be8-844ee3970bd1",
+            "valueId": "59e4d816-6f8f-46b8-a1d4-dedff9d308e4",
+            "valueName": "16 Гб"
+        },
+        {
+            "optionId": "ede6bdb7-93a6-4840-8b88-6ec3d35c998c",
+            "valueId": "5ffc8686-cab1-44e1-bdaa-ea95b215eed5",
+            "valueName": "4.3"
+        }
+    ],
+    "mediaContent": {
+        "productImages": [
+            {
+                "imageId": "4621b5c4-8848-49b1-a2a4-f9a7ec14f727",
+                "imagePath": "https://irif.storage.yandexcloud.net/qW48djd293100221dhhwW2349mdh271/Jtu2jpPd233Mz061lk/b7371618-ab6c-4042-8f5e-febc6d84ed83.webp",
+                "sortOrder": 1
+            },
+            {
+                "imageId": "49e4e59e-e447-4eba-a2f0-c65b05223ffa",
+                "imagePath": "https://irif.storage.yandexcloud.net/qW48djd293100221dhhwW2349mdh271/Jtu2jpPd233Mz061lk/e99ef624-731e-4b2e-8be7-91fcb0236709.webp",
+                "sortOrder": 0
+            },
+            {
+                "imageId": "ae404120-64fe-4ea4-8d35-c168147aa76d",
+                "imagePath": "https://irif.storage.yandexcloud.net/qW48djd293100221dhhwW2349mdh271/Jtu2jpPd233Mz061lk/e1a15b57-5cf2-4ade-ad64-04b28661e9e9.webp",
+                "sortOrder": 2
+            }
+        ],
+        "productPresentationImages": []
+    }
+}
+```
+
+
+### Get product Media and docs
+```js
+GET {{host}}/api/seller/{profileId}/products/{productVariantId}/media
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+#### Response
+```js
+200 Ok
+```
+```js
+{
+    "productVariantId": "0a0d763a-61c6-44db-bf5d-8f9fb86da0fc",
+    "productImages": [
+        {
+            "imageId": "4621b5c4-8848-49b1-a2a4-f9a7ec14f727",
+            "imagePath": "https://irif.storage.yandexcloud.net/qW48djd293100221dhhwW2349mdh271/Jtu2jpPd233Mz061lk/b7371618-ab6c-4042-8f5e-febc6d84ed83.webp",
+            "isMain": false,
+            "order": 1
+        },
+        {
+            "imageId": "49e4e59e-e447-4eba-a2f0-c65b05223ffa",
+            "imagePath": "https://irif.storage.yandexcloud.net/qW48djd293100221dhhwW2349mdh271/Jtu2jpPd233Mz061lk/e99ef624-731e-4b2e-8be7-91fcb0236709.webp",
+            "isMain": true,
+            "order": 0
+        },
+        {
+            "imageId": "ae404120-64fe-4ea4-8d35-c168147aa76d",
+            "imagePath": "https://irif.storage.yandexcloud.net/qW48djd293100221dhhwW2349mdh271/Jtu2jpPd233Mz061lk/e1a15b57-5cf2-4ade-ad64-04b28661e9e9.webp",
+            "isMain": false,
+            "order": 2
+        }
+    ],
+    "overviewImages": [
+        {
+            "imageId": "60fe63cc-2466-47aa-a707-c9a96b4d11e8",
+            "imagePath": "https://irif.storage.yandexcloud.net/qW48djd293100221dhhwW2349mdh271/Ozj239n4FhsI0ne713/a289da5d-fc61-48fd-9bdf-c08b2e1f18c5.webp",
+            "order": 0
+        }
+    ],
+    "documents": [
+        {
+            "documentId": "c1120e1f-82d0-45a6-b2b0-e13e241e2c35",
+            "documentPath": "https://irif.storage.yandexcloud.net/qW48djd293100221dhhwW2349mdh271/Dia035tR08324TGDcd/f94a4a0c-c255-4054-9b95-60bc251ab127.pdf",
+            "dispayName": "ПрезентацияXiaomiMOdlejf",
+            "documentType": "Presentation"
+        },
+        {
+            "documentId": "c84ed7ed-97c8-4a7e-9b06-7a648d587071",
+            "documentPath": "https://irif.storage.yandexcloud.net/qW48djd293100221dhhwW2349mdh271/Dia035tR08324TGDcd/d5a7b676-d9f2-45d9-b664-a88cbf3a2401.pdf",
+            "dispayName": "Техническая документацияXiaomiMOdlejf",
+            "documentType": "Documentation"
+        }
+    ]
+}
+```
+
 
 ### Product details ready to merge
 ```js
@@ -2684,7 +2892,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 ```js
 {
-    "ProductVariantId": "6e57f02b-398a-43e1-ade9-15ce8b687da8",
+    "productVariantId": "6e57f02b-398a-43e1-ade9-15ce8b687da8",
     "message": "Options successfully updated"
 }
 ```
@@ -2719,7 +2927,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 
 ### Unlink product
 ```js
-GET {{host}}/api/seller/{profileId}/products/{variantId}/unlink
+GET {{host}}/api/seller/{profileId}/products/{productVariantId}/unlink
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 
@@ -2728,4 +2936,138 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 200 Ok
 ```
 
+### Copy product
+```js
+GET {{host}}/api/seller/{profileId}/products/{productVariantId}/copy
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
 
+#### Response
+```js
+200 Ok
+```
+```js
+{
+    "newProductVariantId": "6e57f02b-398a-43e1-ade9-15ce8b687da8",
+    "message": "Copy successfully created"
+}
+```
+
+### Add Document
+```js
+GET {{host}}/api/seller/{profileId}/products/{productVariantId}/add-documents
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+
+#### Response
+```js
+200 Ok
+```
+```js
+{
+    
+}
+```
+
+### Update Document
+```js
+GET {{host}}/api/seller/{profileId}/products/{productVariantId}/add-documents
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+
+### Delete Document
+```js
+GET {{host}}/api/seller/{profileId}/products/documents/{documentId}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+
+### Add product photo
+```js
+GET {{host}}/api/seller/{profileId}/products/{productVariantId}/add-main-imgs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+#### Response
+```js
+200 Ok
+```
+```js
+{
+    "fileUrl": "https:\\cloud..."
+}
+```
+
+### Update product photo
+```js
+GET {{host}}/api/seller/{profileId}/products/{productVariantId}/update-main-imgs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+#### Response
+```js
+200 Ok
+```
+```js
+{
+    "fileUrl": "https:\\cloud..."
+}
+```
+
+### Delete product photo
+```js
+GET {{host}}/api/seller/{profileId}/products/images/{imageId}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+#### Response
+```js
+200 Ok
+```
+```js
+{
+    "fileUrl": "https:\\cloud..."
+}
+```
+
+### Add overview photo
+```js
+GET {{host}}/api/seller/{profileId}/products/{productVariantId}/add-overview-imgs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+#### Response
+```js
+200 Ok
+```
+```js
+{
+    "fileUrl": "https:\\cloud..."
+}
+```
+
+
+### Update overview photo
+```js
+GET {{host}}/api/seller/{profileId}/products/{productVariantId}/update-overview-imgs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+#### Response
+```js
+200 Ok
+```
+```js
+{
+    "fileUrl": "https:\\cloud..."
+}
+```
+
+### Delete overview photo
+```js
+GET {{host}}/api/seller/{profileId}/products/overview-imgs/{imageId}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+#### Response
+```js
+200 Ok
+```
+```js
+{
+    "fileUrl": "https:\\cloud..."
+}
+```
