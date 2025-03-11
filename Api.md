@@ -2081,7 +2081,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 
 # Seller
 
-### Product List To Manage
+### Product List
 ```js
 GET {{host}}/api/seller/{profileId}/products
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
