@@ -2249,7 +2249,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 #### Request
 ```js
 {
-  "companyId": "194e2b82-34d8-4f95-9027-afabcbafa23d",
   "productCategoryId": "781001bc-3a72-4e5b-8d2a-ee22e0ea7b0a",
   "productName": "Xiaomi test phone",
   "productDescription": "description",
