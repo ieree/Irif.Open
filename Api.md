@@ -2156,33 +2156,69 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
         {
             "filterName": "category",
             "filterValues": [
-                "smartfoni"
+                {
+                    "filterValue": "smartfoni",
+                    "filterDisplay": "Смартфоны"
+                }
             ]
         },
         {
             "filterName": "brand",
             "filterValues": [
-                "xiaomi"
+                {
+                    "filterValue": "xiaomi",
+                    "filterDisplay": "Xiaomi"
+                }
             ]
         },
         {
             "filterName": "rating",
             "filterValues": [
-                "1",
-                "2",
-                "3",
-                "4",
-                "5"
+                {
+                    "filterValue": "1",
+                    "filterDisplay": "1"
+                },
+                {
+                    "filterValue": "2",
+                    "filterDisplay": "2"
+                },
+                {
+                    "filterValue": "3",
+                    "filterDisplay": "3"
+                },
+                {
+                    "filterValue": "4",
+                    "filterDisplay": "4"
+                },
+                {
+                    "filterValue": "5",
+                    "filterDisplay": "5"
+                },
+                {
+                    "filterValue": "unrated",
+                    "filterDisplay": "Без рейтинга"
+                }
             ]
         },
         {
             "filterName": "status",
             "filterValues": [
-                "active",
-                "draft",
-                "approved",
-                "pendingApproval",
-                "removed"
+                {
+                    "filterValue": "active",
+                    "filterDisplay": "Продается"
+                },
+                {
+                    "filterValue": "approved",
+                    "filterDisplay": "Ожидает действия"
+                },
+                {
+                    "filterValue": "pendingApproval",
+                    "filterDisplay": "На модерации"
+                },
+                {
+                    "filterValue": "removed",
+                    "filterDisplay": "Снят с продажи"
+                }
             ]
         }
     ]
