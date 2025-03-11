@@ -2094,55 +2094,62 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 {
     "products": [
         {
-            "productId": "9ef26781-e5e6-4043-866c-32856b834b3e",
-            "productName": "Xiaomi test phone",
-            "article": "123434355-45",
-            "barcode": "1231231",
+            "productVariantId": "d1a2d81c-98b6-4bd9-b14f-0b43a2a2dd54",
+            "productName": "Смартфон Xiaomi Redmi 12",
+            "productImgPath": "Data/products/5f3778dd-9284-48dc-a8fe-52dc41577373/images/main/6699585049.png",
+            "article": "4896522659-3",
+            "barcode": "4896522660",
+            "type": "Смартфон",
             "brand": "Xiaomi",
             "brandHandle": "xiaomi",
             "categoryName": "Смартфоны",
             "categoryHandle": "smartfoni-781001bc-3a72-4e5b-8d2a-ee22e0ea7b0a",
             "reviewCount": 0,
             "rating": null,
-            "productStatus": "В черновиках",
-            "createDate": "2025-01-13T09:03:12.127025Z",
-            "updateDate": null,
-            "haveLinked": false,
-            "linkedCount": 0
-        },
-        {
-            "productId": "a6e24a0d-ebe7-4815-9463-f766b1379699",
-            "productName": "Xiaomi test2 phone",
-            "article": "1233123-423",
-            "barcode": "1231231",
-            "brand": "Xiaomi",
-            "brandHandle": "xiaomi",
-            "categoryName": "Смартфоны",
-            "categoryHandle": "smartfoni-781001bc-3a72-4e5b-8d2a-ee22e0ea7b0a",
-            "reviewCount": 0,
-            "rating": null,
-            "productStatus": "В черновиках",
-            "createDate": "2025-01-13T10:20:47.522603Z",
-            "updateDate": null,
-            "haveLinked": false,
-            "linkedCount": 0
-        },
-        {
-            "productId": "db47b836-6eec-4dfa-a71b-eaa134fd5666",
-            "productName": "Xiaomi test3 phone",
-            "article": "123434355-45",
-            "barcode": "4896522661",
-            "brand": "Xiaomi",
-            "brandHandle": "xiaomi",
-            "categoryName": "Смартфоны",
-            "categoryHandle": "smartfoni-781001bc-3a72-4e5b-8d2a-ee22e0ea7b0a",
-            "reviewCount": 0,
-            "rating": null,
-            "productStatus": "Ожидает действия",
-            "createDate": "2024-12-24T16:03:15.246Z",
+            "inventoryLevel": "Не добавлен",
+            "productStatus": "На модерации",
+            "createDate": "2025-03-10T10:33:47.85819Z",
             "updateDate": null,
             "haveLinked": true,
-            "linkedCount": 1
+            "linkedCount": 3,
+            "linkedProducts": [
+                {
+                    "productVariantId": "1c2cb05c-f950-4d40-a6b6-b6678e6d5b08",
+                    "productName": "Смартфон Xiaomi Redmi 12",
+                    "productImgPath": "Data/products/5f3778dd-9284-48dc-a8fe-52dc41577373/images/main/6699585059.png",
+                    "price": 10261,
+                    "article": "4896522659-5",
+                    "barcode": "4896522661",
+                    "type": "Смартфон",
+                    "inventoryLevel": "Не добавлен",
+                    "reviewRating": null,
+                    "reviewCount": 0
+                },
+                {
+                    "productVariantId": "3912995a-31fa-480c-aefb-fa932fab6513",
+                    "productName": "Смартфон Xiaomi Redmi 12",
+                    "productImgPath": "Data/products/5f3778dd-9284-48dc-a8fe-52dc41577373/images/main/6699585055.png",
+                    "price": 10261,
+                    "article": "4896522659-4",
+                    "barcode": "4896522661",
+                    "type": "Смартфон",
+                    "inventoryLevel": "Не добавлен",
+                    "reviewRating": null,
+                    "reviewCount": 0
+                },
+                {
+                    "productVariantId": "925f1f77-78a4-4bf3-af07-d984bdc8ac84",
+                    "productName": "Смартфон Xiaomi Redmi 12",
+                    "productImgPath": "Data/products/5f3778dd-9284-48dc-a8fe-52dc41577373/images/main/6699585066.png",
+                    "price": 13540,
+                    "article": "4896522659-6",
+                    "barcode": "4896522662",
+                    "type": "Смартфон",
+                    "inventoryLevel": "Не добавлен",
+                    "reviewRating": null,
+                    "reviewCount": 0
+                }
+            ]
         }
     ],
     "tabsCount": {
