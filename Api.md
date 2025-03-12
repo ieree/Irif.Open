@@ -2252,7 +2252,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 
 #### Request
 ```js
-```
 [
     {
         "optionName": "Процессор",
@@ -2419,6 +2418,26 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
             {
                 "characteristicValueId": "acedafb1-bf8c-47cb-a139-352df6e66a72",
                 "value": "5.5"
+            },
+            {
+                "characteristicValueId": "b4dcaa63-bfd2-444d-933a-471e8e125f79",
+                "value": "7"
+            },
+            {
+                "characteristicValueId": "de75b9d3-0753-466a-bd0d-54fcecd541ba",
+                "value": "5.2"
+            },
+            {
+                "characteristicValueId": "e30e735e-9b74-49f1-82f7-1ae8f0f109d7",
+                "value": "4.7"
+            },
+            {
+                "characteristicValueId": "f62c3319-5cd5-48ee-85b5-fa7e46baa09c",
+                "value": "5.7"
+            },
+            {
+                "characteristicValueId": "f9f3224d-f69e-44b7-9931-ef39239a2a63",
+                "value": "6"
             }
         ]
     },
@@ -2459,10 +2478,28 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
             {
                 "characteristicValueId": "a80e186c-a93f-4ea0-9947-c78dee61454e",
                 "value": "Серый"
+            },
+            {
+                "characteristicValueId": "b7eb25e3-829e-4978-87fa-5c8991a3fbc3",
+                "value": "Синий"
+            },
+            {
+                "characteristicValueId": "b9e5ee7c-4a01-42b6-8364-534db2e820cc",
+                "value": "Черный"
+            },
+            {
+                "characteristicValueId": "dc902863-a875-4f4a-9ea8-8af81b95ecdd",
+                "value": "Фиолетовый"
+            },
+            {
+                "characteristicValueId": "e6a63996-0357-4db2-87e0-6d4bbdd1846c",
+                "value": "Розовый"
             }
         ]
     }
 ]
+```
+
 ### Create single product
 ```js
 POST {{host}}/seller/{profileId}/products/add-product
