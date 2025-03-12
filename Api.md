@@ -76,6 +76,7 @@
   	- [Create single product](#create-single-product)
   	- [Create multiple products](#create-multiple-products)
    	- [Complete multiple products creation](#complete-multiple-product-creation)
+    - [Get Product Attributes By Category](#get-product-attributes-by-category)
     	- [Linked Products](#linked-products)
      	- [Update product](#update-product)
       	- [Get product details for updating](#complete-product-details-for-update)
@@ -87,6 +88,8 @@
       	- [Link products](#link-products)
       	- [Unlink product](#unlink-product)
       	- [Copy product](#copy-product)
+      	- [Archivate product](#archivate-product)
+      	- [Restore product](#restore-product)
       	- [Add document](#add-document)
       	- [Update-document](#update-document)
       	- [Delete-document]
@@ -2241,6 +2244,225 @@ sortColumn: name, category, article, barcode, brand, create, update
 sortOrder: asc, desc
 ```
 
+### Get Product Attributes By Category
+```js
+POST {{host}}/seller/{profileId}/category/{categoryId}/attributes
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+
+#### Request
+```js
+```
+[
+    {
+        "optionName": "Процессор",
+        "isVariant": false,
+        "optionValues": [
+            {
+                "characteristicValueId": "067ed6fb-be0f-4455-b107-150b35b6e6ba",
+                "value": "MediaTek Helio P23"
+            },
+            {
+                "characteristicValueId": "1ac87bb9-66e4-4b5c-8a3c-4f67842fbee7",
+                "value": "Qualcomm Snapdragon 660"
+            },
+            {
+                "characteristicValueId": "2f638d13-7387-4917-8c0c-380a08eb4166",
+                "value": "Qualcomm Snapdragon 630"
+            },
+            {
+                "characteristicValueId": "49185be7-2570-4270-a16f-fe464637264d",
+                "value": "Qualcomm Snapdragon 625"
+            },
+            {
+                "characteristicValueId": "4dfec139-78c5-4271-bd2b-db94fc46f47a",
+                "value": "Apple A14 Bionic"
+            },
+            {
+                "characteristicValueId": "838c6eb8-5e95-433c-99a0-c5ff87d8af03",
+                "value": "Qualcomm Snapdragon 710"
+            },
+            {
+                "characteristicValueId": "8fa006be-1463-410d-9c06-5ff07b1c5bf0",
+                "value": "Apple A10 Fusion"
+            },
+            {
+                "characteristicValueId": "a4d45b7a-df7a-4051-87c9-737270a71c88",
+                "value": "Apple A12 Bionic"
+            },
+            {
+                "characteristicValueId": "d4750df3-c9ec-4b37-b969-ad4150431175",
+                "value": "Qualcomm Snapdragon 439"
+            },
+            {
+                "characteristicValueId": "deeebef3-cb88-4a92-bc4b-a9504e461b33",
+                "value": "MediaTek Helio P10"
+            },
+            {
+                "characteristicValueId": "e186aef4-c076-467e-a741-83a1f51b4792",
+                "value": "Apple A15 Bionic"
+            },
+            {
+                "characteristicValueId": "fbe8bc9a-4c38-4be5-9c8f-964fc38e40df",
+                "value": "Apple A11 Bionic"
+            }
+        ]
+    },
+    {
+        "optionName": "Встроенная память",
+        "isVariant": false,
+        "optionValues": [
+            {
+                "characteristicValueId": "51fb7639-a72b-4ef2-bb3b-f5ebdf4d3216",
+                "value": "256 Гб"
+            },
+            {
+                "characteristicValueId": "59e4d816-6f8f-46b8-a1d4-dedff9d308e4",
+                "value": "16 Гб"
+            },
+            {
+                "characteristicValueId": "a2ef93d3-4a09-4750-b5a3-bb86c2e8b4a3",
+                "value": "32 Гб"
+            },
+            {
+                "characteristicValueId": "c1caf2b5-4232-484c-a26e-ef8fd9f8a26d",
+                "value": "128 Гб"
+            },
+            {
+                "characteristicValueId": "c410e69b-b211-44de-a399-0869f8feccb1",
+                "value": "1024 Гб"
+            },
+            {
+                "characteristicValueId": "ca68f48a-dd2a-48ee-b78a-555f8e9117f3",
+                "value": "64 Гб"
+            },
+            {
+                "characteristicValueId": "e8ead9be-1bbd-4519-ac21-70f1e083d2a6",
+                "value": "512 Гб"
+            }
+        ]
+    },
+    {
+        "optionName": "Оперативная память",
+        "isVariant": false,
+        "optionValues": [
+            {
+                "characteristicValueId": "6d6f875f-a1f3-44c5-9bbe-a66d9c2ab93a",
+                "value": "16 Гб"
+            },
+            {
+                "characteristicValueId": "90ac3550-bbc9-476d-ae83-900cebc196d7",
+                "value": "4 Гб"
+            },
+            {
+                "characteristicValueId": "a4b3bffb-d29e-4155-bfc9-8aa2dfec7742",
+                "value": "64 Гб"
+            },
+            {
+                "characteristicValueId": "eff881d1-ae4d-444b-8b8c-e2def9ec2e8f",
+                "value": "8 Гб"
+            },
+            {
+                "characteristicValueId": "f90c9473-f95d-4ccf-8e0f-7dfa87941e15",
+                "value": "32 Гб"
+            }
+        ]
+    },
+    {
+        "optionName": "Диагональ",
+        "isVariant": false,
+        "optionValues": [
+            {
+                "characteristicValueId": "05bb3f60-b9e5-4939-a47e-8e419958295c",
+                "value": "6.7"
+            },
+            {
+                "characteristicValueId": "0ef15a7c-94c3-446e-bfd0-22a0768d1a24",
+                "value": "5.7"
+            },
+            {
+                "characteristicValueId": "22079fb5-82b2-4754-8c99-cc1a6a0294f7",
+                "value": "4"
+            },
+            {
+                "characteristicValueId": "2fec1829-e237-47ca-9a0c-c63058a7ee9b",
+                "value": "6.8"
+            },
+            {
+                "characteristicValueId": "3ddcec65-43d8-4f44-ae6f-f066a34ae7d2",
+                "value": "5"
+            },
+            {
+                "characteristicValueId": "50644da7-f1a7-4a63-b23e-ed13fcdfac85",
+                "value": "6.1"
+            },
+            {
+                "characteristicValueId": "5ffc8686-cab1-44e1-bdaa-ea95b215eed5",
+                "value": "4.3"
+            },
+            {
+                "characteristicValueId": "7ec1c467-37ef-48f2-89d9-f8f5693dfc2f",
+                "value": "6.5"
+            },
+            {
+                "characteristicValueId": "86dfe426-d93d-4f8e-9dd3-3b99207d1531",
+                "value": "3"
+            },
+            {
+                "characteristicValueId": "9f350b7c-25d9-4b13-b446-e9dc89f06461",
+                "value": "6.4"
+            },
+            {
+                "characteristicValueId": "ab5d6ab2-1e82-414e-b71d-dcc09738a3e4",
+                "value": "4.5"
+            },
+            {
+                "characteristicValueId": "acedafb1-bf8c-47cb-a139-352df6e66a72",
+                "value": "5.5"
+            }
+        ]
+    },
+    {
+        "optionName": "Операционная система",
+        "isVariant": false,
+        "optionValues": [
+            {
+                "characteristicValueId": "1648a98e-8a95-4c1f-bd30-67eb01056854",
+                "value": "iOs"
+            },
+            {
+                "characteristicValueId": "8788d4ac-294a-43c3-884d-e131e13c17e3",
+                "value": "Android"
+            }
+        ]
+    },
+    {
+        "optionName": "Цвет",
+        "isVariant": false,
+        "optionValues": [
+            {
+                "characteristicValueId": "21cbee72-1f65-4216-9bd9-b7231f4591f9",
+                "value": "Зеленый"
+            },
+            {
+                "characteristicValueId": "261926a8-6be3-4ce6-a8a0-631c0d87626d",
+                "value": "Белый"
+            },
+            {
+                "characteristicValueId": "4ff5eb0d-671f-43d2-94b1-b90dfef9c0a0",
+                "value": "Красный"
+            },
+            {
+                "characteristicValueId": "72b2f497-2e11-4b09-a01a-04cdedcfa3b5",
+                "value": "Серебристый"
+            },
+            {
+                "characteristicValueId": "a80e186c-a93f-4ea0-9947-c78dee61454e",
+                "value": "Серый"
+            }
+        ]
+    }
+]
 ### Create single product
 ```js
 POST {{host}}/seller/{profileId}/products/add-product
