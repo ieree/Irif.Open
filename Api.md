@@ -2246,7 +2246,7 @@ sortOrder: asc, desc
 
 ### Get Product Attributes By Category
 ```js
-POST {{host}}/seller/{profileId}/attributes?categoryId={productCategoryId}
+GET {{host}}/seller/{profileId}/attributes?categoryId={productCategoryId}
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 
@@ -2568,7 +2568,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 
 ### Update product
 ```js
-GET {{host}}/api/seller/{profileId}/products/{productVariantId}/update
+POST {{host}}/api/seller/{profileId}/products/{productVariantId}/update
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 #### Request
