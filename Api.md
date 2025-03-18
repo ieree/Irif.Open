@@ -2262,7 +2262,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
             "isRequired": true,
             "options": [
                 {
-                    "optionId": "d480260f-8069-415f-88c3-629636d2a03f",
+                    "valueId": "d480260f-8069-415f-88c3-629636d2a03f",
                     "value": "Китай"
                 }
             ]
@@ -2285,7 +2285,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
             "isRequired": true,
             "options": [
                 {
-                    "optionId": "d480260f-8069-415f-88c3-629636d2a03f",
+                    "valueId": "d480260f-8069-415f-88c3-629636d2a03f",
                     "value": "Китай"
                 }
             ]
@@ -2300,11 +2300,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
                 "isRequired": true,
                 "options": [
                     {
-                        "optionId": "9bad2f10-02e9-42ec-8947-76d17cc09080",
+                        "valueId": "9bad2f10-02e9-42ec-8947-76d17cc09080",
                         "value": "Мир игрушек"
                     },
                     {
-                        "optionId": "9af0f991-8a67-4f64-a247-12ebe807dac4",
+                        "valueId": "9af0f991-8a67-4f64-a247-12ebe807dac4",
                         "value": "Apple"
                     }
                 ]
@@ -2316,7 +2316,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
                 "isRequired": true,
                 "options": [
                     {
-                        "optionId": "52e6e420-256e-4cb0-ad16-51ceb6293538",
+                        "valueId": "52e6e420-256e-4cb0-ad16-51ceb6293538",
                         "value": "Смартфон"
                     }
                 ]
@@ -2331,11 +2331,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
                 "isVariant": false,
                 "options": [
                     {
-                        "optionId": "86dfe426-d93d-4f8e-9dd3-3b99207d1531",
+                        "valueId": "86dfe426-d93d-4f8e-9dd3-3b99207d1531",
                         "value": "3"
                     },
                     {
-                        "optionId": "22079fb5-82b2-4754-8c99-cc1a6a0294f7",
+                        "valueId": "22079fb5-82b2-4754-8c99-cc1a6a0294f7",
                         "value": "4"
                     }
                 ]
@@ -2348,11 +2348,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
                 "isVariant": false,
                 "options": [
                     {
-                        "optionId": "8788d4ac-294a-43c3-884d-e131e13c17e3",
+                        "valueId": "8788d4ac-294a-43c3-884d-e131e13c17e3",
                         "value": "Android"
                     },
                     {
-                        "optionId": "1648a98e-8a95-4c1f-bd30-67eb01056854",
+                        "value": "1648a98e-8a95-4c1f-bd30-67eb01056854",
                         "value": "iOs"
                     }
                 ]
@@ -2365,11 +2365,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
                 "isVariant": true,
                 "options": [
                     {
-                        "optionId": "261926a8-6be3-4ce6-a8a0-631c0d87626d",
+                        "valueId": "261926a8-6be3-4ce6-a8a0-631c0d87626d",
                         "value": "Белый"
                     },
                     {
-                        "optionId": "21cbee72-1f65-4216-9bd9-b7231f4591f9",
+                        "valueId": "21cbee72-1f65-4216-9bd9-b7231f4591f9",
                         "value": "Зеленый"
                     }
                 ]
@@ -2545,7 +2545,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 
 ### Linked Products
 ```js
-GET {{host}}/api/seller/linked-products/{productId}
+GET {{host}}/api/seller/linked-products/{productVariantId}
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 
@@ -2634,6 +2634,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```js
 {
     "productVariantId": "0a0d763a-61c6-44db-bf5d-8f9fb86da0fc",
+    "productCategoryId": "781001bc-3a72-4e5b-8d2a-ee22e0ea7b0a",
     "categoryName": "Смартфоны",
     "productName": "Xiaomi test1 phone",
     "productDescription": "description",
@@ -2666,11 +2667,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
     "characteristics": [
         {
             "optionId": "9641e761-2741-4b6c-9be8-844ee3970bd1",
+            "name": "embeddedmemory",
             "valueId": "59e4d816-6f8f-46b8-a1d4-dedff9d308e4",
             "valueName": "16 Гб"
         },
         {
             "optionId": "ede6bdb7-93a6-4840-8b88-6ec3d35c998c",
+	    "name": "screendiagonal",
             "valueId": "5ffc8686-cab1-44e1-bdaa-ea95b215eed5",
             "valueName": "4.3"
         }
