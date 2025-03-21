@@ -2388,10 +2388,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```js
 {
   "productCategoryId": "781001bc-3a72-4e5b-8d2a-ee22e0ea7b0a",
-  "productName": "Xiaomi test phone",
+  "productName": "Xiaomi final 4",
   "productDescription": "description",
   "brandId": "6ba6fae6-7372-4c23-a789-e0bef130b625",
-  "originCountryId": "4bad4ae6-7372-4c23-a789-e0bef130b673",
+  "originCountryId": "d480260f-8069-415f-88c3-629636d2a03f",
+  "productTypeId": "52e6e420-256e-4cb0-ad16-51ceb6293538",
   "weight": 100,
   "height": 100,
   "width": 100,
@@ -2400,6 +2401,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
   "guaranteePeriod": 1,
   "tnvdCode": 11111,
   "model": "MOdlejf",
+  "productModel": "MOdlejf",
   "sellerArticle": "1231231",
   "barcode": "1231231",
   "price": 1000,
@@ -2420,7 +2422,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
       "isVariant": false
     },
     {
-      "productOptionValueId": "4ff5eb0d-671f-43d2-94b1-b90dfef9c0a0",
+      "productOptionValueId": "261926a8-6be3-4ce6-a8a0-631c0d87626d",
+      "isVariant": true
+    },
+    {
+      "productOptionValueId": "f90c9473-f95d-4ccf-8e0f-7dfa87941e15",
       "isVariant": true
     }
   ]
