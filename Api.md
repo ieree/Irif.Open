@@ -2320,7 +2320,21 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
                         "value": "Смартфон"
                     }
                 ]
-            }
+            },
+            {
+                "name": "seviceLife",
+                "type": "input",
+                "label": "Срок службы",
+                "isRequired": false,
+                "options": null
+             },
+             {
+               "name": "guaranteePeriod",
+               "type": "input",
+               "label": "Гарантийный период",
+               "isRequired": false,
+               "options": null
+              }
         ],
         "characteristics": [ 
             {
