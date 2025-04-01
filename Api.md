@@ -2395,7 +2395,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 
 ### Create single product
 ```js
-POST {{host}}/seller/{profileId}/products/add-product
+POST {{host}}/seller/{profileId}/products/add
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 #### Request
