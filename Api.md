@@ -2652,71 +2652,59 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 ```js
 {
-    "productVariantId": "0a0d763a-61c6-44db-bf5d-8f9fb86da0fc",
-    "productCategoryId": "781001bc-3a72-4e5b-8d2a-ee22e0ea7b0a",
-    "categoryName": "Смартфоны",
-    "productName": "Xiaomi test1 phone",
-    "productDescription": "description",
-    "article": "1231231",
-    "brand": "Xiaomi",
-    "originCountry": "Китай",
-    "model": "MOdlejf",
-    "serviceLife": 1,
-    "guaranteePeriod": 1,
-    "price": 1000,
-    "regularPrice": 1200,
-    "weight": 100,
-    "height": 100,
-    "width": 100,
-    "length": 100,
-    "documents": [
-        {
-            "documentId": "c1120e1f-82d0-45a6-b2b0-e13e241e2c35",
-            "documentType": "Presentation",
-            "documentDisplayName": "ПрезентацияXiaomiMOdlejf",
-            "documentPath": "https://irif.storage.yandexcloud.net/qW48djd293100221dhhwW2349mdh271/Dia035tR08324TGDcd/f94a4a0c-c255-4054-9b95-60bc251ab127.pdf"
-        },
-        {
-            "documentId": "c84ed7ed-97c8-4a7e-9b06-7a648d587071",
-            "documentType": "Documentation",
-            "documentDisplayName": "Техническая документацияXiaomiMOdlejf",
-            "documentPath": "https://irif.storage.yandexcloud.net/qW48djd293100221dhhwW2349mdh271/Dia035tR08324TGDcd/d5a7b676-d9f2-45d9-b664-a88cbf3a2401.pdf"
-        }
-    ],
-    "characteristics": [
-        {
-            "optionId": "9641e761-2741-4b6c-9be8-844ee3970bd1",
-            "name": "embeddedmemory",
-            "valueId": "59e4d816-6f8f-46b8-a1d4-dedff9d308e4",
-            "valueName": "16 Гб"
-        },
-        {
-            "optionId": "ede6bdb7-93a6-4840-8b88-6ec3d35c998c",
-	    "name": "screendiagonal",
-            "valueId": "5ffc8686-cab1-44e1-bdaa-ea95b215eed5",
-            "valueName": "4.3"
-        }
-    ],
-    "mediaContent": {
-        "productImages": [
-            {
-                "imageId": "4621b5c4-8848-49b1-a2a4-f9a7ec14f727",
-                "imagePath": "https://irif.storage.yandexcloud.net/qW48djd293100221dhhwW2349mdh271/Jtu2jpPd233Mz061lk/b7371618-ab6c-4042-8f5e-febc6d84ed83.webp",
-                "sortOrder": 1
-            },
-            {
-                "imageId": "49e4e59e-e447-4eba-a2f0-c65b05223ffa",
-                "imagePath": "https://irif.storage.yandexcloud.net/qW48djd293100221dhhwW2349mdh271/Jtu2jpPd233Mz061lk/e99ef624-731e-4b2e-8be7-91fcb0236709.webp",
-                "sortOrder": 0
-            },
-            {
-                "imageId": "ae404120-64fe-4ea4-8d35-c168147aa76d",
-                "imagePath": "https://irif.storage.yandexcloud.net/qW48djd293100221dhhwW2349mdh271/Jtu2jpPd233Mz061lk/e1a15b57-5cf2-4ade-ad64-04b28661e9e9.webp",
-                "sortOrder": 2
-            }
-        ],
-        "productPresentationImages": []
+  "productVariantId": "970d44e2-f224-40d3-984f-f3cd3ddfb540",
+  "productCategoryId": "781001bc-3a72-4e5b-8d2a-ee22e0ea7b0a",
+  "categoryName": "Смартфоны",
+  "productName": "Xiaomi final 4",
+  "productDescription": "description",
+  "article": "1231231",
+  "brand": {
+    "valueId": "6ba6fae6-7372-4c23-a789-e0bef130b625",
+    "value": "Xiaomi"
+  },
+  "originCountry": {
+    "valueId": "6ba6fae6-7372-4c23-a789-e0bef130b625",
+    "value": "Xiaomi"
+  },
+  "productType": {
+    "valueId": "52e6e420-256e-4cb0-ad16-51ceb6293538",
+    "value": "Смартфон"
+  },
+  "model": "MOdlejf",
+  "serviceLife": 1,
+  "guaranteePeriod": 1,
+  "price": 1000,
+  "regularPrice": 1200,
+  "weight": 100,
+  "height": 100,
+  "width": 100,
+  "length": 100,
+  "documents": [
+    {
+      "documentId": "707107a7-037e-4785-8179-4b12df96d170",
+      "documentType": "certificate",
+      "documentDisplayName": "СертификатXiaomiтест",
+      "documentPath": "https://irif.storage.yandexcloud.net/qW48djd293100221dhhwW2349mdh271/Dia035tR08324TGDcd/45654659-fe68-476e-bffb-883596213285.pdf"
     }
+  ],
+  "characteristics": [
+    {
+      "optionId": "9641e761-2741-4b6c-9be8-844ee3970bd1",
+      "name": "embeddedmemory",
+      "valueId": "59e4d816-6f8f-46b8-a1d4-dedff9d308e4",
+      "valueName": "16 Гб"
+    },
+    {
+      "optionId": "ede6bdb7-93a6-4840-8b88-6ec3d35c998c",
+      "name": "screendiagonal",
+      "valueId": "5ffc8686-cab1-44e1-bdaa-ea95b215eed5",
+      "valueName": "4.3"
+    }
+  ],
+  "mediaContent": {
+    "productImages": [],
+    "productPresentationImages": []
+  }
 }
 ```
 
