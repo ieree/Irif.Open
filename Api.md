@@ -3191,6 +3191,17 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 GET {{host}}/api/seller/{profileId}/products/{productVariantId}/update-main-imgs
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
+#### Request
+```js
+200 Ok
+```
+```js
+{
+  "imageId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "newOrder": 0
+}
+```
+
 #### Response
 ```js
 200 Ok
@@ -3231,12 +3242,23 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 }
 ```
 
-
 ### Update overview photo
 ```js
 GET {{host}}/api/seller/{profileId}/products/{productVariantId}/update-overview-imgs
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
+
+#### Request
+```js
+200 Ok
+```
+```js
+{
+  "imageId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "newOrder": 0
+}
+```
+
 #### Response
 ```js
 200 Ok
@@ -3249,7 +3271,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 
 ### Delete overview photo
 ```js
-GET {{host}}/api/seller/{profileId}/products/overview-imgs/{imageId}
+DELETE {{host}}/api/seller/{profileId}/products/overview-imgs/{imageId}
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 #### Response
