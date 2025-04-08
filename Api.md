@@ -2157,9 +2157,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
     ],
     "tabsCount": {
         "all": 3,
-        "draft": 2,
+	"active": 3,
+	"approved": 3,
         "archived": 0,
-        "moderating": 0,
+        "pendingApproval": 0,
         "removed": 0
     },
     "filters": [
@@ -2239,7 +2240,7 @@ Params
 GET {{host}}/api/seller/{profileId}/products?searchTerms=Смартфон&statusTabs=draft&sortColumn=name&sortOrder=desc&smartfoni=xiaomi
 
 searchTerms - поиск по наименованию, баркоду, артикулу, 
-statusTabs: draft, archive
+statusTabs: active, archived, approved, removed, pendingApproval
 sortColumn: name, category, article, barcode, brand, create, update
 sortOrder: asc, desc
 ```
