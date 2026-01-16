@@ -5,6 +5,8 @@
         - [Account](#account)
   	     - [Get Account Profiles](#get-account-profiles)
   	     - [Aggregate info](#aggregate-info)
+    - [RequestCategory](#request-category)
+      	- [Get Request Category Tree](#get-request-category-tree)
 	- [Category](#category)
 		- [Get Categories](#get-categories)
         - [Get Category Tree](#get-category-tree)
@@ -211,8 +213,152 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 }
 ```
 
+## Request Category
 
 ## Category
+### Get Request Category Tree
+```js
+GET {{host}}/api/request-categories-tree
+```
+#### Rsponse
+```js
+200 Ok
+```
+```json
+{
+  "requestCategories": [
+    {
+      "categoryId": "14faa59c-16aa-466c-b05a-ba0a51b14233",
+      "categoryName": "Электроника и компоненты",
+      "categoryHandle": "electronika-i-komponenti-14faa59c-16aa-466c-b05a-ba0a51b14233",
+      "subCategories": [
+        {
+          "subCategoryId": "3553d278-6578-485c-95b6-2428c393d465",
+          "subCategoryName": "Разъемы и коммутация",
+          "subCategoryHandle": "razemy-i-kommutaciya-3553d278-6578-485c-95b6-2428c393d465"
+        },
+        {
+          "subCategoryId": "3fd26e42-ecf1-48e6-bcb6-7c1ec8ec3b36",
+          "subCategoryName": "Пассивные компоненты",
+          "subCategoryHandle": "passivnye-komponenty-3fd26e42-ecf1-48e6-bcb6-7c1ec8ec3b36"
+        },
+        {
+          "subCategoryId": "90b5df92-579b-4ca4-b994-356c20e106e8",
+          "subCategoryName": "Датчики и приборы КИПиА",
+          "subCategoryHandle": "atchiki-i-pribory-kipia-90b5df92-579b-4ca4-b994-356c20e106e8"
+        },
+        {
+          "subCategoryId": "b35e1593-3301-4b01-ad98-1419a535b3ad",
+          "subCategoryName": "Печатные платы и монтаж",
+          "subCategoryHandle": "pechatnye-platy-i-montazh-b35e1593-3301-4b01-ad98-1419a535b3ad"
+        },
+        {
+          "subCategoryId": "b5d03c65-0705-4cf8-b911-125187939ebe",
+          "subCategoryName": "Микросхемы и контроллеры",
+          "subCategoryHandle": "mikroskhemy-i-kontrollery-b5d03c65-0705-4cf8-b911-125187939ebe"
+        }
+      ]
+    },
+    {
+      "categoryId": "572bbb35-195f-4bb2-a0fd-d4d6107b6a9d",
+      "categoryName": "Инжиниринг",
+      "categoryHandle": "inzheniring-572bbb35-195f-4bb2-a0fd-d4d6107b6a9d",
+      "subCategories": [
+        {
+          "subCategoryId": "617adb2f-d190-4b59-9f6a-9b9941bfb04a",
+          "subCategoryName": "Монтаж и пусконаладка",
+          "subCategoryHandle": "montazh-i-puskonaladka-617adb2f-d190-4b59-9f6a-9b9941bfb04a"
+        },
+        {
+          "subCategoryId": "88af52bb-3419-478a-8709-746f162c3dd9",
+          "subCategoryName": "Техническое обслуживание",
+          "subCategoryHandle": "tehnicheskoe-obsluzhivanie-88af52bb-3419-478a-8709-746f162c3dd9"
+        },
+        {
+          "subCategoryId": "8fba58ec-e916-41c5-8579-b118af1f125c",
+          "subCategoryName": "Проектирование и CAD-дизайн",
+          "subCategoryHandle": "proektirovanie-i-cad-dizajn-8fba58ec-e916-41c5-8579-b118af1f125c"
+        },
+        {
+          "subCategoryId": "258491f1-65a8-4616-b23f-d2449fefaf06",
+          "subCategoryName": "Энергоаудит и консалтинг",
+          "subCategoryHandle": "energoaudit-i-konsalting-258491f1-65a8-4616-b23f-d2449fefaf06"
+        },
+        {
+          "subCategoryId": "ddc24c13-3944-4b4e-a5b9-0b596c35810f",
+          "subCategoryName": "Испытания и сертификация",
+          "subCategoryHandle": "ispytaniya-i-sertifikaciya-ddc24c13-3944-4b4e-a5b9-0b596c35810f"
+        }
+      ]
+    },
+    {
+      "categoryId": "90298e30-e403-4a6d-9bee-a0c54718e3db",
+      "categoryName": "Строительство и спецтехника",
+      "categoryHandle": "stroitelstvo-i-spectehnika-90298e30-e403-4a6d-9bee-a0c54718e3db",
+      "subCategories": [
+        {
+          "subCategoryId": "523849a9-5361-4801-9c59-0c8a5aa97ebc",
+          "subCategoryName": "Железобетонные изделия",
+          "subCategoryHandle": "zhelezobetonnye-izdeliya-zhbi-7b7976b2-d7dc-4793-b7ad-385eb551ee5d"
+        },
+        {
+          "subCategoryId": "645314b7-2c37-42d0-9329-55ef021faf4f",
+          "subCategoryName": "Дорожно-строительная техника",
+          "subCategoryHandle": "dorozhno-stroitelnaya-tehnika-645314b7-2c37-42d0-9329-55ef021faf4f"
+        },
+        {
+          "subCategoryId": "7b7976b2-d7dc-4793-b7ad-385eb551ee5d",
+          "subCategoryName": "Металлоконструкции и прокат",
+          "subCategoryHandle": "metallokonstrukcii-i-prokat-7b7976b2-d7dc-4793-b7ad-385eb551ee5d"
+        },
+        {
+          "subCategoryId": "cdd34953-19bc-444a-b4a9-207435780a46",
+          "subCategoryName": "Грузоподъемное оборудование",
+          "subCategoryHandle": "gruzopodemnoe-oborudovanie-cdd34953-19bc-444a-b4a9-207435780a46"
+        },
+        {
+          "subCategoryId": "a021a764-69c1-4b23-88a9-e8c1536f9296",
+          "subCategoryName": "Изоляция и кровля",
+          "subCategoryHandle": "izolyaciya-i-krovlya-a021a764-69c1-4b23-88a9-e8c1536f9296"
+        }
+      ]
+    },
+    {
+      "categoryId": "e89d9757-0437-4532-87b4-7ee6390051ef",
+      "categoryName": "Химия и сырье",
+      "categoryHandle": "himiya-i-syre-e89d9757-0437-4532-87b4-7ee6390051ef",
+      "subCategories": [
+        {
+          "subCategoryId": "fed9b3d4-a51c-4d17-b00d-e21979da70d7",
+          "subCategoryName": "Композитные материалы",
+          "subCategoryHandle": "kompozitnye-materialy-fed9b3d4-a51c-4d17-b00d-e21979da70d7"
+        },
+        {
+          "subCategoryId": "a7b17649-61d7-4bfe-a7e3-6fda48055fd5",
+          "subCategoryName": "Лакокрасочные материалы",
+          "subCategoryHandle": "lakokrasochnye-materialy-a7b17649-61d7-4bfe-a7e3-6fda48055fd5"
+        },
+        {
+          "subCategoryId": "c0291461-9f6c-4a7d-86f6-5fe732c7126f",
+          "subCategoryName": "Полимеры и пластмассы",
+          "subCategoryHandle": "polimery-i-plastmassy-c0291461-9f6c-4a7d-86f6-5fe732c7126f"
+        },
+        {
+          "subCategoryId": "cf214866-3f49-432e-9d25-d461b7c3b99a",
+          "subCategoryName": "Промышленные газы",
+          "subCategoryHandle": "promyshlennye-gazy-cf214866-3f49-432e-9d25-d461b7c3b99a"
+        },
+        {
+          "subCategoryId": "1f450fa6-89be-40ad-99ee-e4b9265b5d4f",
+          "subCategoryName": "Технические масла и смазки",
+          "subCategoryHandle": "tehnicheskie-masla-i-smazki-1f450fa6-89be-40ad-99ee-e4b9265b5d4f"
+        }
+      ]
+    }
+  ]
+}
+```
+
 
 ### Get Categories
 ```js
