@@ -103,6 +103,13 @@
       	- [Delete overview photo](#delete-overview-photo)
 - [Requests](#requests)
   	- [Get my requests](#get-my-requests)
+  	- [Create request](#create-request)
+  	- [Get request tags](#get-request-tags)
+  	- [Update request](#update-request)
+  	- [Submit request](#submit-request)
+  	- [Cancel request](#cancel-request)
+  	- [Archive request](#archive-request)
+  	- [Restore request](#restore-request)
      
 
 # IRif Api
@@ -3510,4 +3517,139 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
     "totalItems": 3,
     "totalPages": 1
 }
+```
+
+### Create request
+```js
+Post {{host}}/api/requests
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+#### Request
+```js
+{
+  "profileId": "af600c2a-7551-447d-be6c-32d6103e5de1",
+  "categoryId": "90b5df92-579b-4ca4-b994-356c20e106e8",
+  "requestType": "product",
+  "title": "Изготовление шкафа2",
+  "description": "большой шкаф233",
+  "tags": [{TagId}]
+}
+```
+#### Response
+```js
+200 Ok
+```
+```js
+{
+    "requestId": "1ded5fb4-c5ed-4f31-b3d4-459b197d9856"
+}
+```
+
+### Get request tags
+```js
+Post {{host}}/api/requests/category/{categoryId}/tags
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+#### Response
+```js
+200 Ok
+```
+```js
+[
+    {
+        "tagId": "61d3d127-9858-4cd8-87b0-ce6903234a84",
+        "tagName": "Мотор"
+    },
+    {
+        "tagId": "72251822-885c-457d-afd8-d474ef24cce6",
+        "tagName": "Запчасти"
+    }
+]
+```
+
+### Update request
+```js
+PUT {{host}}/api/requests/{requestId}"
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+#### Request
+```js
+{
+  "profileId": "af600c2a-7551-447d-be6c-32d6103e5de1",
+  "title": "Shakf",
+  "description": "noviy",
+  "tags": ["72251822-885c-457d-afd8-d474ef24cce6"]
+}
+```
+#### Response
+```js
+200 Ok
+```
+
+### Submit request
+```js
+POST {{host}}/api/requests/{requestId}/submit"
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+#### Request
+```js
+{
+  "profileId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "requestId": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+}
+```
+#### Response
+```js
+200 Ok
+```
+
+### Cancel request
+```js
+POST {{host}}/api/requests/{requestId}/cancel"
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+#### Request
+```js
+{
+  "profileId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "requestId": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+}
+```
+#### Response
+```js
+200 Ok
+```
+
+### Archive request
+```js
+POST {{host}}/api/requests/{requestId}/archive"
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+#### Request
+```js
+{
+  "profileId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "requestId": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+}
+```
+#### Response
+```js
+200 Ok
+```
+
+### Restore request
+```js
+POST {{host}}/api/requests/{requestId}/restore"
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+#### Request
+```js
+{
+  "profileId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "requestId": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+}
+```
+#### Response
+```js
+200 Ok
 ```
