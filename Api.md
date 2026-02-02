@@ -108,8 +108,17 @@
   	- [Update request](#update-request)
   	- [Submit request](#submit-request)
   	- [Cancel request](#cancel-request)
+  	- [Pause request](#pause-request)
+  	- [Resume request](#resume-request)
   	- [Archive request](#archive-request)
   	- [Restore request](#restore-request)
+  	- [Edit request info](#edit-request-info)
+  	- [Init Uploading files request](#init-uploading-files-request)
+  	- [Get request previews](#get-request-previews)
+  	- [Get request files](#get-request-files)
+- [Media](#media)
+  - [Complete media](#complete-media)
+  - [Delete media](#delete-media)
      
 
 # IRif Api
@@ -3440,7 +3449,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 }
 ```
 
-## Authentication
+## Requests
 ### Get my requests
 ```js
 Get {{host}}/api/requests/my?pageNumber=1&pageSize=10&profileId={profileId}
@@ -3588,15 +3597,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 
 ### Submit request
 ```js
-POST {{host}}/api/requests/{requestId}/submit"
+POST {{host}}/api/requests/{requestId}/submit?profileId={profileId}"
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
-```
-#### Request
-```js
-{
-  "profileId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-  "requestId": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
-}
 ```
 #### Response
 ```js
@@ -3605,15 +3607,28 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 
 ### Cancel request
 ```js
-POST {{host}}/api/requests/{requestId}/cancel"
+POST {{host}}/api/requests/{requestId}/cancel?profileId={profileId}"
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
-#### Request
+#### Response
 ```js
-{
-  "profileId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-  "requestId": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
-}
+200 Ok
+```
+
+### Pause request
+```js
+POST {{host}}/api/requests/{requestId}/pause?profileId={profileId}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+#### Response
+```js
+200 Ok
+```
+
+### Resume request
+```js
+POST {{host}}/api/requests/{requestId}/resume?profileId={profileId}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 #### Response
 ```js
@@ -3622,15 +3637,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 
 ### Archive request
 ```js
-POST {{host}}/api/requests/{requestId}/archive"
+POST {{host}}/api/requests/{requestId}/archive?profileId={profileId}"
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
-```
-#### Request
-```js
-{
-  "profileId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-  "requestId": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
-}
 ```
 #### Response
 ```js
@@ -3639,15 +3647,119 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 
 ### Restore request
 ```js
-POST {{host}}/api/requests/{requestId}/restore"
+POST {{host}}/api/requests/{requestId}/restore?profileId={profileId}"
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+#### Response
+```js
+200 Ok
+```
+
+### Edit request info
+```js
+POST {{host}}/api/requests/{requestId}/edit-info?profileId={profileId}"
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+#### Response
+```js
+200 Ok
+```
+```js
+{
+    "requestId": "61f52afa-45e9-4780-a87c-002608b14021",
+    "categoryId": "90b5df92-579b-4ca4-b994-356c20e106e8",
+    "title": "Изготовление шкафа",
+    "description": "большой шкаф",
+    "moderationRejectReason": null,
+    "previewMediaFileId": null,
+    "attachmentMediaFileIds": ["90b5df92-579b-4ca4-b994-356c20e106e8", "90b5df92-579b-4ca4-b994-356c20e106e8"],
+    "tagIds": ["90b5df92-579b-4ca4-b994-356c20e106e8", "90b5df92-579b-4ca4-b994-356c20e106e8"]
+}
+```
+### Init Uploading files request
+```js
+POST {{host}}/api/api/requests/{requestId}/uploads/init?profileId={profileId}
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 #### Request
 ```js
 {
-  "profileId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-  "requestId": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+  "profileId": "af600c2a-7551-447d-be6c-32d6103e5de1",
+  "ownerEntity": 1,
+  "ownerId": {RequestId},
+  "kind": 1,
+  "fileName": "pump.png",
+  "contentType": "image/png",
+  "fileSize": 2136064
 }
+```
+
+### Get request previews
+```js
+POST {{host}}/api/requests/preview?profileId={profileId}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+#### Request
+```js
+{
+  "items": [
+    {
+      "requestId": "0fce6969-4627-456f-ba39-087b2505bf2c",
+      "previewMediaFileId": "0fce6969-4627-456f-ba39-087b2505bf2c"
+    }
+  ]
+}
+```
+#### Response
+```js
+200 Ok
+```
+```js
+{
+    "items": {
+        "0fce6969-4627-456f-ba39-087b2505bf2c": {
+            "mediaFileId": "5937803c-65a5-484a-ae52-4dcf197bd865",
+            "fileName": "pump.png",
+            "contentType": "image/png",
+            "fileSize": 2135948,
+            "url": "https://storage.yandexcloud.net/irif/requests/0fce6969-4627-456f-ba39-087b2505bf2c/preview/5937803c-65a5-484a-ae52-4dcf197bd865?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=YCAJEocwyJyekUA1k2C1itWmp%2F20260202%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260202T103808Z&X-Amz-Expires=600&X-Amz-SignedHeaders=host&X-Amz-Signature=ba2fd0443f0b527307f2ee758a2ee57b38280e70537527dd53233cb834c5947d"
+        }
+    }
+}
+```
+
+### Get request files
+```js
+POST {{host}}/api/requests/{requestId}/files?profileId={profileId}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+
+#### Response
+```js
+200 Ok
+```
+```js
+{
+    "preview": null,
+    "attachments": [
+        {
+            "mediaFileId": "cfcc8fff-10b6-4f01-a32c-49b66b92abff",
+            "kind": 2,
+            "sortOrder": 0,
+            "fileName": "pump.png",
+            "contentType": "image/png",
+            "fileSize": 2135948,
+            "url": "https://storage.yandexcloud.net/irif/requests/0fce6969-4627-456f-ba39-087b2505bf2c/attachments/cfcc8fff-10b6-4f01-a32c-49b66b92abff?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=YCAJEocwyJyekUA1k2C1itWmp%2F20260202%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260202T104555Z&X-Amz-Expires=600&X-Amz-SignedHeaders=host&X-Amz-Signature=209562b119e50259ed582ce869f5389085955f0a2e674035fbeef082ea13d8b3"
+        }
+    ]
+}
+```
+
+## MediaFiles
+### Complete media
+```js
+POST {{host}}/api/media/{mediaFileId}/complete?profileId={profileId}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 #### Response
 ```js
