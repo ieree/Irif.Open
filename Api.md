@@ -101,6 +101,8 @@
       	- [Add overview photo](#add-overview-photo)
       	- [Update overview photo](#update-overview-photo)
       	- [Delete overview photo](#delete-overview-photo)
+- [Requests](#requests)
+  	- [Get my requests](#get-my-requests)
      
 
 # IRif Api
@@ -3428,5 +3430,84 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```js
 {
     "fileUrl": "https:\\cloud..."
+}
+```
+
+## Authentication
+### Get my requests
+```js
+Get {{host}}/api/requests/my?pageNumber=1&pageSize=10&profileId={profileId}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+#### Response
+```js
+200 Ok
+```
+```js
+"items": [
+        {
+            "requestId": "1ded5fb4-c5ed-4f31-b3d4-459b197d9856",
+            "requestNumber": "20260202-001002",
+            "title": "Изготовление шкафа2",
+            "description": "большой шкаф233",
+            "previewMediaFileId": null,
+            "status": {
+                "code": "draft",
+                "label": "Черновик",
+                "theme": "neutral"
+            },
+            "responsesCount": 0,
+            "expiration": "2026-03-04T05:07:46.290033Z",
+            "createdAt": "2026-02-02T05:07:46.290108Z",
+            "tags": [
+                "Мотор"
+            ],
+            "extraTagCount": 0
+        },
+        {
+            "requestId": "d4236bcc-3142-43e4-8b05-2ca3d039c47f",
+            "requestNumber": "20260202-001001",
+            "title": "Изготовление шкафа2",
+            "description": "большой шкаф233",
+            "previewMediaFileId": null,
+            "status": {
+                "code": "draft",
+                "label": "Черновик",
+                "theme": "neutral"
+            },
+            "responsesCount": 0,
+            "expiration": "2026-03-04T04:52:50.933993Z",
+            "createdAt": "2026-02-02T04:52:50.934066Z",
+            "tags": [],
+            "extraTagCount": 0
+        },
+        {
+            "requestId": "61f52afa-45e9-4780-a87c-002608b14021",
+            "requestNumber": "20260130-001000",
+            "title": "Изготовление шкафа",
+            "description": "большой шкаф",
+            "previewMediaFileId": null,
+            "status": {
+                "code": "active",
+                "label": "Активна",
+                "theme": "live"
+            },
+            "responsesCount": 0,
+            "expiration": "2026-03-01T13:10:42.43243Z",
+            "createdAt": "2026-01-30T13:10:42.432509Z",
+            "tags": [],
+            "extraTagCount": 0
+        }
+    ],
+    "tabCount": {
+        "all": 3,
+        "active": 1,
+        "withResponses": 0,
+        "paused": 0,
+        "moderating": 0,
+        "archived": 0
+    },
+    "totalItems": 3,
+    "totalPages": 1
 }
 ```
