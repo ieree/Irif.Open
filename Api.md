@@ -3538,7 +3538,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 {
   "profileId": "af600c2a-7551-447d-be6c-32d6103e5de1",
   "categoryId": "90b5df92-579b-4ca4-b994-356c20e106e8",
-  "requestType": "product",
   "title": "Изготовление шкафа2",
   "description": "большой шкаф233",
   "tags": [{TagId}]
