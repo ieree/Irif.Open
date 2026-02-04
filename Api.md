@@ -114,6 +114,7 @@
   	- [Restore request](#restore-request)
   	- [Edit request info](#edit-request-info)
   	- [Init Uploading files request](#init-uploading-files-request)
+  	- [Sync request files](#sync-request-files)
   	- [Get request previews](#get-request-previews)
   	- [Get request files](#get-request-files)
 - [Media](#media)
@@ -3692,10 +3693,33 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
   "fileSize": 2136064
 }
 ```
+#### Response
+```js
+200 Ok
+```
+
+### Sync request files
+```js
+POST {{host}}/api/api/requests/{requestId}/uploads/init?profileId={profileId}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+#### Request
+```js
+{
+  "previewMediaFileId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "attachmentMediaFileIds": [
+    "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+  ]
+}
+```
+#### Response
+```js
+200 Ok
+```
 
 ### Get request previews
 ```js
-POST {{host}}/api/requests/preview?profileId={profileId}
+POST {{host}}/api/requests/{requestId}/files?profileId={profileId}
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 #### Request
