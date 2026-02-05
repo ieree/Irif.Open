@@ -106,6 +106,7 @@
   	- [Create request](#create-request)
   	- [Get request tags](#get-request-tags)
   	- [Update request](#update-request)
+  	- [Update request draft](#update-request-draft)
   	- [Submit request](#submit-request)
   	- [Cancel request](#cancel-request)
   	- [Pause request](#pause-request)
@@ -3585,6 +3586,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```js
 {
   "profileId": "af600c2a-7551-447d-be6c-32d6103e5de1",
+  "categoryId" : "72251822-885c-457d-afd8-d474ef24cce6"
   "title": "Shakf",
   "description": "noviy",
   "tags": ["72251822-885c-457d-afd8-d474ef24cce6"]
@@ -3594,6 +3596,28 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```js
 200 Ok
 ```
+
+### Update request draft
+```js
+PUT {{host}}/api/requests/{requestId}/draft"
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+#### Request
+```js
+{
+  "profileId": "af600c2a-7551-447d-be6c-32d6103e5de1",
+  "categoryId" : "72251822-885c-457d-afd8-d474ef24cce6"
+  "title": "Shakf",
+  "description": "noviy",
+  "tags": ["72251822-885c-457d-afd8-d474ef24cce6"]
+}
+```
+#### Response
+```js
+200 Ok
+```
+
+
 
 ### Submit request
 ```js
