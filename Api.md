@@ -3777,7 +3777,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 
 ### Get request files
 ```js
-POST {{host}}/api/requests/{requestId}/files?profileId={profileId}
+POST {{host}}/api/requests/{requestId}/files?profileId={profileId}](https://i-rif.com/api/requests/preview?profileId=
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 
