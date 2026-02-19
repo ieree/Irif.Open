@@ -103,7 +103,7 @@
       	- [Delete overview photo](#delete-overview-photo)
 - [Requests](#requests)
   	- [Get my requests](#get-my-requests)
-  	- [Get Reqeust Details](#get-request-details)
+  	- [Get Request Details](#get-request-details)
   	- [Create request](#create-request)
   	- [Get request tags](#get-request-tags)
   	- [Update request](#update-request)
