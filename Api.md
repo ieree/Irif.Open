@@ -3531,7 +3531,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 }
 ```
 
-### Get Reqeust Details
+### Get Request Details
 ```js
 Get {{host}}/api/requests/{requestId}/details?profileId={profileId}
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
