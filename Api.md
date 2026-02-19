@@ -103,6 +103,7 @@
       	- [Delete overview photo](#delete-overview-photo)
 - [Requests](#requests)
   	- [Get my requests](#get-my-requests)
+  	- [Get Reqeust Details](#get-request-details)
   	- [Create request](#create-request)
   	- [Get request tags](#get-request-tags)
   	- [Update request](#update-request)
@@ -3529,6 +3530,41 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
     "totalPages": 1
 }
 ```
+
+### Get Reqeust Details
+```js
+Get {{host}}/api/requests/{requestId}/details?profileId={profileId}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+```
+
+#### Response
+```js
+200 Ok
+```
+```js
+{
+    "requestId": "c52781b6-7a15-4441-8485-790780a9ac82",
+    "requestNumber": "20260203-001021",
+    "title": "Комплект ЖБИ для подпорной стенки повторно",
+    "description": "Требуется поставка ЖБ элементов для подпорной стенки на участке (строительство/благоустройство)",
+    "status": {
+        "code": "active",
+        "label": "Активна",
+        "theme": "live"
+    },
+    "moderationRejectReason": null,
+    "previewMediaFileId": "f12e877a-b7c0-4c7f-aec1-6cf21c773f04",
+    "attachmentMediaFileIds": ["f12e877a-b7c0-4c7f-aec1-6cf21c773f04", "f12e877a-b7c0-4c7f-aec1-6cf21c773f04"],
+    "tags": [
+        "Теплоизоляция",
+        "Проект",
+        "Чертежи",
+        "ЖБИ по чертежам",
+        "ФБС блоки"
+    ]
+}
+```
+
 
 ### Create request
 ```js
