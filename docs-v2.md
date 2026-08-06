@@ -384,6 +384,8 @@ Same shape as `/tree`, with `tags` populated.
   <!-- Теги только у листьев -->
 - Tag names are not guaranteed unique across categories — match by `id`.
 
+---
+
 ### GET /api/request-categories/popular
 
 Most requested categories, for the sidebar on the category tree page.
