@@ -14,6 +14,7 @@
 - [Categories](#categories)
   - [GET /api/request-categories/tree](#get-apirequest-categoriestree)
   - [GET /api/request-categories/tree/tags](#get-apirequest-categoriestreetags)
+  - [GET /api/request-categories/popular](#get-apirequest-categoriespopular)
 - [Dashboard](#dashboard)
   - [GET /api/dashboard](#get-apidashboard)
 - [Requests](#requests)
@@ -382,6 +383,68 @@ Same shape as `/tree`, with `tags` populated.
 - Tags are present only on leaf categories (`isLeaf: true`); root categories return `tags: null`.
   <!-- Теги только у листьев -->
 - Tag names are not guaranteed unique across categories — match by `id`.
+
+### GET /api/request-categories/popular
+
+Most requested categories, for the sidebar on the category tree page.
+<!-- Сайд-блок «Популярные категории» -->
+
+**Request**
+
+```http
+GET {host}/api/request-categories/popular
+```
+
+| Parameter | Type     | Required | Description                              |
+|-----------|----------|----------|------------------------------------------|
+| `limit`   | `number` | no       | How many categories to return             |
+
+<!-- параметр предположен, в примере вернулись все непустые — подтвердить -->
+
+**Response `200 OK`**
+
+Flat array, ordered by `requestsCount` descending.
+
+| Field           | Type            | Description                                        |
+|-----------------|-----------------|----------------------------------------------------|
+| `id`            | `string (uuid)` | Category identifier                                 |
+| `shortId`       | `number`        | Short numeric identifier                            |
+| `name`          | `string`        | Display name                                        |
+| `slug`          | `string`        | URL-safe transliterated name, unique                |
+| `requestsCount` | `number`        | Active requests in this category                    |
+
+**Example**
+
+```json
+[
+  {
+    "id": "2a3e0646-6d28-4221-8d7c-892186e6901b",
+    "shortId": 1010,
+    "name": "Фундаменты",
+    "slug": "fundamenty",
+    "requestsCount": 2
+  },
+  {
+    "id": "1371891f-455c-48a7-8bfa-1f3b37af4fa3",
+    "shortId": 1020,
+    "name": "Грузоперевозки",
+    "slug": "gruzoperevozki",
+    "requestsCount": 1
+  }
+]
+```
+
+**Notes**
+
+- Only leaf categories appear here — the sample returns the same ids that carry `isLeaf: true`
+  in the tree. <!-- Только листья -->
+- Categories with no requests are omitted, so an empty array is a valid response.
+- No `parentId` or `depth`: the item is a standalone link, not a tree node. Look the id up in
+  [/tree](#get-apirequest-categoriestree) if the breadcrumb is needed.
+- `requestsCount` is assumed to count active requests only — worth confirming whether closed
+  ones are included. <!-- уточнить, что именно считается -->
+
+
 
 ---
 
