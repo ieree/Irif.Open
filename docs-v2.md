@@ -11,12 +11,16 @@
   - [Actions](#actions)
   - [PaginationMeta](#paginationmeta)
   - [CursorMeta](#cursormeta)
+- [Media](#media)
+  - [POST /api/media/init](#post-apimediainit)
 - [Categories](#categories)
   - [GET /api/request-categories/tree](#get-apirequest-categoriestree)
   - [GET /api/request-categories/tree/tags](#get-apirequest-categoriestreetags)
   - [GET /api/request-categories/popular](#get-apirequest-categoriespopular)
 - [Dashboard](#dashboard)
   - [GET /api/dashboard](#get-apidashboard)
+- [Request creation](#request-creation)
+  - [POST /api/request-categories/tags-for](#post-apirequest-categoriestags-for)
 - [Requests](#requests)
   - [GET /api/requests/my](#get-apirequestsmy)
   - [GET /api/requests/{requestId}/details](#get-apirequestsrequestiddetails)
@@ -124,6 +128,86 @@ Cursor-based pagination. Used where the list is scrolled rather than paged.
 | `previousCursor` | `string`  | yes      | Pass as `cursor` to load the previous page. `null` if first |
 | `hasNext`        | `boolean` | no       | `true` if a next page exists                              |
 | `hasPrevious`    | `boolean` | no       | `true` if a previous page exists                          |
+---
+
+## Media
+
+File uploads. Shared by every service — what the file is attached to is expressed through
+`ownerEntity` and `kind`, not through a dedicated endpoint per feature.
+<!-- Метод общий для всех сервисов -->
+
+### POST /api/media/init
+
+Registers a file before uploading it. <!-- Инициализация загрузки -->
+
+**Request**
+
+```http
+POST {host}/api/media/init
+Content-Type: application/json
+```
+
+| Field         | Type            | Required | Description                                                        |
+|---------------|-----------------|----------|--------------------------------------------------------------------|
+| `ownerEntity` | `string`        | yes      | What the file belongs to, see [Media owner entities](#media-owner-entities) |
+| `ownerId`     | `string (uuid)` | yes      | Identifier of that entity                                           |
+| `kind`        | `string`        | yes      | Role of the file, see [Media kinds](#media-kinds)                   |
+| `fileName`    | `string`        | yes      | Original file name with extension                                   |
+| `contentType` | `string`        | yes      | MIME type, e.g. `image/png`                                         |
+| `fileSize`    | `number`        | yes      | File size in bytes (`long`)                                         |
+
+#### Media owner entities
+
+`MediaOwnerEntity` — sent as the enum name, not the numeric value.
+
+| Value            | Numeric | `ownerId` refers to                    |
+|------------------|---------|----------------------------------------|
+| `Request`        | 1       | Request                                 |
+| `ChatRoom`       | 2       | Chat room, from `chatRoomId`             |
+| `ProductVariant` | 3       | Product variant                          |
+| `Company`        | 4       | Company                                  |
+| `Profile`        | 5       | Profile                                  |
+
+#### Media kinds
+
+`MediaKind` — sent as the enum name, not the numeric value.
+
+| Value        | Numeric | Description                                              |
+|--------------|---------|----------------------------------------------------------|
+| `Preview`    | 1       | Cover image, surfaces as `previewMediaFileId`             |
+| `Attachment` | 2       | Attachment, surfaces in `attachmentIds` and chat messages |
+| `Poster`     | 3       | Poster image                                              |
+| `Gallery`    | 4       | Gallery image                                             |
+| `Document`   | 5       | Document                                                  |
+
+**Example — a chat attachment**
+
+```json
+{
+  "ownerEntity": "ChatRoom",
+  "ownerId": "18046c8d-4aa6-4e23-8300-45e6e46cb18c",
+  "kind": "Attachment",
+  "fileName": "Экран1.png",
+  "contentType": "image/png",
+  "fileSize": 85220
+}
+```
+
+**Response**
+
+<!-- ответ не присылали: неизвестны mediaFileId, ссылка/параметры загрузки и код ответа -->
+
+**Notes**
+
+- One endpoint serves every feature: a request cover is `Request` + `Preview`, a chat file is
+  `ChatRoom` + `Attachment`, an avatar is `Profile` + `Preview`. <!-- Комбинация задаёт назначение -->
+- Not every combination is meaningful — `ownerEntity` and `kind` are validated together.
+  <!-- уточнить допустимые пары -->
+- `fileName`, `contentType` and `fileSize` match the [Attachment](#attachment-object) fields
+  returned later in chat messages.
+- `init` only registers the file; the upload itself is a separate step.
+- Size and MIME restrictions are enforced server-side; the limits are not documented yet.
+
 
 ---
 
@@ -383,7 +467,6 @@ Same shape as `/tree`, with `tags` populated.
 - Tags are present only on leaf categories (`isLeaf: true`); root categories return `tags: null`.
   <!-- Теги только у листьев -->
 - Tag names are not guaranteed unique across categories — match by `id`.
-
 ---
 
 ### GET /api/request-categories/popular
@@ -445,7 +528,6 @@ Flat array, ordered by `requestsCount` descending.
   [/tree](#get-apirequest-categoriestree) if the breadcrumb is needed.
 - `requestsCount` is assumed to count active requests only — worth confirming whether closed
   ones are included. <!-- уточнить, что именно считается -->
-
 
 
 ---
@@ -744,6 +826,80 @@ Codes: [Request status](#request-status-codes), [Response status](#response-stat
 - `executorStats.totalResponses` counts all responses ever sent, including withdrawn ones,
   so it can exceed `summary.myResponses`. <!-- 6 против 4 в примере -->
 - Examples above are truncated; the real responses returned 10 events each.
+---
+
+## Request creation
+
+Endpoints used by the request creation form. <!-- Создание заявки -->
+
+### POST /api/request-categories/tags-for
+
+Tags available for the selected categories, used to fill the tag picker after a category is
+chosen. <!-- Теги для выбранных категорий -->
+
+**Request**
+
+```http
+POST {host}/api/request-categories/tags-for
+Content-Type: application/json
+```
+
+```json
+{
+  "categoryIds": [
+    "2a3e0646-6d28-4221-8d7c-892186e6901b"
+  ]
+}
+```
+
+| Field         | Type              | Required | Description                                   |
+|---------------|-------------------|----------|-----------------------------------------------|
+| `categoryIds` | `string (uuid)[]` | yes      | Categories whose tags should be returned       |
+
+<!-- тело запроса предположено: сам запрос не присылали.
+     Возможен и плоский вариант — просто массив id в корне -->
+
+**Response `200 OK`**
+
+Flat array of tags, ordered by `name`.
+
+| Field  | Type            | Description      |
+|--------|-----------------|------------------|
+| `id`   | `string (uuid)` | Tag identifier   |
+| `name` | `string`        | Tag display name |
+
+**Example**
+
+```json
+[
+  {
+    "id": "efc0c036-ddf7-40b1-bd67-db7118409011",
+    "name": "ленточный фундамент"
+  },
+  {
+    "id": "5358649a-c275-4205-aa25-3ebdc202b2a3",
+    "name": "монолитный фундамент"
+  },
+  {
+    "id": "861736a5-3519-4a2d-80bf-b8dd931cbfd0",
+    "name": "свайный фундамент"
+  }
+]
+```
+
+**Notes**
+
+- `POST` is used to pass a list of ids in the body rather than a long query string; the call is
+  read-only and creates nothing. <!-- POST только ради тела запроса -->
+- The tag shape matches [/tree/tags](#get-apirequest-categoriestreetags) — `id` / `name`, unlike
+  `tagId` / `tagName` in the request details endpoints.
+- The result is a flat union across the given categories: tags are not grouped by category and
+  carry no category id, so the picker cannot show which category a tag came from.
+  <!-- уточнить, если понадобится группировка -->
+- Ordering is alphabetical in the sample, not the `sortOrder` used in the category tree.
+- `/tree/tags` returns the same tags for every leaf at once — use it when the whole map is
+  needed, and this endpoint when the selection is known.
+
 
 ---
 
