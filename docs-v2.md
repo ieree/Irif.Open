@@ -32,9 +32,17 @@
   - [GET /api/responses](#get-apiresponses)
   - [GET /api/responses/{requestId}](#get-apiresponsesrequestid)
   - [GET /api/responses/chat-links/by-request/{requestId}](#get-apiresponseschat-linksby-requestrequestid)
+- [Messenger](#messenger)
+  - [GET /api/messenger/requests](#get-apimessengerrequests)
+  - [GET /api/messenger/requests/{requestId}/context](#get-apimessengerrequestsrequestidcontext)
 - [Chats](#chats)
   - [GET /api/chat](#get-apichat)
   - [GET /api/chat/{chatRoomId}/messages](#get-apichatchatroomidmessages)
+  - [GET /api/chat/attachments/counters](#get-apichatattachmentscounters)
+  - [GET /api/chat/media](#get-apichatmedia)
+  - [GET /api/chat/files](#get-apichatfiles)
+  - [GET /api/chat/links](#get-apichatlinks)
+  - [POST /api/chat/files/urls](#post-apichatfilesurls)
 
 ---
 
@@ -2090,6 +2098,171 @@ Same shape for both arrays; the pin-specific fields are only filled for pinned e
 - A chat with no messages yet still exists as a response: `lastMessageText` and `lastMessageAt`
   are `null` while `lastActivityAt` is set.
 - The second example is illustrative, assembled from the same DTO.
+---
+
+## Messenger
+
+The chat page groups chats by request: pick a request, see its chats plus the media, files and
+links from all of them at once.
+<!-- Чаты сгруппированы по заявкам -->
+
+### GET /api/messenger/requests
+
+Requests that have chats, for the left-hand list. <!-- Блок с заявками -->
+
+**Request**
+
+```http
+GET {host}/api/messenger/requests?role=Customer&limit=20
+```
+
+| Parameter | Type     | Required | Description                                                        |
+|-----------|----------|----------|--------------------------------------------------------------------|
+| `role`    | `string` | no       | `Customer` or `Executor`. Both roles merged when omitted            |
+| `cursor`  | `string` | no       | Cursor from `meta.nextCursor`                                       |
+| `limit`   | `number` | no       | Items per page. `≤ 0` falls back to `20`, capped at `50`            |
+
+**Response `200 OK`**
+
+| Field   | Type                  | Description                                 |
+|---------|-----------------------|---------------------------------------------|
+| `items` | `MessengerRequest[]`  | Requests with chats                          |
+| `meta`  | `CursorMeta`          | Pagination, see [Common types](#cursormeta)  |
+
+**`MessengerRequest` object**
+
+| Field                | Type                | Nullable | Description                                                       |
+|----------------------|---------------------|----------|-------------------------------------------------------------------|
+| `requestId`          | `string (uuid)`     | no       | Request identifier                                                 |
+| `requestNumber`      | `string`            | no       | Human-readable number, format `yyyyMMdd-NNNNNN`                    |
+| `title`              | `string`            | no       | Request title                                                      |
+| `previewMediaFileId` | `string (uuid)`     | yes      | Cover image id. `null` if the request has no media                 |
+| `role`               | `string`            | no       | The profile's role on this request: `Customer` or `Executor`       |
+| `linkStatus`         | `string`            | yes      | Own response status, see [Chat link raw statuses](#chat-link-raw-statuses). Filled for `Executor` only |
+| `totalChats`         | `number`            | no       | Chats on this request. Always `0` for `Executor`                   |
+| `newChats`           | `number`            | no       | Chats not yet opened. Always `0` for `Executor`                    |
+| `archivedChats`      | `number`            | no       | Archived chats. Always `0` for `Executor`                          |
+| `lastActivityAt`     | `string (ISO 8601)` | no       | Last activity across the request's chats (UTC)                     |
+
+**Example**
+
+```json
+{
+  "items": [
+    {
+      "requestId": "9f2d1c74-3a5e-4b80-9f11-6c0a7d8e2b31",
+      "requestNumber": "20260203-001016",
+      "title": "Ремонт офисного помещения 200 м²",
+      "previewMediaFileId": null,
+      "role": "Customer",
+      "linkStatus": null,
+      "totalChats": 7,
+      "newChats": 3,
+      "archivedChats": 5,
+      "lastActivityAt": "2026-08-25T10:57:00Z"
+    },
+    {
+      "requestId": "4b7e0a91-2c63-4de5-8a07-1f9d3b5c6e84",
+      "requestNumber": "20260313-001040",
+      "title": "Найм бригады для постройки дома",
+      "previewMediaFileId": null,
+      "role": "Executor",
+      "linkStatus": "Pinned",
+      "totalChats": 0,
+      "newChats": 0,
+      "archivedChats": 0,
+      "lastActivityAt": "2026-08-24T18:12:00Z"
+    }
+  ],
+  "meta": {
+    "totalCount": 2,
+    "pageSize": 20,
+    "nextCursor": null,
+    "previousCursor": null,
+    "hasNext": false,
+    "hasPrevious": false
+  }
+}
+```
+
+**Errors**
+
+| Status | Code                      | Description                       |
+|--------|---------------------------|-----------------------------------|
+| `400`  | `Messenger.InvalidRole`   | `role` is not a known value        |
+| `400`  | `Messenger.InvalidCursor` | `cursor` is malformed or expired   |
+| `500`  | `Messenger.LoadFailed`    | Failed to load the list            |
+
+**Notes**
+
+- The two roles fill different halves of the row: a `Customer` row carries the chat counters and
+  `linkStatus: null`, an `Executor` row carries `linkStatus` and zeroed counters.
+  <!-- Разные половины одного DTO -->
+- `meta.totalCount` is the size of the current page, not the total number of requests.
+  <!-- Не общее количество -->
+- A profile with no access to the module gets `200` with an empty `items`, not an error.
+
+---
+
+### GET /api/messenger/requests/{requestId}/context
+
+Header of the selected request. <!-- Шапка выбранной заявки -->
+
+**Request**
+
+```http
+GET {host}/api/messenger/requests/{requestId}/context
+```
+
+| Parameter   | In   | Type            | Required | Description        |
+|-------------|------|-----------------|----------|--------------------|
+| `requestId` | path | `string (uuid)` | yes      | Request identifier |
+
+**Response `200 OK`**
+
+| Field                | Type            | Nullable | Description                                                     |
+|----------------------|-----------------|----------|-----------------------------------------------------------------|
+| `requestId`          | `string (uuid)` | no       | Request identifier                                               |
+| `requestNumber`      | `string`        | no       | Human-readable number, format `yyyyMMdd-NNNNNN`                  |
+| `title`              | `string`        | no       | Request title                                                    |
+| `categoryName`       | `string`        | yes      | Category name. `null` if not set                                 |
+| `regionName`         | `string`        | yes      | Region name. `null` if not set                                   |
+| `previewMediaFileId` | `string (uuid)` | yes      | Cover image id. `null` if the request has no media               |
+| `role`               | `string`        | no       | The profile's role: `Customer` or `Executor`                     |
+| `linkStatus`         | `string`        | yes      | Own response status. Filled for `Executor` only                  |
+| `chatRoomId`         | `string (uuid)` | yes      | The profile's own chat on this request. Filled for `Executor` only |
+
+**Example**
+
+```json
+{
+  "requestId": "4b7e0a91-2c63-4de5-8a07-1f9d3b5c6e84",
+  "requestNumber": "20260313-001040",
+  "title": "Ремонт офисного помещения 200 м²",
+  "categoryName": "Ремонт и отделка",
+  "regionName": "Москва",
+  "previewMediaFileId": null,
+  "role": "Customer",
+  "linkStatus": null,
+  "chatRoomId": null
+}
+```
+
+**Errors**
+
+| Status | Code                           | Description                                          |
+|--------|--------------------------------|------------------------------------------------------|
+| `404`  | `Messenger.RequestNotFound`    | The request does not exist or was deleted             |
+| `403`  | `Messenger.AccessDenied`       | Not the owner and has no chat link on this request     |
+| `500`  | `Messenger.LoadFailed`         | Failed to load the context                            |
+
+**Notes**
+
+- `404` and `403` mean different things to the user — «заявки нет» against «нет доступа» — so
+  render them separately. <!-- Различать в UI -->
+- An `Executor` sees a single chat, so `chatRoomId` points straight at it; a `Customer` sees many
+  and gets `null`. <!-- У заказчика чатов много -->
+
 
 ---
 
@@ -2310,7 +2483,14 @@ Maps to `ChatAttachmentDto`.
 
 Bound from the `AttachmentType` enum.
 
-<!-- значения enum пока неизвестны — прислать список (image / document / video?) -->
+| Value      | Description                                             |
+|------------|---------------------------------------------------------|
+| `Image`    | Image — counted as media, listed by `/api/chat/media`    |
+| `Video`    | Video — counted as media, listed by `/api/chat/media`    |
+| `Document` | Non-media file, listed by `/api/chat/files`              |
+
+<!-- Image / Video — из mediaType, Document — из ответа /api/chat/files.
+     Сверить с полным enum, могут быть ещё значения -->
 
 **Example**
 
@@ -2389,3 +2569,351 @@ Bound from the `AttachmentType` enum.
   signature. <!-- Ключ подгрузки — createdAt последнего сообщения -->
 - Unlike `/api/chat`, `limit` here has no upper bound in the signature, and `pageSize` naming is
   not used at all — three list endpoints, three different paging parameter sets.
+
+---
+
+### GET /api/chat/attachments/counters
+
+Tab counters for the attachments panel. <!-- Счётчики для табов -->
+
+**Request**
+
+```http
+GET {host}/api/chat/attachments/counters?requestId={requestId}
+```
+
+| Parameter    | Type            | Required | Description                                                       |
+|--------------|-----------------|----------|-------------------------------------------------------------------|
+| `requestId`  | `string (uuid)` | yes      | Request to count within                                            |
+| `chatRoomId` | `string (uuid)` | no       | Narrow to one chat. Aggregates over every accessible chat when omitted |
+
+**Response `200 OK`**
+
+| Field    | Type     | Description                                            |
+|----------|----------|--------------------------------------------------------|
+| `media`  | `number` | `images + videos` — the number on the Media tab          |
+| `images` | `number` | Images, used as the block heading                       |
+| `videos` | `number` | Videos, used as the block heading                       |
+| `files`  | `number` | Non-media attachments                                   |
+| `links`  | `number` | Links found in messages                                 |
+
+**Example**
+
+```json
+{
+  "media": 11,
+  "images": 8,
+  "videos": 3,
+  "files": 149,
+  "links": 4
+}
+```
+
+**Errors**
+
+| Status | Code                        | Description                  |
+|--------|-----------------------------|------------------------------|
+| `400`  | `Chat.InvalidRequestId`     | `requestId` is missing or malformed |
+| `400`  | `Chat.InvalidChatRoomId`    | `chatRoomId` is malformed     |
+| `500`  | `Chat.LoadFailed`           | Failed to load the counters   |
+
+**Notes**
+
+- An empty or inaccessible scope returns `200` with zeros — it is not an error.
+- Take the heading numbers from here, not from the length of the lists: the list endpoints are
+  paginated. <!-- Цифры в заголовках — только отсюда -->
+
+---
+
+### GET /api/chat/media
+
+Images or videos from the chats of a request. <!-- Медиа -->
+
+**Request**
+
+```http
+GET {host}/api/chat/media?requestId={requestId}&mediaType=Image&limit=50
+```
+
+| Parameter    | Type            | Required | Description                                                       |
+|--------------|-----------------|----------|-------------------------------------------------------------------|
+| `requestId`  | `string (uuid)` | yes      | Request to search within                                           |
+| `chatRoomId` | `string (uuid)` | no       | Narrow to one chat. Aggregates over every accessible chat when omitted |
+| `mediaType`  | `string`        | yes      | `Image` or `Video` — one block per call                            |
+| `cursor`     | `string`        | no       | Cursor from `meta.nextCursor`                                      |
+| `limit`      | `number`        | no       | Items per page. `50` suits the grid                                |
+
+**Response `200 OK`**
+
+| Field   | Type            | Description                                 |
+|---------|-----------------|---------------------------------------------|
+| `items` | `MediaItem[]`   | Media files, newest first                    |
+| `meta`  | `CursorMeta`    | Pagination, see [Common types](#cursormeta)  |
+
+**`MediaItem` object**
+
+| Field         | Type                | Description                                     |
+|---------------|---------------------|-------------------------------------------------|
+| `mediaFileId` | `string (uuid)`     | Media file identifier — pass it to get a URL      |
+| `fileName`    | `string`            | Original file name with extension                 |
+| `fileSize`    | `number`            | File size in bytes                                |
+| `contentType` | `string`            | MIME type, e.g. `image/jpeg`                      |
+| `sentAt`      | `string (ISO 8601)` | When the file was sent (UTC)                      |
+
+**Example**
+
+```json
+{
+  "items": [
+    {
+      "mediaFileId": "c1a7f0d2-5b83-42e6-9f14-0d7e6a2c8b39",
+      "fileName": "объект_фасад.jpg",
+      "fileSize": 2457600,
+      "contentType": "image/jpeg",
+      "sentAt": "2026-08-20T14:30:00Z"
+    }
+  ],
+  "meta": {
+    "totalCount": 50,
+    "pageSize": 50,
+    "nextCursor": "eyJzZW50QXQiOiIyMDI2LTA4LTIwVDE0OjMwOjAwWiJ9",
+    "previousCursor": null,
+    "hasNext": true,
+    "hasPrevious": false
+  }
+}
+```
+
+**Errors**
+
+| Status | Code                      | Description                       |
+|--------|---------------------------|-----------------------------------|
+| `400`  | `Chat.InvalidMediaType`   | `mediaType` is missing or unknown  |
+| `400`  | `Chat.InvalidRequestId`   | `requestId` is missing or malformed |
+| `400`  | `Chat.InvalidChatRoomId`  | `chatRoomId` is malformed          |
+| `400`  | `Chat.InvalidCursor`      | `cursor` is malformed or expired   |
+| `500`  | `Chat.LoadFailed`         | Failed to load the list            |
+
+**Notes**
+
+- Images and videos paginate independently — keep a separate cursor per block.
+  <!-- Курсоры блоков независимы -->
+- The response carries no URLs; resolve them through
+  [POST /api/chat/files/urls](#post-apichatfilesurls).
+
+---
+
+### GET /api/chat/files
+
+Non-media attachments from the chats of a request. <!-- Файлы -->
+
+**Request**
+
+```http
+GET {host}/api/chat/files?requestId={requestId}
+```
+
+| Parameter    | Type            | Required | Description                                                       |
+|--------------|-----------------|----------|-------------------------------------------------------------------|
+| `requestId`  | `string (uuid)` | yes      | Request to search within                                           |
+| `chatRoomId` | `string (uuid)` | no       | Narrow to one chat. Aggregates over every accessible chat when omitted |
+| `cursor`     | `string`        | no       | Cursor from `meta.nextCursor`                                      |
+| `limit`      | `number`        | no       | Items per page                                                     |
+
+**Response `200 OK`**
+
+| Field   | Type          | Description                                 |
+|---------|---------------|---------------------------------------------|
+| `items` | `FileItem[]`  | Files, newest first                          |
+| `meta`  | `CursorMeta`  | Pagination, see [Common types](#cursormeta)  |
+
+**`FileItem` object**
+
+Same as `MediaItem` plus `type`.
+
+| Field         | Type                | Description                                                |
+|---------------|---------------------|------------------------------------------------------------|
+| `mediaFileId` | `string (uuid)`     | Media file identifier — pass it to get a URL                 |
+| `fileName`    | `string`            | Original file name with extension                            |
+| `fileSize`    | `number`            | File size in bytes                                           |
+| `contentType` | `string`            | MIME type, e.g. `application/pdf`                            |
+| `type`        | `string`            | Non-media `AttachmentType`, see [Attachment types](#attachment-types) |
+| `sentAt`      | `string (ISO 8601)` | When the file was sent (UTC)                                 |
+
+**Example**
+
+```json
+{
+  "items": [
+    {
+      "mediaFileId": "7d3b6c15-9e42-4a08-b5f7-2c1e8d94a6b0",
+      "fileName": "ТЗ_ремонт_2024.pdf",
+      "fileSize": 2516582,
+      "contentType": "application/pdf",
+      "type": "Document",
+      "sentAt": "2026-08-19T09:15:00Z"
+    }
+  ],
+  "meta": {
+    "totalCount": 20,
+    "pageSize": 20,
+    "nextCursor": "eyJzZW50QXQiOiIyMDI2LTA4LTE5VDA5OjE1OjAwWiJ9",
+    "previousCursor": null,
+    "hasNext": true,
+    "hasPrevious": false
+  }
+}
+```
+
+**Errors**
+
+| Status | Code                      | Description                       |
+|--------|---------------------------|-----------------------------------|
+| `400`  | `Chat.InvalidRequestId`   | `requestId` is missing or malformed |
+| `400`  | `Chat.InvalidChatRoomId`  | `chatRoomId` is malformed          |
+| `400`  | `Chat.InvalidCursor`      | `cursor` is malformed or expired   |
+| `500`  | `Chat.LoadFailed`         | Failed to load the list            |
+
+---
+
+### GET /api/chat/links
+
+Links extracted from chat messages. <!-- Ссылки -->
+
+**Request**
+
+```http
+GET {host}/api/chat/links?requestId={requestId}
+```
+
+| Parameter    | Type            | Required | Description                                                       |
+|--------------|-----------------|----------|-------------------------------------------------------------------|
+| `requestId`  | `string (uuid)` | yes      | Request to search within                                           |
+| `chatRoomId` | `string (uuid)` | no       | Narrow to one chat. Aggregates over every accessible chat when omitted |
+| `cursor`     | `string`        | no       | Cursor from `meta.nextCursor`                                      |
+| `limit`      | `number`        | no       | Items per page                                                     |
+
+**Response `200 OK`**
+
+| Field   | Type          | Description                                 |
+|---------|---------------|---------------------------------------------|
+| `items` | `LinkItem[]`  | Links, newest first                          |
+| `meta`  | `CursorMeta`  | Pagination, see [Common types](#cursormeta)  |
+
+**`LinkItem` object**
+
+| Field       | Type                | Nullable | Description                                          |
+|-------------|---------------------|----------|------------------------------------------------------|
+| `messageId` | `string (uuid)`     | no       | Message the link was found in                         |
+| `url`       | `string`            | no       | The link itself                                       |
+| `title`     | `string`            | yes      | Page title. Always `null` until link previews ship    |
+| `sentAt`    | `string (ISO 8601)` | no       | When the message was sent (UTC)                       |
+
+**Example**
+
+```json
+{
+  "items": [
+    {
+      "messageId": "b8e4a2f1-6c09-4d73-91a5-3f0b7e5c2d68",
+      "url": "https://example.com/portfolio",
+      "title": null,
+      "sentAt": "2026-08-18T16:40:00Z"
+    }
+  ],
+  "meta": {
+    "totalCount": 4,
+    "pageSize": 20,
+    "nextCursor": null,
+    "previousCursor": null,
+    "hasNext": false,
+    "hasPrevious": false
+  }
+}
+```
+
+**Errors**
+
+| Status | Code                      | Description                       |
+|--------|---------------------------|-----------------------------------|
+| `400`  | `Chat.InvalidRequestId`   | `requestId` is missing or malformed |
+| `400`  | `Chat.InvalidChatRoomId`  | `chatRoomId` is malformed          |
+| `400`  | `Chat.InvalidCursor`      | `cursor` is malformed or expired   |
+| `500`  | `Chat.LoadFailed`         | Failed to load the list            |
+
+**Notes**
+
+- Render the url or its domain — `title` stays `null` until link previews are implemented.
+  <!-- LinkPreview ещё нет -->
+- One message with several links yields several items sharing the same `messageId`, so
+  `messageId` is not a unique key here. <!-- Ключ не уникален -->
+
+---
+
+### POST /api/chat/files/urls
+
+Resolves media file ids into temporary download URLs.
+<!-- Роут сверить: метод GetChatFileUrlsAsync -->
+
+**Request**
+
+```http
+POST {host}/api/chat/files/urls
+Content-Type: application/json
+```
+
+| Field          | Type              | Required | Description                                             |
+|----------------|-------------------|----------|---------------------------------------------------------|
+| `mediaFileIds` | `string (uuid)[]` | yes      | Ids to resolve. Up to 200 per call                       |
+| `ttlSeconds`   | `number`          | no       | Link lifetime. Clamped to `60…3600`                      |
+
+```json
+{
+  "mediaFileIds": [
+    "c1a7f0d2-5b83-42e6-9f14-0d7e6a2c8b39",
+    "7d3b6c15-9e42-4a08-b5f7-2c1e8d94a6b0"
+  ],
+  "ttlSeconds": 3600
+}
+```
+
+**Response `200 OK`**
+
+| Field       | Type                        | Description                                          |
+|-------------|-----------------------------|------------------------------------------------------|
+| `items`     | `map<uuid, ResolvedFile>`   | Keyed by media file id, not an array                  |
+| `expiresAt` | `string (ISO 8601)`         | When the returned URLs stop working (UTC)             |
+
+**`ResolvedFile` object**
+
+| Field         | Type     | Description                          |
+|---------------|----------|--------------------------------------|
+| `url`         | `string` | Presigned download URL                |
+| `fileName`    | `string` | Original file name with extension     |
+| `contentType` | `string` | MIME type                             |
+| `fileSize`    | `number` | File size in bytes                    |
+
+**Example**
+
+```json
+{
+  "items": {
+    "c1a7f0d2-5b83-42e6-9f14-0d7e6a2c8b39": {
+      "url": "https://s3.example.com/chat/c1a7f0d2?X-Amz-Signature=...",
+      "fileName": "объект_фасад.jpg",
+      "contentType": "image/jpeg",
+      "fileSize": 2457600
+    }
+  },
+  "expiresAt": "2026-08-25T12:00:00Z"
+}
+```
+
+**Notes**
+
+- `items` is a dictionary keyed by id — look values up directly instead of iterating.
+  <!-- Не массив, а словарь -->
+- Batch the ids of a whole grid page in one call rather than requesting URLs per thumbnail.
+- URLs expire at `expiresAt`; refresh them for long-lived views instead of caching.
+- An id that cannot be resolved is expected to be absent from `items` rather than returned with
+  a `null` url. <!-- уточнить поведение для недоступных id -->
