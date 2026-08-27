@@ -2279,12 +2279,12 @@ Chat rooms of the current profile. One chat belongs to one response on one reque
 GET {host}/api/chat?filter=all&limit=20
 ```
 
-| Parameter   | Type                | Required | Description                                                       |
-|-------------|---------------------|----------|-------------------------------------------------------------------|
-| `filter`    | `string`            | no       | Role filter, see [Chat filters](#chat-filters). Default `all`      |
-| `requestId` | `string (uuid)`     | no       | Return only chats of this request. All chats if omitted            |
-| `limit`     | `number`            | no       | Items to return. Default `20`                                      |
-| `before`    | `string (ISO 8601)` | no       | Keyset cursor — return chats older than this timestamp             |
+| Parameter   | Type            | Required | Description                                                       |
+|-------------|-----------------|----------|-------------------------------------------------------------------|
+| `filter`    | `string`        | no       | Role filter, see [Chat filters](#chat-filters). Default `all`      |
+| `requestId` | `string (uuid)` | no       | Return only chats of this request. All chats if omitted            |
+| `cursor`    | `string`        | no       | Cursor from `meta.nextCursor` / `meta.previousCursor`              |
+| `limit`     | `number`        | no       | Items to return. Default `20`                                      |
 
 #### Chat filters
 
@@ -2298,10 +2298,12 @@ Bound from the `ChatFilter` enum, matching is case-insensitive.
 
 **Response `200 OK`**
 
-| Field     | Type             | Description                                    |
-|-----------|------------------|------------------------------------------------|
-| `items`   | `ChatListItem[]` | Chats, newest activity first                    |
-| `hasMore` | `boolean`        | `true` if more chats exist beyond those returned |
+`ChatListResponseDto`.
+
+| Field   | Type             | Description                                    |
+|---------|------------------|------------------------------------------------|
+| `items` | `ChatListItem[]` | Chats, newest activity first                    |
+| `meta`  | `CursorMeta`     | Pagination, see [Common types](#cursormeta)     |
 
 **`ChatListItem` object**
 
@@ -2402,7 +2404,14 @@ used elsewhere. <!-- Сырой enum вместо объекта статуса 
       }
     }
   ],
-  "hasMore": false
+  "meta": {
+    "totalCount": 6,
+    "pageSize": 20,
+    "nextCursor": null,
+    "previousCursor": null,
+    "hasNext": false,
+    "hasPrevious": false
+  }
 }
 ```
 
@@ -2416,11 +2425,9 @@ used elsewhere. <!-- Сырой enum вместо объекта статуса 
   a `StatusBadge` object with a lower-case code. The client has to map the two.
   <!-- расхождение с общим типом -->
 - `Withdrawn` and `Archived` have no counterpart among the documented lower-case codes yet.
-- Pagination is keyset-based and has no envelope: when `hasMore` is `true`, repeat the call with
-  `before` set to the `lastMessageAt` of the last item and the same `filter` / `limit`.
-  <!-- Ни meta, ни курсора — подгрузка по before -->
-- Chats with `lastMessageAt: null` cannot serve as a `before` cursor — the paging key is the
-  last message timestamp. <!-- уточнить, как такие чаты попадают в порядок -->
+- Pagination is cursor-based with a `CursorMeta` envelope: pass `meta.nextCursor` back as
+  `cursor`, keeping the same `filter` and `limit`. The cursor is opaque — do not build it from
+  timestamps. <!-- Курсор непрозрачный -->
 - System messages are rendered from `lastMessageText` as is; use `lastMessageIsSystem` to style
   them differently.
 
@@ -2436,18 +2443,20 @@ Messages of a single chat room. <!-- Сообщения по чату -->
 GET {host}/api/chat/{chatRoomId}/messages
 ```
 
-| Parameter    | In    | Type                | Required | Description                                        |
-|--------------|-------|---------------------|----------|----------------------------------------------------|
-| `chatRoomId` | path  | `string (uuid)`     | yes      | Chat room identifier, from `chatRoomId`             |
-| `before`     | query | `string (ISO 8601)` | no       | Keyset cursor — return messages older than this     |
-| `limit`      | query | `number`            | no       | Messages to return. Default `20`                    |
+| Parameter    | In    | Type            | Required | Description                                           |
+|--------------|-------|-----------------|----------|-------------------------------------------------------|
+| `chatRoomId` | path  | `string (uuid)` | yes      | Chat room identifier, from `chatRoomId`                |
+| `cursor`     | query | `string`        | no       | Cursor from `meta.nextCursor` / `meta.previousCursor`  |
+| `limit`      | query | `number`        | no       | Messages to return. Default `20`                       |
 
 **Response `200 OK`**
 
-| Field      | Type            | Description                                        |
-|------------|-----------------|----------------------------------------------------|
-| `messages` | `ChatMessage[]` | Messages, newest first                              |
-| `hasMore`  | `boolean`       | `true` if older messages exist beyond those returned |
+`ChatMessagesResponseDto`.
+
+| Field      | Type            | Description                                 |
+|------------|-----------------|---------------------------------------------|
+| `messages` | `ChatMessage[]` | Messages, newest first                       |
+| `meta`     | `CursorMeta`    | Pagination, see [Common types](#cursormeta)  |
 
 **`ChatMessage` object**
 
@@ -2550,7 +2559,14 @@ Bound from the `AttachmentType` enum.
       "attachments": []
     }
   ],
-  "hasMore": false
+  "meta": {
+    "totalCount": 4,
+    "pageSize": 20,
+    "nextCursor": null,
+    "previousCursor": null,
+    "hasNext": false,
+    "hasPrevious": false
+  }
 }
 ```
 
@@ -2564,11 +2580,9 @@ Bound from the `AttachmentType` enum.
   its `createdAt` matches `respondedAt` from `/api/responses`.
 - `isMine` is resolved server-side for the requesting profile; do not compare
   `senderProfileId` on the client.
-- Pagination mirrors `/api/chat`: when `hasMore` is `true`, repeat the call with `before` set to
-  the `createdAt` of the last returned message. There is no `limit` cap declared in the
-  signature. <!-- Ключ подгрузки — createdAt последнего сообщения -->
-- Unlike `/api/chat`, `limit` here has no upper bound in the signature, and `pageSize` naming is
-  not used at all — three list endpoints, three different paging parameter sets.
+- Pagination matches `/api/chat`: pass `meta.nextCursor` back as `cursor` to load older messages.
+  The cursor is opaque; `limit` has no declared upper bound, unlike `pageSize` in
+  [/api/responses](#get-apiresponses) with its `1…50` range.
 
 ---
 
